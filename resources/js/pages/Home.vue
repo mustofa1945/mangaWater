@@ -25,7 +25,7 @@ defineOptions({ layout: MainLayout })
 
             <div class="flex flex-col gap-y-2">
                 <div class="bg-sky-500 text-center text-white py-2 rounded-lg my-4">
-                    The image loading issue has been fixed, everything is ok now!
+                    The image loading issue has been fixed, everything is ok now! halo
                 </div>
                 <div class="flex flex-col items-center bg-slate-800 py-2 gap-y-2.5">
                     <p class="text-slate-400"> If you enjoy the website, please consider sharing it with your friends.
