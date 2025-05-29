@@ -1,4 +1,4 @@
-import { reactive, ref, watchEffect } from "vue";
+import { nextTick, reactive, ref, watchEffect } from "vue";
 import { useThemeGlobal } from "../pages/theme/globalStyle";
 import { setActivePinia, getActivePinia } from "pinia";
 import { useReadingDirec } from "../pages/stores/useReadingDirec";
@@ -77,6 +77,7 @@ export const useProvideDataProgressBar = () => {
 
     watchEffect(() => {
         const direc = storeReadingDirec.readDirec.direc;
+
         const [, top, , , bottom] = typePositionScrollBar.value;
 
         top.style.property = `flex ${direc} top-0 left-0 w-full h-[0.5vh] hover:h-[1rem] transition-all`;

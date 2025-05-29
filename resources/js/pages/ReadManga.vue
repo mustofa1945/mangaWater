@@ -31,11 +31,9 @@ const scrollElements = computed(() => {
     if (storeMangaViewer.readMangaViewer.id === 3) {
         return longStripEl.value
     }
-
     if (swip[0].status) {
         return singleEl.value
     }
-
     return null // supaya watch terpicu saat berubah dari array → null dan sebaliknya
 })
 
@@ -88,8 +86,13 @@ defineOptions({ layout: ReadLayout })
 
         <template v-if="storeMangaViewer.readMangaViewer.id !== 3">
             <template v-for="direc in storeReadingDirec.readingDirec" :key="direc.id">
-                <NextButton v-if="direc.status" @click="nextProgressCLick"
-                    :class="`${direc.position} ${modalError.status ? '-z-10' : ''}`" />
+                <NextButton @click="() => {
+                    if (direc.status) {
+                        nextProgressCLick()
+                    } else {
+                        prevProgressCLick()
+                    }
+                }" :class="`${direc.position} ${modalError.status ? '-z-10' : ''}`" />
             </template>
         </template>
 

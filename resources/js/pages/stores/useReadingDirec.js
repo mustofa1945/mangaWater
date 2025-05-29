@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { computed } from "vue";
+import { computed, watch } from "vue";
 import { useProvideDataReadingDirec } from "../../dataStore/dataReadingDirec";
 import { useUtils } from "../utils/utilsFunctionStore";
 
@@ -14,7 +14,7 @@ export const useReadingDirec = defineStore("direc", () => {
         //Berdasarkan status
         switchActive(readDirec.value, readingDirec.value);
         //Berdasarkan id Sekaligus menyelaraskan dengan advance setting
-        
+
         choiseType(readingDirec.value, readDirec.value.id);
     };
     //Berdasarkan id
@@ -26,6 +26,6 @@ export const useReadingDirec = defineStore("direc", () => {
         findByStatus,
         applySwicthActive,
         applyChoiseType,
-        readingDirec
+        readingDirec,
     };
 });
