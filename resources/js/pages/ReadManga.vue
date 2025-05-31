@@ -25,6 +25,7 @@ const singleEl = useTemplateRef("itemSinglePageSwip")
 const { modalError, showOrClose } = useShowClose()
 const storeReadingDirec = useReadingDirec()
 const { setting, swip } = useAdvanceSetting()
+const storeShowAndClose = useShowClose()
 // const pageManga = ref(20)
 
 const scrollElements = computed(() => {
@@ -54,7 +55,7 @@ defineOptions({ layout: ReadLayout })
     <div class="flex w-full relative ">
         <!-- Gambar Manga -->
         <div @scroll="scrollDetectStatus(instanceProxy)"
-            :class="`relative w-full flex h-[91.9vh] justify-center items-center ${storeMangaViewer.readMangaViewer.id === 3 ? 'overflow-y-auto' : ''}`">
+            :class="`relative w-full flex ${storeShowAndClose.readHeader.readMangaWidth} justify-center items-center ${storeMangaViewer.readMangaViewer.id === 3 ? 'overflow-y-auto' : ''}`">
             <MangaViewer :singlePage="singlePage.status" :doublePage="doublePage.status" :longStrip="longStrip.status">
                 <template #singlePage>
                     <div ref="itemSinglePage" v-if="!swip[0].status"

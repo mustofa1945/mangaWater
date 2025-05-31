@@ -1,5 +1,4 @@
 <script setup>
-import { watchEffect } from 'vue';
 import { useProgressButton } from '../../stores/useButtonProgress';
 
 const storeProgress = useProgressButton()

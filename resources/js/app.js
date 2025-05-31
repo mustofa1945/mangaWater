@@ -7,6 +7,7 @@ import MainLayout from "./layout/MainLayout.vue";
 import ReadLayout from "./layout/ReadLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import { createPinia } from "pinia";
+import { vShowAndClose } from "./pages/directive/customDirective";
 
 export const pinia = createPinia();
 
@@ -21,7 +22,8 @@ createInertiaApp({
         const app = createApp({ render: () => h(App, props) })
             .use(pinia)
             .use(plugin)
-            .component("Link", Link);
+            .component("Link", Link)
+            .directive("showAndClose" , vShowAndClose)
         app.mount(el);
     },
 });
