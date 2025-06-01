@@ -87,7 +87,7 @@ export const useProgressButton = defineStore("progressButton", () => {
         //Scroll ke Bawah
         el.element?.scrollIntoView({
             behavior: "smooth",
-            block: "center",
+            block: "center", 
             inline: "center", 
         });
     };

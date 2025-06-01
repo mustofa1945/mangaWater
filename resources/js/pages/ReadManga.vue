@@ -47,7 +47,25 @@ watch(() => scrollElements.value, async (val) => {
 
 watch(() => instanceProxy, (newValue) => runProvideClickGiveStatus(30, newValue), { immediate: true, once: true })
 
+onMounted(() => {
+    window.addEventListener('keydown', (e) => {
+        if (e.key == "h") {
+            storeShowAndClose.showOrHidden(storeShowAndClose.header, storeShowAndClose.readHeader)
+        }
 
+        if (e.key == "m") {
+            storeShowAndClose.showOrHidden(storeShowAndClose.navReadMenu, storeShowAndClose.readNavReadMenu)
+        }
+
+        if (e.key == "ArrowRight" && storeMangaViewer.readMangaViewer.id !== 3) {
+            nextProgressCLick()
+        }
+
+        if (e.key == "ArrowLeft" && storeMangaViewer.readMangaViewer.id !== 3) {
+            prevProgressCLick()
+        }
+    })
+})
 
 defineOptions({ layout: ReadLayout })
 </script>
