@@ -9,7 +9,7 @@ export const useProvideUtilsData = () => {
             status: false,
         },
         modalLogin: {
-            status: false,
+            status: false, 
         },
         zIndex: {
             status: false,

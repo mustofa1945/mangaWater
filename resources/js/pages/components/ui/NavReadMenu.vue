@@ -3,7 +3,6 @@ import BoxIcon from '../partials/box/BoxIcon.vue';
 import PagNavMenu from '../partials/button/PagNavMenu.vue';
 import PagReguler from '../partials/button/PagReguler.vue';
 import PageMenu from './PageMenu.vue';
-import { useSlidePageNav } from '../../stores/useSlidePageNav';
 import { useSlidePage } from '../../stores/useSlidePage';
 import { langs } from '../../../data/dataManga';
 import LangNavButton from '../partials/button/LangNavButton.vue';
@@ -13,9 +12,7 @@ import { useProgressButton } from '../../stores/useButtonProgress';
 import { useShowClose } from '../../stores/useShowClose';
 import { useReadingDirec } from '../../stores/useReadingDirec';
 import { useAdvanceSetting } from '../../stores/useAdvanceSetting';
-import { watchEffect, watch } from 'vue';
 
-const { getNav: { readOnly: nav }, showNav, showComment, headerUp } = useSlidePageNav()
 const { pages, showPage } = useSlidePage()
 const storeMangaViewer = useMangaViewer()
 const storeMangaSize = useMangaSize()
@@ -23,45 +20,46 @@ const storeProgressBar = useProgressButton()
 const storeReadingDirec = useReadingDirec()
 const { showAndUpdate } = useAdvanceSetting()
 const { modalError, showOrClose, langActive } = useShowClose()
+const storeShowAndClose = useShowClose()
 
 </script>
 
 <template>
-    <div
-        :class="`w-${nav.width} ${nav.display} py-2 px-5 box-border bg-slate-900 fixed right-0 top-0 flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden max-h-screen`">
+    <div v-showAndClose="storeShowAndClose.readNavReadMenu.delayEffect"
+        :class="`py-2 px-5 box-border bg-slate-900 fixed right-0 top-0 flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden max-h-screen`">
         <!-- Title -->
         <div class="flex justify-between items-center gap-x-2">
             <h1 class="text-md font-semibold  ">The Seven Deadly Sins: Four Knights of the Apocalypse</h1>
-            <PagReguler @click="showNav(pages)" :options="{ size: 'md', position: 'right' }"
-                class="bg-slate-500 h-[4vh] w-[5vh] " />
+            <PagReguler
+                @click="storeShowAndClose.showOrHidden(storeShowAndClose.navReadMenu, storeShowAndClose.readNavReadMenu , pages)"
+                :options="{ size: 'md', position: 'right' }" class="bg-slate-500 h-[4vh] w-[5vh] " />
         </div>
         <!-- Slide -->
-        <div class="bg-slate-800/70 flex rounded-lg p-3 hover:brightness-115">
+        <div class="bg-slate-800/70 group flex items-center  rounded-lg p-3 hover:backdrop-brightness-300">
             <div class="flex w-[75%] flex-col ">
                 <p class="text-md text-gray-400">you are reading</p>
                 <span class="text-lg text-sky-400">by chapter</span>
             </div>
-            <div class="w-[25%] h-full flex justify-center items-center hover:brightness-115">
-
-                <i class="fas text-2xl fa-sync-alt text-gray-400 "></i>
+            <div class="w-[25%] flex justify-center items-center hover:backdrop-brightness-300">
+                <i
+                    class="fas text-2xl group-hover:rotate-[360deg] group-hover:scale-130 transition-all duration-1000 fa-sync-alt text-gray-400 "></i>
             </div>
         </div>
-        <div class="bg-slate-800/70 flex  relative rounded-lg p-3  justify-center items-center">
-            <div @click="showOrClose(langActive)"
-                class="relative flex items-center justify-center w-full hover:brightness-115">
-                <span class="text-md text-gray-400">Language:</span>
-                <span class="text-md  pl-1">English</span>
+        <div class="bg-slate-800/70 flex  relative rounded-lg p-3 justify-center items-center">
+            <div @click="showOrClose(langActive)" class="relative flex items-center  justify-center w-full ">
+                <span class="text-md text-gray-400 ">Language:</span>
+                <span class="text-md  pl-1 text-white">English</span>
             </div>
             <!-- List Bahasa -->
             <div
-                :class="`w-full flex flex-col absolute left-0 top-13 origin-top bg-slate-800/70 rounded-lg h-${langActive.status ? '42' : '0'} duration-200 transition-all overflow-hidden`">
+                :class="`w-full flex flex-col absolute left-0 top-13 origin-top bg-slate-800 z-10 rounded-lg h-${langActive.status ? '42' : '0'} duration-200 transition-all overflow-hidden`">
                 <LangNavButton v-for="lang in langs" :key="lang.id" :title="lang.lang" :url="lang.url"
                     class="w-full h-[5vh] px-3  z-20 rounded-lg " />
             </div>
         </div>
         <PagNavMenu />
         <div class="flex flex-col gap-y-2 relative">
-            <BoxIcon @click="showComment()"
+            <BoxIcon @click="storeShowAndClose.showOrHidden(storeShowAndClose.comment, storeShowAndClose.readComment)"
                 :options="{ title: 'Chapter 1 Comment', icon: 'fas fa-comment-alt', reverse: true }"
                 class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl" />
             <BoxIcon :options="{ title: 'Bookmark', icon: 'fas fa-bookmark', reverse: true }"
@@ -73,8 +71,8 @@ const { modalError, showOrClose, langActive } = useShowClose()
                 class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl " />
         </div>
         <div class="flex flex-col gap-y-2 mt-7">
-            <BoxIcon @click="headerUp()"
-                :options="{ title: 'Header Hidden', icon: 'fas fa-comment-alt', reverse: false }"
+            <BoxIcon @click="storeShowAndClose.showOrHidden(storeShowAndClose.header, storeShowAndClose.readHeader)"
+                :options="{ title: storeShowAndClose.readHeader.title , icon: 'fas fa-comment-alt', reverse: false }"
                 class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl " />
             <BoxIcon @click="storeMangaViewer.changeTypeViewer()"
                 :options="{ title: storeMangaViewer.readMangaViewer.title, icon: storeMangaViewer.readMangaViewer.icon, reverse: false }"

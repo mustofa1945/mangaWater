@@ -22,7 +22,6 @@ export const useProgressButton = defineStore("progressButton", () => {
         runNextProgressCLick,
         runPrevProgressCLick,
         runScrollDetectStatus,
-        pickPage: runPickPage,
     } = useProvideOneUtilsProgressBar();
 
     const readType = computed(() => typePositionScrollBar.value);
@@ -63,14 +62,12 @@ export const useProgressButton = defineStore("progressButton", () => {
         },
         { deep: true }
     );
-
+    
     const scrollDetectStatus = (elements) => runScrollDetectStatus(elements);
-
     //Select berdasarkan id
     const choiseType = (id) => runChoiseType(typePositionScrollBar.value, id);
 
     const pickPage = (id) => {
-        console.log(id)
         instanceProxy.value.forEach((el) => {
             if (id >= el.id) {
                 el.status = true;
@@ -90,8 +87,8 @@ export const useProgressButton = defineStore("progressButton", () => {
         //Scroll ke Bawah
         el.element?.scrollIntoView({
             behavior: "smooth",
-            block: "center", // untuk scroll vertikal (kita abaikan)
-            inline: "center", // untuk scroll horizontal ke kiri elemen
+            block: "center",
+            inline: "center", 
         });
     };
 
