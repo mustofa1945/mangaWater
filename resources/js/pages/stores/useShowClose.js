@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { useProvideUtilsData } from "../utils/utilsDatastore";
-import { computed, reactive, toRefs, watchEffect, toRef } from "vue";
+import { computed, reactive, toRefs, ref, watch, shallowRef, watchEffect } from "vue";
 import { useUtils } from "../utils/utilsFunctionStore";
 import { useProvideDataShowAndClose } from "../../dataStore/dataShowAndClose";
 
@@ -14,7 +14,7 @@ export const useShowClose = defineStore("showClose", () => {
 
     const { findByStatus, switchActive } = useUtils();
 
-    //Best Practice Dalam menangani destruc computed
+    // Best Practice Dalam menangani destruc computed
     const createShowCloseComputedGroup = () => {
 
         const groups = reactive({
@@ -25,6 +25,9 @@ export const useShowClose = defineStore("showClose", () => {
 
         return toRefs(groups)
     }
+
+
+
 
     const showOrHidden = (proxy, partialProxy, page = []) => {
         //Delete semua status pages yang active

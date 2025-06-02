@@ -6,7 +6,7 @@ import { useReadingDirec } from '../../../stores/useReadingDirec';
 import StatusButton from '../button/StatusButton.vue';
 
 const { typeMangaViewers, swicthById } = useMangaViewer()
-const storeMangaViewer = useMangaViewer()
+const { computedViewer } = useMangaViewer()
 const { readingDirec, applyChoiseType } = useReadingDirec()
 const { choiseType, typePositionScrollBar, instanceProxy } = useProgressButton()
 const storeAdvanceSetting = useAdvanceSetting()
@@ -23,7 +23,7 @@ const storeAdvanceSetting = useAdvanceSetting()
 
     <!-- Strip Margin -->
     <div class="mb-4 flex">
-        <template v-if="storeMangaViewer.readMangaViewer.id === 3">
+        <template v-if="computedViewer.readMangaViewer.id === 3">
             <label class="text-sm  text-gray-400 flex items-center mb-1 w-1/6 justify-center">Strip Margin</label>
             <div class="flex flex-1 items-center gap-2  ">
                 <input type="number" class="flex-1 px-2 py-1 rounded bg-gray-700 text-white border border-gray-600"
@@ -31,9 +31,9 @@ const storeAdvanceSetting = useAdvanceSetting()
                 <button class="px-3 h-full bg-gray-600 rounded hover:bg-gray-500 text-sm w-1/5 ">Reset</button>
             </div>
         </template>
-        <template v-if="storeMangaViewer.readMangaViewer.id === 1">
+        <template v-if="computedViewer.readMangaViewer.id === 1">
             <StatusButton
-                @runChangeStatus="storeAdvanceSetting.changeStatusButtonType(item.id, storeAdvanceSetting.swip , instanceProxy)"
+                @runChangeStatus="storeAdvanceSetting.changeStatusButtonType(item.id, storeAdvanceSetting.swip, instanceProxy)"
                 v-for="item in storeAdvanceSetting.swip" :text="item.title" :isActive="item.status" />
         </template>
     </div>

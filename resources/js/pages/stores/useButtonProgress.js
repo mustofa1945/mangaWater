@@ -24,9 +24,8 @@ export const useProgressButton = defineStore("progressButton", () => {
         runScrollDetectStatus,
     } = useProvideOneUtilsProgressBar();
 
-    const readType = computed(() => typePositionScrollBar.value);
     //Setiap nilai ef TypePosition berubah Jalankan GetByStatus
-    const getType = computed(() => findByStatus(readType.value));
+    const readTypePosition = computed(() => findByStatus(typePositionScrollBar.value));
 
     const readPage = computed(() => page.value);
 
@@ -39,7 +38,7 @@ export const useProgressButton = defineStore("progressButton", () => {
 
         switchActive(position, typePositionScrollBar.value);
         //Relasikan dengan Advance Setting
-        runChoiseType(typePositionScrollBar.value, getType.value.id);
+        runChoiseType(typePositionScrollBar.value, readTypePosition.value.id);
     };
 
     const nextProgressCLick = () => runNextProgressCLick(instanceProxy.value);
@@ -97,12 +96,14 @@ export const useProgressButton = defineStore("progressButton", () => {
         scrollDetectStatus,
         instanceProxy,
         choiseTypePosition,
-        getType,
         wacthScroll,
         nextProgressCLick,
         prevProgressCLick,
         choiseType,
-        readPage,
         pickPage,
+        computedProgressBar : {
+            readPage,
+            readTypePosition   
+        }
     };
 });

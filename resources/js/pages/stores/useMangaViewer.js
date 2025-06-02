@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { computed } from "vue";
+import { computed , watchEffect } from "vue";
 import { useUtils } from "../utils/utilsFunctionStore";
 import { useProvideDataMangaViewers } from "../../dataStore/dataMangaViewers";
 import { useProvideOneUtilsMangaViewer } from "../utils/oneUtils/oneUtilsMangaViewer";
@@ -17,9 +17,9 @@ export const useMangaViewer = defineStore("mangaViewer", () => {
         syncProgressElementAndScroll,
     } = useProvideOneUtilsMangaViewer();
     //Kita ambil manga viewer yang akan digunakan NavReadMenu dan parameter pertama dari changeTypeViewer
-    const readMangaViewer = computed(() =>
-        findByStatus(typeMangaViewers.value)
-    );
+
+    const readMangaViewer = computed(() => findByStatus(typeMangaViewers.value));
+
     //Menirima proxy dari component NavReadMenu
     const changeTypeViewer = async () => {
         //Ganti manga viewer ke mode selanjutnya
@@ -43,8 +43,10 @@ export const useMangaViewer = defineStore("mangaViewer", () => {
     };
     return {
         typeMangaViewers,
-        readMangaViewer,
         changeTypeViewer,
         swicthById,
+        computedViewer : {
+           readMangaViewer
+        }
     };
 });

@@ -8,12 +8,13 @@ const status = defineProps({
 })
 
 
-const storeReadingDirec = useReadingDirec()
+const { compuReadDirec } = useReadingDirec()
 
 </script>
 <template>
     <!-- SinglePage -->
-    <div v-if="status.singlePage" :class="`h-full w-full flex ${storeReadingDirec.readDirec.direc} overflow-hidden  gap-x-2`">
+    <div v-if="status.singlePage"
+        :class="`h-full w-full flex ${compuReadDirec.readDirec.direc} overflow-hidden  gap-x-2`">
         <slot name="singlePage" />
     </div>
     <!-- DoublePage -->

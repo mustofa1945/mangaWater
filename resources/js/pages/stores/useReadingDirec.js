@@ -22,7 +22,9 @@ export const useReadingDirec = defineStore("direc", () => {
 
     return {
         readingDirec,
-        readDirec,
+        compuReadDirec : {
+            readDirec
+        },
         findByStatus,
         applySwicthActive,
         applyChoiseType,
