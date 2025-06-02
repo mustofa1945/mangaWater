@@ -1,4 +1,4 @@
-import { nextTick, reactive, ref, watchEffect } from "vue";
+import {  ref, watchEffect } from "vue";
 import { useThemeGlobal } from "../pages/theme/globalStyle";
 import { setActivePinia, getActivePinia } from "pinia";
 import { useReadingDirec } from "../pages/stores/useReadingDirec";

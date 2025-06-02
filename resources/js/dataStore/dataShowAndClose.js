@@ -1,4 +1,5 @@
-import { reactive } from "vue";
+import { reactive, computed, toRefs } from "vue";
+import { useUtils } from "../pages/utils/utilsFunctionStore";
 
 export const useProvideDataShowAndClose = () => {
     const dataShowAndClose = reactive({
@@ -22,9 +23,9 @@ export const useProvideDataShowAndClose = () => {
                 readLayoutWidth: "w-[75%]",
                 delayEffect: {
                     inClosure: {
-                        property: "width",
+                        property: "transform",
                         timeout: 10,
-                        width: "25%",
+                        transform: "translateY(0)",
                     },
                     outClosure: {
                         property: "display",
@@ -43,8 +44,8 @@ export const useProvideDataShowAndClose = () => {
                         display: "none",
                     },
                     outClosure: {
-                        property: "width",
-                        width: "0",
+                        property: "transform",
+                        transform: "translateX(100%)",
                     },
                 },
             },
@@ -120,6 +121,7 @@ export const useProvideDataShowAndClose = () => {
             },
         ],
     });
+
 
     return { dataShowAndClose };
 };

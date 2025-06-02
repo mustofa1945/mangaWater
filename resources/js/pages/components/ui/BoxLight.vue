@@ -1,6 +1,5 @@
 <script setup>
 defineProps(['css'])
-
 </script>
 <template>
     <section :class="`pt-${css} relative inset-0 px-4 overflow-hidden  border-b border-slate-900 pb-[25vh] `">
