@@ -1,17 +1,30 @@
-import { watch, nextTick } from "vue";
+import { watch, nextTick, computed, onMounted } from "vue";
+import { useMangaViewer } from "../stores/useMangaViewer";
+import { useProgressButton } from "../stores/useButtonProgress";
+import { useProvideOneUtilsProgressBar } from "../utils/oneUtils/oneUtilsProgressBar";
+import { useShowClose } from "../stores/useShowClose";
+import { useAdvanceSetting } from "../stores/useAdvanceSetting";
+import { useSlidePage } from "../stores/useSlidePage";
 
 export function useCompoReadManga(
-    typeMangaViewer,
-    isSwip,
     longStripEl,
     singleEl
 ) {
+    const storeMangaViewer = useMangaViewer()
+    const { instanceProxy, nextProgressCLick, prevProgressCLick, wacthScroll } = useProgressButton()
+    const { runProvideClickGiveStatus } = useProvideOneUtilsProgressBar()
+    const { createShowCloseComputedGroup, showOrHidden, header, navReadMenu } = useShowClose()
+    const { readHeader, readNavReadMenu } = createShowCloseComputedGroup()
+    const { swip } = useAdvanceSetting()
+    const { pages } = useSlidePage()
+
     const scrollElements = computed(() => {
-        if (typeMangaViewer === 3) {
-            return longStripEl;
+        if (storeMangaViewer.readMangaViewer.id === 3) {
+            return longStripEl.value;
         }
-        if (isSwip) {
-            return singleEl;
+        if (swip[0].status) {
+            console.log
+            return singleEl.value;
         }
         return null; // supaya watch terpicu saat berubah dari array → null dan sebaliknya
     });
@@ -33,32 +46,31 @@ export function useCompoReadManga(
     onMounted(() => {
         window.addEventListener("keydown", (e) => {
             if (e.key == "h") {
-                storeShowAndClose.showOrHidden(
-                    storeShowAndClose.header,
-                    storeShowAndClose.readHeader
+                showOrHidden(
+                    header,
+                    readHeader.value,
                 );
             }
 
             if (e.key == "m") {
-                storeShowAndClose.showOrHidden(
-                    storeShowAndClose.navReadMenu,
-                    storeShowAndClose.readNavReadMenu
+                showOrHidden(
+                    navReadMenu,
+                    readNavReadMenu.value,
+                    pages
                 );
             }
 
             if (
                 e.key == "ArrowRight" &&
                 storeMangaViewer.readMangaViewer.id !== 3
-            ) {
-                nextProgressCLick();
-            }
+            ) nextProgressCLick();
+
 
             if (
                 e.key == "ArrowLeft" &&
                 storeMangaViewer.readMangaViewer.id !== 3
-            ) {
-                prevProgressCLick();
-            }
+            ) prevProgressCLick();
+
         });
     });
 }

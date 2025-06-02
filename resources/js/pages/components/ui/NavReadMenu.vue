@@ -1,37 +1,39 @@
 <script setup>
-import BoxIcon from '../partials/box/BoxIcon.vue';
-import PagNavMenu from '../partials/button/PagNavMenu.vue';
-import PagReguler from '../partials/button/PagReguler.vue';
-import PageMenu from './PageMenu.vue';
+//Store
 import { useSlidePage } from '../../stores/useSlidePage';
 import { langs } from '../../../data/dataManga';
-import LangNavButton from '../partials/button/LangNavButton.vue';
 import { useMangaViewer } from '../../stores/useMangaViewer';
 import { useMangaSize } from '../../stores/useSizeManga';
 import { useProgressButton } from '../../stores/useButtonProgress';
 import { useShowClose } from '../../stores/useShowClose';
 import { useReadingDirec } from '../../stores/useReadingDirec';
 import { useAdvanceSetting } from '../../stores/useAdvanceSetting';
+//Components
+import BoxIcon from '../partials/box/BoxIcon.vue';
+import PagNavMenu from '../partials/button/PagNavMenu.vue';
+import PagReguler from '../partials/button/PagReguler.vue';
+import PageMenu from './PageMenu.vue';
+import LangNavButton from '../partials/button/LangNavButton.vue';
 
-const { pages, showPage } = useSlidePage()
 const storeMangaViewer = useMangaViewer()
 const storeMangaSize = useMangaSize()
 const storeProgressBar = useProgressButton()
 const storeReadingDirec = useReadingDirec()
+const { showOrHidden, createShowCloseComputedGroup, navReadMenu, comment, langActive, showOrClose, modalError , header } = useShowClose()
+const { readNavReadMenu, readComment, readHeader } = createShowCloseComputedGroup()
+const { pages, showPage } = useSlidePage()
 const { showAndUpdate } = useAdvanceSetting()
-const { modalError, showOrClose, langActive } = useShowClose()
-const storeShowAndClose = useShowClose()
+
 
 </script>
 
 <template>
-    <div v-showAndClose="storeShowAndClose.readNavReadMenu.delayEffect"
-        :class="`py-2 px-5 box-border bg-slate-900 fixed right-0 top-0 flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden max-h-screen`">
+    <div v-showAndClose="readNavReadMenu.delayEffect"
+        :class="`py-2 px-5 box-border w-[25%] bg-slate-900 fixed right-0 top-0 flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden max-h-screen`">
         <!-- Title -->
         <div class="flex justify-between items-center gap-x-2">
             <h1 class="text-md font-semibold  ">The Seven Deadly Sins: Four Knights of the Apocalypse</h1>
-            <PagReguler
-                @click="storeShowAndClose.showOrHidden(storeShowAndClose.navReadMenu, storeShowAndClose.readNavReadMenu , pages)"
+            <PagReguler @click="showOrHidden(navReadMenu, readNavReadMenu, pages)"
                 :options="{ size: 'md', position: 'right' }" class="bg-slate-500 h-[4vh] w-[5vh] " />
         </div>
         <!-- Slide -->
@@ -59,7 +61,7 @@ const storeShowAndClose = useShowClose()
         </div>
         <PagNavMenu />
         <div class="flex flex-col gap-y-2 relative">
-            <BoxIcon @click="storeShowAndClose.showOrHidden(storeShowAndClose.comment, storeShowAndClose.readComment)"
+            <BoxIcon @click="showOrHidden(comment, readComment)"
                 :options="{ title: 'Chapter 1 Comment', icon: 'fas fa-comment-alt', reverse: true }"
                 class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl" />
             <BoxIcon :options="{ title: 'Bookmark', icon: 'fas fa-bookmark', reverse: true }"
@@ -71,8 +73,8 @@ const storeShowAndClose = useShowClose()
                 class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl " />
         </div>
         <div class="flex flex-col gap-y-2 mt-7">
-            <BoxIcon @click="storeShowAndClose.showOrHidden(storeShowAndClose.header, storeShowAndClose.readHeader)"
-                :options="{ title: storeShowAndClose.readHeader.title , icon: 'fas fa-comment-alt', reverse: false }"
+            <BoxIcon @click="showOrHidden(header, readHeader)"
+                :options="{ title: readHeader.title, icon: 'fas fa-comment-alt', reverse: false }"
                 class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl " />
             <BoxIcon @click="storeMangaViewer.changeTypeViewer()"
                 :options="{ title: storeMangaViewer.readMangaViewer.title, icon: storeMangaViewer.readMangaViewer.icon, reverse: false }"

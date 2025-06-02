@@ -4,7 +4,7 @@ import Image from '../partials/setting/Image.vue';
 import PageLayout from '../partials/setting/PageLayout.vue';
 import ShortCut from '../partials/setting/ShortCut.vue';
 
-const { advanceSetting, selectSetting , showAndUpdate } = useAdvanceSetting()
+const { advanceSetting, selectSetting, showAndUpdate } = useAdvanceSetting()
 const [pageLayout, image, shortCut] = advanceSetting
 const read = useAdvanceSetting()
 

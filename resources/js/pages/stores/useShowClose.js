@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
 import { useProvideUtilsData } from "../utils/utilsDatastore";
-import { computed } from "vue";
+import { computed, reactive, toRefs, watchEffect, toRef } from "vue";
 import { useUtils } from "../utils/utilsFunctionStore";
 import { useProvideDataShowAndClose } from "../../dataStore/dataShowAndClose";
 
 export const useShowClose = defineStore("showClose", () => {
-    const { modalError, langActive, modalLogin, zIndex } =
+    const { modalError, langActive, modalLogin } =
         useProvideUtilsData();
 
     const {
@@ -14,11 +14,17 @@ export const useShowClose = defineStore("showClose", () => {
 
     const { findByStatus, switchActive } = useUtils();
 
-    const readNavReadMenu = computed(() => findByStatus(navReadMenu));
+    //Best Practice Dalam menangani destruc computed
+    const createShowCloseComputedGroup = () => {
 
-    const readComment = computed(() => findByStatus(comment));
+        const groups = reactive({
+            readNavReadMenu: computed(() => findByStatus(navReadMenu)),
+            readComment: computed(() => findByStatus(comment)),
+            readHeader: computed(() => findByStatus(header))
+        })
 
-    const readHeader = computed(() => findByStatus(header));
+        return toRefs(groups)
+    }
 
     const showOrHidden = (proxy, partialProxy, page = []) => {
         //Delete semua status pages yang active
@@ -36,15 +42,12 @@ export const useShowClose = defineStore("showClose", () => {
     return {
         modalError,
         showOrClose,
+        header,
+        comment,
+        navReadMenu,
         langActive,
         modalLogin,
-        zIndex,
-        readNavReadMenu,
-        navReadMenu,
         showOrHidden,
-        readComment,
-        comment,
-        header,
-        readHeader,
+        createShowCloseComputedGroup,
     };
 });

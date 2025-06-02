@@ -11,9 +11,6 @@ export const useProvideUtilsData = () => {
         modalLogin: {
             status: false, 
         },
-        zIndex: {
-            status: false,
-        },
         setting : {
             status : false
         }

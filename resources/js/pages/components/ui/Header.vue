@@ -1,8 +1,10 @@
 <script setup>
+import { defineAsyncComponent } from 'vue';
+//Component
 import BoxIcon from '../partials/box/BoxIcon.vue';
+//Store
 import { useSlidePage } from '../../stores/useSlidePage.js';
 import { useDropStore } from '../../stores/useDropdown.js';
-import { defineAsyncComponent } from 'vue';
 import { useShowClose } from '../../stores/useShowClose.js';
 import { useProgressButton } from '../../stores/useButtonProgress.js';
 const ListItemHeader = defineAsyncComponent(() =>
@@ -11,17 +13,19 @@ const ListItemHeader = defineAsyncComponent(() =>
 const Modal = defineAsyncComponent(() =>
     import('./Modal.vue')
 )
+const storeProgressBar = useProgressButton()
+const { createShowCloseComputedGroup , navReadMenu, showOrHidden, showOrClose , modalLogin} = useShowClose()
+const { readHeader, readNavReadMenu } = createShowCloseComputedGroup ()
+const { pages, showPage } = useSlidePage()
+const { elements } = useDropStore()
+
+
 defineProps(['menu'])
 defineOptions({ inheritAttrs: false })
-const { pages , showPage } = useSlidePage()
-const { elements } = useDropStore()
-const { showOrClose, modalLogin } = useShowClose()
-const storeProgressBar = useProgressButton()
-const storeShowOrClose = useShowClose()
-
 </script>
 <template>
-    <nav v-bind="$attrs" v-showAndClose="storeShowOrClose.readHeader.delayEffect"  :class="`flex bg-slate-900  items-center justify-between p-2 z-30 `">
+    <nav v-bind="$attrs" v-showAndClose="readHeader.delayEffect"
+        :class="`flex bg-slate-900  items-center justify-between p-2 z-30 `">
         <div :class="`flex items-center space-x-${menu.space}`">
             <Link href="/home">
             <img alt="MangaFire.io logo" :class="`h-${menu.height} w-${menu.widht} bg-cover`"
@@ -54,12 +58,13 @@ const storeShowOrClose = useShowClose()
         <!-- Chapter -->
         <div v-if="menu.status" class="flex gap-x-3 text-white">
             <span @click="showPage(pages[0].id)">Chapter 1 / 20</span>
-            <span @click="showPage(pages[1].id)">{{ `Page ${storeProgressBar.readPage} / ${storeProgressBar.instanceProxy.length}` }}</span>
+            <span @click="showPage(pages[1].id)">{{ `Page ${storeProgressBar.readPage} /
+                ${storeProgressBar.instanceProxy.length}` }}</span>
         </div>
         <BoxIcon @click="showOrClose(modalLogin)"
             :options="{ title: 'Login', icon: ' fas fa-chevron-right', reverse: false }"
             class="w-[12vh] rounded-full bg-sky-600 text-white h-[5vh] flex justify-center item-center gap-x-1  " />
-        <BoxIcon @slide="storeShowOrClose.showOrHidden( storeShowOrClose.navReadMenu , storeShowOrClose.readNavReadMenu , pages)" v-if="menu.status"
+        <BoxIcon @slide="showOrHidden(navReadMenu, readNavReadMenu, pages)" v-if="menu.status"
             :options="{ title: 'Menu', icon: 'fa-solid fa-ellipsis-vertical', reverse: true }"
             class="w-[12vh] bg-sky-700 h-[5vh] text-white px-3 rounded-lg" />
     </nav>

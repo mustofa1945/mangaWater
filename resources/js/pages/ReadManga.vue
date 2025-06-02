@@ -1,71 +1,42 @@
 <script setup>
-import { defineAsyncComponent, useTemplateRef, watch, computed, nextTick, watchEffect, onMounted } from 'vue';
+import { defineAsyncComponent, useTemplateRef } from 'vue';
+
+// Stores
 import { useMangaViewer } from './stores/useMangaViewer';
 import { useMangaSize } from './stores/useSizeManga';
+import { useProgressButton } from './stores/useButtonProgress';
+import { useShowClose } from './stores/useShowClose';
+import { useAdvanceSetting } from './stores/useAdvanceSetting';
+import { useReadingDirec } from './stores/useReadingDirec';
+
+//Composables
+import { useCompoReadManga } from './composable/composableReadManga';
+
+// Components
 import NavReadMenu from './components/ui/NavReadMenu.vue';
 import ProgressManga from './components/ui/ProgressManga.vue';
 import MangaViewer from './components/ui/MangaViewer.vue';
-import { useProgressButton } from './stores/useButtonProgress';
-import { useShowClose } from './stores/useShowClose';
-import ReadLayout from '../layout/ReadLayout.vue';
-import { useAdvanceSetting } from './stores/useAdvanceSetting';
-import { useReadingDirec } from './stores/useReadingDirec';
-import { useProvideOneUtilsProgressBar } from './utils/oneUtils/oneUtilsProgressBar';
 const NextButton = defineAsyncComponent(() => import('./components/partials/button/NextButton.vue'));
-const AdvancesSetting = defineAsyncComponent(() => import('./components/ui/AdvancesSetting.vue'))
-const ModalError = defineAsyncComponent(() => import('./components/ui/ModalError.vue'))
+const AdvancesSetting = defineAsyncComponent(() => import('./components/ui/AdvancesSetting.vue'));
+const ModalError = defineAsyncComponent(() => import('./components/ui/ModalError.vue'));
 
-const { typeMangaViewers: [singlePage, doublePage, longStrip] } = useMangaViewer()
-const { instanceProxy, scrollDetectStatus, wacthScroll, nextProgressCLick, prevProgressCLick } = useProgressButton()
-const { runProvideClickGiveStatus } = useProvideOneUtilsProgressBar()
+// Layout
+import ReadLayout from '../layout/ReadLayout.vue';
+
 const storeMangaSize = useMangaSize()
 const storeMangaViewer = useMangaViewer()
+const storeReadingDirec = useReadingDirec()
+const { typeMangaViewers: [singlePage, doublePage, longStrip] } = useMangaViewer()
+const { instanceProxy, scrollDetectStatus, nextProgressCLick, prevProgressCLick } = useProgressButton()
+const { setting, swip } = useAdvanceSetting()
+const { modalError, showOrClose, createShowCloseComputedGroup } = useShowClose()
+const { readHeader } = createShowCloseComputedGroup()
 const longStripEl = useTemplateRef('itemLongStrip')
 const singleEl = useTemplateRef("itemSinglePageSwip")
-const { modalError, showOrClose } = useShowClose()
-const storeReadingDirec = useReadingDirec()
-const { setting, swip } = useAdvanceSetting()
-const storeShowAndClose = useShowClose()
 // const pageManga = ref(20)
 
-const scrollElements = computed(() => {
-    if (storeMangaViewer.readMangaViewer.id === 3) {
-        return longStripEl.value
-    }
-    if (swip[0].status) {
-        return singleEl.value
-    }
-    return null // supaya watch terpicu saat berubah dari array → null dan sebaliknya
-})
+useCompoReadManga(longStripEl, singleEl)
 
-
-watch(() => scrollElements.value, async (val) => {
-    await nextTick()
-    wacthScroll(val)
-
-})
-
-watch(() => instanceProxy, (newValue) => runProvideClickGiveStatus(30, newValue), { immediate: true, once: true })
-
-onMounted(() => {
-    window.addEventListener('keydown', (e) => {
-        if (e.key == "h") {
-            storeShowAndClose.showOrHidden(storeShowAndClose.header, storeShowAndClose.readHeader)
-        }
-
-        if (e.key == "m") {
-            storeShowAndClose.showOrHidden(storeShowAndClose.navReadMenu, storeShowAndClose.readNavReadMenu)
-        }
-
-        if (e.key == "ArrowRight" && storeMangaViewer.readMangaViewer.id !== 3) {
-            nextProgressCLick()
-        }
-
-        if (e.key == "ArrowLeft" && storeMangaViewer.readMangaViewer.id !== 3) {
-            prevProgressCLick()
-        }
-    })
-})
 
 defineOptions({ layout: ReadLayout })
 </script>
@@ -73,7 +44,7 @@ defineOptions({ layout: ReadLayout })
     <div class="flex w-full relative ">
         <!-- Gambar Manga -->
         <div @scroll="scrollDetectStatus(instanceProxy)"
-            :class="`relative w-full flex ${storeShowAndClose.readHeader.readMangaWidth} justify-center items-center ${storeMangaViewer.readMangaViewer.id === 3 ? 'overflow-y-auto' : ''}`">
+            :class="`relative w-full flex ${readHeader.readMangaWidth} justify-center items-center ${storeMangaViewer.readMangaViewer.id === 3 ? 'overflow-y-auto' : ''}`">
             <MangaViewer :singlePage="singlePage.status" :doublePage="doublePage.status" :longStrip="longStrip.status">
                 <template #singlePage>
                     <div ref="itemSinglePage" v-if="!swip[0].status"
