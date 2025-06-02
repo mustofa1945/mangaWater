@@ -10,8 +10,8 @@ import { useProgressButton } from '../../stores/useButtonProgress.js';
 const ListItemHeader = defineAsyncComponent(() =>
     import('../partials/dropdowns/ListItemHeader.vue')
 )
-const Modal = defineAsyncComponent(() =>
-    import('./Modal.vue')
+const Login = defineAsyncComponent(() =>
+    import('./Login.vue')
 )
 const { computedProgressBar , instanceProxy } = useProgressButton()
 const { createShowCloseComputedGroup, navReadMenu, showOrHidden, showOrClose, modalLogin } = useShowClose()
@@ -68,13 +68,5 @@ defineOptions({ inheritAttrs: false })
             :options="{ title: 'Menu', icon: 'fa-solid fa-ellipsis-vertical', reverse: true }"
             class="w-[12vh] bg-sky-700 h-[5vh] text-white px-3 rounded-lg" />
     </nav>
-    <Modal :modal="modalLogin.status">
-        <button class="text-gray-400 hover:text-gray-600" @click="showOrClose(modalLogin)">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                </path>
-            </svg>
-        </button>
-    </Modal>
+    <Login  />
 </template>
