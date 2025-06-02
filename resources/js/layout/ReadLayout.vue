@@ -11,7 +11,7 @@ const PageMenu = defineAsyncComponent(() =>
     import('../pages/components/ui/PageMenu.vue'))
 
 const { pages, showPage } = useSlidePage()
-const { createShowCloseComputedGroup , showOrHidden, comment } = useShowClose()
+const { createShowCloseComputedGroup, showOrHidden, comment } = useShowClose()
 const { readNavReadMenu, readComment } = createShowCloseComputedGroup()
 </script>
 

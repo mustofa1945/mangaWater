@@ -10,7 +10,7 @@ export function useCompoReadManga(
     longStripEl,
     singleEl
 ) {
-    const storeMangaViewer = useMangaViewer()
+    const { computedViewer } = useMangaViewer()
     const { instanceProxy, nextProgressCLick, prevProgressCLick, wacthScroll } = useProgressButton()
     const { runProvideClickGiveStatus } = useProvideOneUtilsProgressBar()
     const { createShowCloseComputedGroup, showOrHidden, header, navReadMenu } = useShowClose()
@@ -19,7 +19,7 @@ export function useCompoReadManga(
     const { pages } = useSlidePage()
 
     const scrollElements = computed(() => {
-        if (storeMangaViewer.readMangaViewer.id === 3) {
+        if (computedViewer.readMangaViewer.id === 3) {
             return longStripEl.value;
         }
         if (swip[0].status) {
@@ -62,13 +62,13 @@ export function useCompoReadManga(
 
             if (
                 e.key == "ArrowRight" &&
-                storeMangaViewer.readMangaViewer.id !== 3
+               computedViewer.readMangaViewer.id !== 3
             ) nextProgressCLick();
 
 
             if (
                 e.key == "ArrowLeft" &&
-                storeMangaViewer.readMangaViewer.id !== 3
+                computedViewer.readMangaViewer.id !== 3
             ) prevProgressCLick();
 
         });

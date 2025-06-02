@@ -1,5 +1,5 @@
 <script setup>
-import { defineAsyncComponent, useTemplateRef } from 'vue';
+import { defineAsyncComponent, useTemplateRef, watchEffect } from 'vue';
 
 // Stores
 import { useMangaViewer } from './stores/useMangaViewer';
@@ -23,8 +23,8 @@ const ModalError = defineAsyncComponent(() => import('./components/ui/ModalError
 // Layout
 import ReadLayout from '../layout/ReadLayout.vue';
 
-const storeMangaSize = useMangaSize()
-const storeMangaViewer = useMangaViewer()
+const { computedMangaSize } = useMangaSize()
+const { computedViewer } = useMangaViewer()
 const storeReadingDirec = useReadingDirec()
 const { typeMangaViewers: [singlePage, doublePage, longStrip] } = useMangaViewer()
 const { instanceProxy, scrollDetectStatus, nextProgressCLick, prevProgressCLick } = useProgressButton()
@@ -34,7 +34,6 @@ const { readHeader } = createShowCloseComputedGroup()
 const longStripEl = useTemplateRef('itemLongStrip')
 const singleEl = useTemplateRef("itemSinglePageSwip")
 // const pageManga = ref(20)
-
 useCompoReadManga(longStripEl, singleEl)
 
 
@@ -44,26 +43,26 @@ defineOptions({ layout: ReadLayout })
     <div class="flex w-full relative ">
         <!-- Gambar Manga -->
         <div @scroll="scrollDetectStatus(instanceProxy)"
-            :class="`relative w-full flex ${readHeader.readMangaWidth} justify-center items-center ${storeMangaViewer.readMangaViewer.id === 3 ? 'overflow-y-auto' : ''}`">
+            :class="`relative w-full flex ${readHeader.readMangaWidth} justify-center items-center ${computedViewer.readMangaViewer.id === 3 ? 'overflow-y-auto' : ''}`">
             <MangaViewer :singlePage="singlePage.status" :doublePage="doublePage.status" :longStrip="longStrip.status">
                 <template #singlePage>
                     <div ref="itemSinglePage" v-if="!swip[0].status"
-                        :class="`h-${storeMangaSize.getModeSize.height} bg-sky-500 w-${storeMangaSize.getModeSize.width} -z-10 m-auto `">
+                        :class="`h-${computedMangaSize.readModeSize.height} bg-sky-500 w-${computedMangaSize.readModeSize.width} -z-10 m-auto `">
                     </div>
                     <template v-else>
                         <div ref="itemSinglePageSwip" v-for="item in 30"
-                            :class="`h-${storeMangaSize.getModeSize.height} flex-shrink-0 bg-red-900 w-${storeMangaSize.getModeSize.width} mx-80`">
+                            :class="`h-${computedMangaSize.readModeSize.height} flex-shrink-0 bg-red-900 w-${computedMangaSize.readModeSize.width} mx-80`">
                         </div>
                     </template>
                 </template>
                 <template #doublePage>
                     <div ref="itemDoublePage" v-for="index in 2"
-                        :class="`h-${storeMangaSize.getModeSize.height} bg-sky-500 w-${storeMangaSize.getModeSize.width} -z-10`">
+                        :class="`h-${computedMangaSize.readModeSize.height} bg-sky-500 w-${computedMangaSize.readModeSize.width} -z-10`">
                     </div>
                 </template>
                 <template #longStrip>
                     <div ref="itemLongStrip" value="30" v-for="el in 30"
-                        :class="`h-${storeMangaSize.getModeSize.height} bg-sky-500 w-${storeMangaSize.getModeSize.width}  -z-10`">
+                        :class="`h-${computedMangaSize.readModeSize.height} bg-sky-500 w-${computedMangaSize.readModeSize.width}  -z-10`">
                     </div>
                 </template>
             </MangaViewer>
@@ -74,7 +73,7 @@ defineOptions({ layout: ReadLayout })
             <ModalError @close="showOrClose(modalError)" />
         </div>
 
-        <template v-if="storeMangaViewer.readMangaViewer.id !== 3">
+        <template v-if="computedViewer.readMangaViewer.id !== 3">
             <template v-for="direc in storeReadingDirec.readingDirec" :key="direc.id">
                 <NextButton @click="() => {
                     if (direc.status) {

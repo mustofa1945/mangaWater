@@ -13,9 +13,9 @@ const ListItemHeader = defineAsyncComponent(() =>
 const Modal = defineAsyncComponent(() =>
     import('./Modal.vue')
 )
-const storeProgressBar = useProgressButton()
-const { createShowCloseComputedGroup , navReadMenu, showOrHidden, showOrClose , modalLogin} = useShowClose()
-const { readHeader, readNavReadMenu } = createShowCloseComputedGroup ()
+const { computedProgressBar , instanceProxy } = useProgressButton()
+const { createShowCloseComputedGroup, navReadMenu, showOrHidden, showOrClose, modalLogin } = useShowClose()
+const { readHeader, readNavReadMenu } = createShowCloseComputedGroup()
 const { pages, showPage } = useSlidePage()
 const { elements } = useDropStore()
 
@@ -58,8 +58,8 @@ defineOptions({ inheritAttrs: false })
         <!-- Chapter -->
         <div v-if="menu.status" class="flex gap-x-3 text-white">
             <span @click="showPage(pages[0].id)">Chapter 1 / 20</span>
-            <span @click="showPage(pages[1].id)">{{ `Page ${storeProgressBar.readPage} /
-                ${storeProgressBar.instanceProxy.length}` }}</span>
+            <span @click="showPage(pages[1].id)">{{ `Page ${computedProgressBar.readPage} /
+                ${instanceProxy.length}` }}</span>
         </div>
         <BoxIcon @click="showOrClose(modalLogin)"
             :options="{ title: 'Login', icon: ' fas fa-chevron-right', reverse: false }"

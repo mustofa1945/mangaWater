@@ -15,11 +15,11 @@ import PagReguler from '../partials/button/PagReguler.vue';
 import PageMenu from './PageMenu.vue';
 import LangNavButton from '../partials/button/LangNavButton.vue';
 
-const storeMangaViewer = useMangaViewer()
-const storeMangaSize = useMangaSize()
-const storeProgressBar = useProgressButton()
-const storeReadingDirec = useReadingDirec()
-const { showOrHidden, createShowCloseComputedGroup, navReadMenu, comment, langActive, showOrClose, modalError , header } = useShowClose()
+const { computedViewer, changeTypeViewer } = useMangaViewer()
+const { computedMangaSize, changeSizeType } = useMangaSize()
+const { computedProgressBar, choiseTypePosition } = useProgressButton()
+const { compuReadDirec , applySwicthActive } = useReadingDirec()
+const { showOrHidden, createShowCloseComputedGroup, navReadMenu, comment, langActive, showOrClose, modalError, he } = useShowClose()
 const { readNavReadMenu, readComment, readHeader } = createShowCloseComputedGroup()
 const { pages, showPage } = useSlidePage()
 const { showAndUpdate } = useAdvanceSetting()
@@ -76,19 +76,18 @@ const { showAndUpdate } = useAdvanceSetting()
             <BoxIcon @click="showOrHidden(header, readHeader)"
                 :options="{ title: readHeader.title, icon: 'fas fa-comment-alt', reverse: false }"
                 class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl " />
-            <BoxIcon @click="storeMangaViewer.changeTypeViewer()"
-                :options="{ title: storeMangaViewer.readMangaViewer.title, icon: storeMangaViewer.readMangaViewer.icon, reverse: false }"
+            <BoxIcon @click="changeTypeViewer()"
+                :options="{ title: computedViewer.readMangaViewer.title, icon: computedViewer.readMangaViewer.icon, reverse: false }"
                 class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl" />
             <BoxIcon
-                @click="storeMangaSize.changeSizeType(storeMangaSize.getModeStatus, storeMangaSize.getModeSize, storeMangaViewer.readMangaViewer)"
-                :options="{ title: storeMangaSize.getModeSize.name, icon: storeMangaSize.getModeSize.icon, reverse: false }"
+                @click="changeSizeType(computedMangaSize.readModeStatus, computedMangaSize.readModeSize, computedViewer.readMangaViewer)"
+                :options="{ title: computedMangaSize.readModeSize.name, icon: computedMangaSize.readModeSize.icon, reverse: false }"
                 class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl " />
-            <BoxIcon @click="storeReadingDirec.applySwicthActive()"
-                :options="{ title: `${storeReadingDirec.readDirec.title}`, icon: 'fas fa-exclamation-triangle', reverse: false }"
+            <BoxIcon @click="applySwicthActive()"
+                :options="{ title: `${compuReadDirec.readDirec.title}`, icon: 'fas fa-exclamation-triangle', reverse: false }"
                 class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl" />
-            <BoxIcon
-                @click="storeProgressBar.choiseTypePosition(storeProgressBar.getType, storeMangaViewer.readMangaViewer)"
-                :options="{ title: `Bottom Progress ${storeProgressBar.getType.position}`, icon: 'fas fa-info-circle', reverse: false }"
+            <BoxIcon @click="choiseTypePosition(computedProgressBar.readTypePosition, computedViewer.readMangaViewer)"
+                :options="{ title: `Bottom Progress ${computedProgressBar.readTypePosition.position}`, icon: 'fas fa-info-circle', reverse: false }"
                 class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl" />
             <BoxIcon @click="showAndUpdate()"
                 :options="{ title: 'Advanced Settings', icon: 'fas fa-exclamation-triangle', reverse: false }"
