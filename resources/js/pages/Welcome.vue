@@ -6,13 +6,13 @@ import BoxLight from './components/ui/BoxLight.vue';
 defineOptions({ layout: MainLayout })
 </script>
 <template>
-    <div class="absolute top-0  h-full w-full opacity-30 "> 
+    <div class="absolute top-0  h-full w-full z-10 opacity-30 "> 
         <img alt="Background image with various manga characters" class="  w-full h-1/2  object-cover" height="1080"
             src="https://mangafire.to/assets/t2/s1/images/index.jpg" width="1920" />
     </div>
     <BoxLight>
 
-        <div class="text-white pt-[20vh] flex flex-col items-left justify-center pl-[10vh] z-1">
+        <div class="text-white pt-[20vh] flex relative z-20 flex-col items-left justify-center pl-[10vh]">
             <h1 class="text-4xl font-bold">
                 Read Manga Online For Free.
             </h1>
@@ -24,7 +24,7 @@ defineOptions({ layout: MainLayout })
             </Link>
         </div>
 
-        <div class=" text-slate-300 container mx-auto px-4 py-8 mt-[18vh] z-1">
+        <div class=" text-slate-300 relative z-20 container mx-auto px-4 py-8 mt-[18vh]">
 
             <div class=" bg-slate-900  p-6 rounded-lg">
                 <SosiaLinks />

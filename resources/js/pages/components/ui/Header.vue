@@ -25,8 +25,8 @@ defineOptions({ inheritAttrs: false })
 </script>
 <template>
     <nav v-bind="$attrs" v-showAndClose="readHeader.delayEffect"
-        :class="`flex bg-slate-900  items-center justify-between p-2 z-30 `">
-        <div :class="`flex items-center space-x-${menu.space}`">
+        :class="`flex bg-slate-900  items-center justify-between p-2 relative z-30 `">
+        <div :class="`flex items-center gap-x-7`">
             <Link href="/home">
             <img alt="MangaFire.io logo" :class="`h-${menu.height} w-${menu.widht} bg-cover`"
                 :src="`https://mangafire.to/assets/sites/mangafire/logo${menu.status ? '-sm' : ''}.png?v3`" />

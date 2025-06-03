@@ -5,8 +5,8 @@ import Footer from '../pages/components/ui/Footer.vue'
 
 <template>
     <main :class="`max-w-full`">
-        <Header :menu="{ status: false, height: 8, widht: 20, space: 7 }" />
-        <article :class="`bg-slate-900 relative w-full `">
+        <Header :menu="{ status: false, height: 8, widht: 20 }" />
+        <article :class="`bg-slate-900 relative w-full z-0 `">
             <slot />
         </article>
         <Footer />

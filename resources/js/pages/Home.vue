@@ -14,8 +14,8 @@ defineOptions({ layout: MainLayout })
 </script>
 <template>
     <BoxLight css="10">
-        <div>
-            <div class="relative flex justify-between items-center gap-x-5 ">
+        <div class="Home">
+            <div class="main-slider relative flex justify-between items-center gap-x-5 ">
                 <CardManga image="https://static.mangafire.to/04f9/i/5/51/51360d75d5ffa0cc3234dc79d9c36d26.jpg" />
                 <CardManga image="https://static.mangafire.to/1664/i/3/37/e6da183e3030b35909f7940e193589a8.jpg" />
                 <Pagnation position="left" />
@@ -39,7 +39,7 @@ defineOptions({ layout: MainLayout })
 
         <!-- Most View -->
         <div
-            class="relative mt-[10vh] px-[10px] flex flex-col gap-y-3 items-left justify-around border-b-1 border-slate-500/50 pb-[10vh]">
+            class="Most-view relative mt-[10vh] px-[10px] flex flex-col gap-y-3 items-left justify-around border-b-1 border-slate-500/50 pb-[10vh]">
             <h1 class="text-[25px] text-slate-500">Most View</h1>
 
             <div class=" flex items-center gap-x-4 justify-center w-full">
@@ -52,7 +52,7 @@ defineOptions({ layout: MainLayout })
 
 
         <!-- Parent Div -->
-        <div class=" shadow-md rounded-lg p-5">
+        <div class="Recently-update shadow-md rounded-lg p-5">
             <!-- Child Div Pertama -->
             <div class="mb-4 flex justify-between">
                 <h1 class="text-2xl text-white/80 font-bold mb-2">Recently Update</h1>
@@ -72,7 +72,7 @@ defineOptions({ layout: MainLayout })
         <!-- New Release -->
 
         <div
-            class="relative mt-[10vh] px-[10px] flex flex-col gap-y-3 items-left justify-around border-b-1 border-slate-500/50 pb-[10vh]">
+            class="New-Release relative mt-[10vh] px-[10px] flex flex-col gap-y-3 items-left justify-around border-b-1 border-slate-500/50 pb-[10vh]">
             <div class="mb-4 flex justify-between">
                 <h1 class="text-2xl text-white/80 font-bold mb-2">Recently Update</h1>
                 <div class="flex items-center space-x-2">
@@ -81,7 +81,7 @@ defineOptions({ layout: MainLayout })
                 </div>
             </div>
 
-            <div class=" flex items-center gap-x-4 justify-center w-full">
+            <div class="Most-viewed flex items-center gap-x-4 justify-center w-full">
                 <CardMostViewed v-for="manga in dataManga" :key="manga.id" :manga="{ title: manga.title, url: manga.url }" />
             </div>
             <span class="absolute bottom-[-0.1vh] left-0 w-[30%] h-[1px] bg-sky-700"></span>
