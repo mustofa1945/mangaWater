@@ -20,6 +20,7 @@ export const useProvideDataShowAndClose = () => {
             {
                 id: 1,
                 status: true,
+                onMenu : true ,
                 readLayoutWidth: "w-[75%]",
                 delayEffect: {
                     inClosure: {
@@ -36,6 +37,7 @@ export const useProvideDataShowAndClose = () => {
             {
                 id: 2,
                 status: false,
+                onMenu : false,
                 readLayoutWidth: "w-full",
                 delayEffect: {
                     inClosure: {
@@ -89,7 +91,7 @@ export const useProvideDataShowAndClose = () => {
                 id: 1,
                 status: true,
                 title: "Header Sticky",
-                readMangaWidth: "h-[91.9vh]",
+                scrollHeader : "h-[92.4vh]",
                 delayEffect: {
                     inClosure: {
                         property: "transform",
@@ -106,7 +108,7 @@ export const useProvideDataShowAndClose = () => {
                 id: 2,
                 status: false,
                 title: "Header Hidden",
-                readMangaWidth: "h-[99.9vh]",
+                scrollHeader : "h-[100vh]", 
                 delayEffect: {
                     inClosure: {
                         property: "display",

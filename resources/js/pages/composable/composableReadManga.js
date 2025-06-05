@@ -23,7 +23,6 @@ export function useCompoReadManga(
             return longStripEl.value;
         }
         if (swip[0].status) {
-            console.log
             return singleEl.value;
         }
         return null; // supaya watch terpicu saat berubah dari array → null dan sebaliknya
