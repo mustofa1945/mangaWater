@@ -32,6 +32,7 @@ export function useCompoReadManga(
     watch(
         () => scrollElements.value,
         async (val) => {
+            console.log(val)
             await nextTick();
             wacthScroll(val);
         }

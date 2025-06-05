@@ -27,9 +27,9 @@ defineOptions({ layout: MainLayout })
                             Black Clover; 블랙 클로버
                         </h1>
                         <div class="flex space-x-4 mb-4">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                START READING
-                            </button>
+                            <Link href="/read" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            START READING
+                            </Link>
                             <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
                                 BOOKMARK
                                 <i class="fas fa-bookmark">
@@ -53,10 +53,10 @@ defineOptions({ layout: MainLayout })
                         <p class="text-gray-300 mb-4">
                             Asta, a boisterous orphan with no magical abilities, yearns to become the Wizard King of
                             the Clover Kingdom, a title reserved for the most powerful ma...
-                        <div
-                            class="text-white/20 hover:text-white duration-200 border-b-1 w-[14.5%] border-sky-500 text-md">
-                            Read more +
-                        </div>
+                            <span
+                                class="text-white/20 hover:text-white duration-200 border-b-1 w-[14.5%] border-sky-500 text-md">
+                                Read more +
+                            </span>
                         </p>
                         <div class="flex items-center space-x-2 text-gray-400">
                             <span class="text-sm">
@@ -129,7 +129,8 @@ defineOptions({ layout: MainLayout })
                         <span class="text-white">Language: EN</span>
                     </div>
                     <div class="relative ">
-                        <input type="text" placeholder="Chap number..." class="bg-gray-800 p-2 text-white rounded-xl pl-10 border-1 border-slate-500 ">
+                        <input type="text" placeholder="Chap number..."
+                            class="bg-gray-800 p-2 text-white rounded-xl pl-10 border-1 border-slate-500 ">
                         <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
                 </div>
@@ -162,11 +163,11 @@ defineOptions({ layout: MainLayout })
                     </ul>
                 </div>
             </div>
- 
-            <!-- Comment -->
-             <div class="col-span-3 row-span-1">
 
-             </div>
+            <!-- Comment -->
+            <div class="col-span-3 row-span-1">
+
+            </div>
 
         </div>
         <div>

@@ -26,7 +26,7 @@ defineOptions({ inheritAttrs: false })
 <template>
     <nav v-bind="$attrs" v-showAndClose="readHeader.delayEffect"
         :class="`flex bg-slate-900  items-center justify-between p-2 z-30 `">
-        <div :class="`flex items-center space-x-${menu.space}`">
+        <div :class="`flex items-center gap-x-7`">
             <Link href="/home">
             <img alt="MangaFire.io logo" :class="`h-${menu.height} w-${menu.widht} bg-cover`"
                 :src="`https://mangafire.to/assets/sites/mangafire/logo${menu.status ? '-sm' : ''}.png?v3`" />
@@ -51,7 +51,7 @@ defineOptions({ inheritAttrs: false })
         <div class="relative flex items-center flex-1 mx-2">
             <input class="px-4 py-2 w-full rounded-full bg-gray-800 text-white text-sm focus:outline-none"
                 placeholder="Search manga..." type="text" />
-            <button class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm absolute top-[0.7vh] right-[2vh]">
+            <button class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm absolute top-[0.5vh] right-[1vh]">
                 Filter
             </button>
         </div>

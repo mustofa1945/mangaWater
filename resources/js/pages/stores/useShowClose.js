@@ -33,7 +33,7 @@ export const useShowClose = defineStore("showClose", () => {
         //Delete semua status pages yang active
         page.forEach((el) => {
             el.status = false;
-        });
+    });
 
         switchActive(partialProxy, proxy);
     };

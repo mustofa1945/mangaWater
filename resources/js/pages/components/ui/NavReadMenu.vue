@@ -13,15 +13,16 @@ import BoxIcon from '../partials/box/BoxIcon.vue';
 import PagNavMenu from '../partials/button/PagNavMenu.vue';
 import PagReguler from '../partials/button/PagReguler.vue';
 import PageMenu from './PageMenu.vue';
+import Comment from './Comment.vue';
 import LangNavButton from '../partials/button/LangNavButton.vue';
 
 const { computedViewer, changeTypeViewer } = useMangaViewer()
 const { computedMangaSize, changeSizeType } = useMangaSize()
 const { computedProgressBar, choiseTypePosition } = useProgressButton()
-const { compuReadDirec , applySwicthActive } = useReadingDirec()
-const { showOrHidden, createShowCloseComputedGroup, navReadMenu, comment, langActive, showOrClose, modalError, he } = useShowClose()
+const { compuReadDirec, applySwicthActive } = useReadingDirec()
+const { showOrHidden, createShowCloseComputedGroup, navReadMenu, comment, langActive, showOrClose, modalError, header } = useShowClose()
 const { readNavReadMenu, readComment, readHeader } = createShowCloseComputedGroup()
-const { pages, showPage } = useSlidePage()
+const { pages, showPage} = useSlidePage()
 const { showAndUpdate } = useAdvanceSetting()
 
 
@@ -29,7 +30,7 @@ const { showAndUpdate } = useAdvanceSetting()
 
 <template>
     <div v-showAndClose="readNavReadMenu.delayEffect"
-        :class="`py-2 px-5 box-border w-[25%] bg-slate-900 fixed right-0 top-0 flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden max-h-screen`">
+        :class="`Navread-menu py-2 px-5 box-border w-[25%] bg-slate-900 fixed z-20 right-0 top-0 flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden max-h-screen`">
         <!-- Title -->
         <div class="flex justify-between items-center gap-x-2">
             <h1 class="text-md font-semibold  ">The Seven Deadly Sins: Four Knights of the Apocalypse</h1>
@@ -53,11 +54,11 @@ const { showAndUpdate } = useAdvanceSetting()
                 <span class="text-md  pl-1 text-white">English</span>
             </div>
             <!-- List Bahasa -->
-            <div
+            <!-- <div
                 :class="`w-full flex flex-col absolute left-0 top-13 origin-top bg-slate-800 z-10 rounded-lg h-${langActive.status ? '42' : '0'} duration-200 transition-all overflow-hidden`">
                 <LangNavButton v-for="lang in langs" :key="lang.id" :title="lang.lang" :url="lang.url"
                     class="w-full h-[5vh] px-3  z-20 rounded-lg " />
-            </div>
+            </div> -->
         </div>
         <PagNavMenu />
         <div class="flex flex-col gap-y-2 relative">
@@ -93,7 +94,7 @@ const { showAndUpdate } = useAdvanceSetting()
                 :options="{ title: 'Advanced Settings', icon: 'fas fa-exclamation-triangle', reverse: false }"
                 class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl" />
         </div>
-        <PageMenu v-if="false" v-for="page in pages" :page="page.status" class="w-full top-13 "
+        <PageMenu v-waitTransition="readNavReadMenu.onMenu" v-for="page in pages" :page="page.status" class="w-full top-13 "
             @slidePage="showPage(page.id)" :input="page.input" :display="page.display" />
     </div>
 </template>

@@ -1,5 +1,6 @@
 // app.js atau main.js
 import "./bootstrap";
+import "../css/app.css" 
 
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
@@ -7,7 +8,8 @@ import MainLayout from "./layout/MainLayout.vue";
 import ReadLayout from "./layout/ReadLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import { createPinia } from "pinia";
-import { vShowAndClose } from "./pages/directive/customDirective";
+import { vShowAndClose , vWaitTransition} from "./pages/directive/customDirective";
+
 
 export const pinia = createPinia();
 
@@ -24,6 +26,7 @@ createInertiaApp({
             .use(plugin)
             .component("Link", Link)
             .directive("showAndClose" , vShowAndClose)
+            .directive("waitTransition" , vWaitTransition)
         app.mount(el);
     },
 });

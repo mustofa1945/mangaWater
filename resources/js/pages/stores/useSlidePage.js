@@ -1,7 +1,9 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import {  ref} from "vue";
 
 export const useSlidePage = defineStore("slidePage", () => {
+    let pageOnMenu = ref(true)
+
     let pages = ref([
         {
             id: 1,
@@ -41,5 +43,7 @@ export const useSlidePage = defineStore("slidePage", () => {
         }
     }
 
-    return { pages, showPage };
+    return {
+        pages, showPage
+    };
 });
