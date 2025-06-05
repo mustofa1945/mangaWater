@@ -14,17 +14,17 @@ defineOptions({ layout: MainLayout })
 </script>
 <template>
     <BoxLight css="10">
-        <div>
+        <div >
             <div class="relative flex justify-between items-center gap-x-5 ">
                 <CardManga image="https://static.mangafire.to/04f9/i/5/51/51360d75d5ffa0cc3234dc79d9c36d26.jpg" />
                 <CardManga image="https://static.mangafire.to/1664/i/3/37/e6da183e3030b35909f7940e193589a8.jpg" />
-                <Pagnation position="left" />
-                <Pagnation position="right" />
+                <Pagnation position="left-0" title="left" />
+                <Pagnation position="right-0" title="right"/>
             </div>
 
 
             <div class="flex flex-col gap-y-2">
-                <div class="bg-sky-500 text-center text-white py-2 rounded-lg my-4">
+                <div class="bg-secondary  text-center text-white py-2 rounded-lg my-4">
                     The image loading issue has been fixed, everything is ok now!
                 </div> 
                 <div class="flex flex-col items-center bg-slate-800 py-2 gap-y-2.5">
@@ -39,8 +39,8 @@ defineOptions({ layout: MainLayout })
 
         <!-- Most View -->
         <div
-            class="relative mt-[10vh] px-[10px] flex flex-col gap-y-3 items-left justify-around border-b-1 border-slate-500/50 pb-[10vh]">
-            <h1 class="text-[25px] text-slate-500">Most View</h1>
+            class="relative mt-[5vh] px-[10px] flex flex-col gap-y-3 items-left justify-around border-b-1 border-slate-500/50 pb-[7vh]">
+            <h1 class="text-[25px] font-bold text-gray-100">Most View</h1>
 
             <div class=" flex items-center gap-x-4 justify-center w-full">
                 <CardMostViewed v-for="(manga , index) in dataManga"  icon="true" :key="manga.id" :manga="{ title: manga.title, url: manga.url ,  index : index }" />
@@ -55,10 +55,10 @@ defineOptions({ layout: MainLayout })
         <div class=" shadow-md rounded-lg p-5">
             <!-- Child Div Pertama -->
             <div class="mb-4 flex justify-between">
-                <h1 class="text-2xl text-white/80 font-bold mb-2">Recently Update</h1>
+                <h1 class="text-2xl text-gray-100 font-bold mb-2">Recently Update</h1>
                 <div class="flex items-center space-x-2">
                     <!-- Child Div dari Child Div Pertama -->
-                    <span class=" text-sky-700 px-3 py-1 rounded">All</span>
+                    <span class=" text-sky-700 hover:text-secondary px-3 py-1 rounded">All</span>
                     <span v-for="type in typeMangaSearch" class=" text-slate-400 hover:text-white/90 px-3 py-1 rounded duration-100">{{ type }}</span>
                     <PagReguler :options="{ size: 'md', position: 'left'}" position="left" class="w-7 "/>
                     <PagReguler :options="{ size: 'md', position: 'right'}" position="right" class="w-7" />

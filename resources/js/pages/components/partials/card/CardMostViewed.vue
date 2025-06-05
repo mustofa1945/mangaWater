@@ -11,13 +11,13 @@ defineProps(['manga', 'icon'])
 <template>
 
     <div @mouseover="() => effect.scale = 1.04" @mouseout="() => effect.scale = 1"
-        class="group relative w-[14%]  h-[50vh] flex flex-col gap-x-1 bg-slate-700/60 rounded-xl overflow-hidden">
-        <div class="relative w-full overflow-hidden h-[90%]  ">
+        class="group relative w-[14%]  h-[42vh] flex flex-col gap-x-1 bg-slate-800 rounded-xl overflow-hidden">
+        <div class="relative w-full overflow-hidden flex-1  ">
             <div :style="`transform : scale(${effect.scale})`" class=" duration-200  ">
                 <img :src="manga.url" alt="" class=" top-0 w-full h-full object-cover  ">
             </div>
         </div>
-        <div class="w-full h-[10%] flex justify-center items-center">
+        <div class="w-full h-[15%]  flex justify-center items-center">
             <h1 class="text-white/40 text-[17px]">{{ manga.title }}</h1>
         </div>
 

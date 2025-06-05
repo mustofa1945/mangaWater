@@ -6,27 +6,28 @@ import BoxLight from './components/ui/BoxLight.vue';
 defineOptions({ layout: MainLayout })
 </script>
 <template>
-    <div class="absolute top-0  h-full w-full z-10 opacity-30 "> 
+    <div class="absolute top-0  h-full w-full z-10 opacity-30 saturate-80 "> 
         <img alt="Background image with various manga characters" class="  w-full h-1/2  object-cover" height="1080"
             src="https://mangafire.to/assets/t2/s1/images/index.jpg" width="1920" />
     </div>
     <BoxLight>
 
-        <div class="text-white pt-[20vh] flex flex-col items-left relative justify-center pl-[10vh] z-20">
-            <h1 class="text-4xl font-bold">
+        <div class="text-white pt-[15vh] flex flex-col items-left relative justify-center pl-[3vh] z-20">
+            <h1 class="text-5xl font-bold">
                 Read Manga Online For Free
             </h1>
-            <p class="text-lg mt-2">
+            <p class="text-3xl tracking-wider mt-2">
                 Unveil Your Love for Manga Online.
             </p>
-            <Link class="mt-4 px-6 py-1 text-sm w-[30vh]  bg-[#3c8bc6] text-white rounded-lg hover:bg-blue-700 duration-150" href="/home">
+            <Link class="mt-4 pl-4 py-2 text-sm w-[25vh]  bg-[#3c8bc6] text-white rounded-lg hover:bg-secondary duration-150" href="/home">
                 GO TO HOME PAGE
+                <i class="fa-solid fa-arrow-right"></i>
             </Link>
         </div>
 
-        <div class=" text-slate-300 container mx-auto px-4 relative py-8 mt-[18vh] z-20">
+        <div class=" text-slate-300 container mx-auto pr-4 relative py-8 mt-[15vh] z-20">
 
-            <div class=" bg-slate-900  p-6 rounded-lg">
+            <div class=" bg-primary saturate-70  p-6 rounded-lg">
                 <SosiaLinks />
                 <h2 class="text-2xl font-bold mb-4">
                     MangaFire - Read Manga Online Free
