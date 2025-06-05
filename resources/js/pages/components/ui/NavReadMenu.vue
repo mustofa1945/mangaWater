@@ -22,7 +22,7 @@ const { computedProgressBar, choiseTypePosition } = useProgressButton()
 const { compuReadDirec, applySwicthActive } = useReadingDirec()
 const { showOrHidden, createShowCloseComputedGroup, navReadMenu, comment, langActive, showOrClose, modalError, header } = useShowClose()
 const { readNavReadMenu, readComment, readHeader } = createShowCloseComputedGroup()
-const { pages, showPage} = useSlidePage()
+const { pages, showPage } = useSlidePage()
 const { showAndUpdate } = useAdvanceSetting()
 
 
@@ -54,11 +54,11 @@ const { showAndUpdate } = useAdvanceSetting()
                 <span class="text-md  pl-1 text-white">English</span>
             </div>
             <!-- List Bahasa -->
-            <!-- <div
-                :class="`w-full flex flex-col absolute left-0 top-13 origin-top bg-slate-800 z-10 rounded-lg h-${langActive.status ? '42' : '0'} duration-200 transition-all overflow-hidden`">
+            <div
+                :class="`w-full flex flex-col absolute left-0 top-13 origin-top bg-slate-800 z-10 rounded-lg ${langActive.status ? 'h-42' : 'h-0'} duration-200 transition-all overflow-hidden`">
                 <LangNavButton v-for="lang in langs" :key="lang.id" :title="lang.lang" :url="lang.url"
                     class="w-full h-[5vh] px-3  z-20 rounded-lg " />
-            </div> -->
+            </div>
         </div>
         <PagNavMenu />
         <div class="flex flex-col gap-y-2 relative">
@@ -94,7 +94,7 @@ const { showAndUpdate } = useAdvanceSetting()
                 :options="{ title: 'Advanced Settings', icon: 'fas fa-exclamation-triangle', reverse: false }"
                 class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl" />
         </div>
-        <PageMenu v-waitTransition="readNavReadMenu.onMenu" v-for="page in pages" :page="page.status" class="w-full top-13 "
-            @slidePage="showPage(page.id)" :input="page.input" :display="page.display" />
+        <PageMenu v-waitTransition="readNavReadMenu.onMenu" v-for="page in pages" :page="page.status"
+            class="w-full top-13 " @slidePage="showPage(page.id)" :input="page.input" :display="page.display" />
     </div>
 </template>

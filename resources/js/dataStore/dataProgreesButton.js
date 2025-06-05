@@ -46,7 +46,7 @@ export const useProvideDataProgressBar = () => {
             style: {
                 positionStatus: false,
                 property:
-                    "flex flex-col left-0 top-0 w-[1vh] h-[92vh] hover:w-[3vh] transition-all",
+                    "flex flex-col left-0 top-0 w-[1vh] h-full hover:w-[3vh] transition-all",
                 absolute: "right-[-8vh]",
             },
             border: b.transparent,
@@ -58,7 +58,7 @@ export const useProvideDataProgressBar = () => {
             style: {
                 positionStatus: false,
                 property:
-                    "flex-col flex top-0 right-0 w-[1vh] h-[92vh] hover:w-[3vh] transition-all",
+                    "flex-col flex top-0 right-0 w-[2.1vh] h-full hover:w-[3vh] transition-all",
                 absolute: "left-[-8vh]",
             },
             border: b.transparent,
@@ -69,7 +69,7 @@ export const useProvideDataProgressBar = () => {
             position: "bottom",
             style: {
                 positionStatus: true,
-                property: `flex  bottom-0 left-0 w-full h-[0.5vh]`,
+                property: `flex  bottom-0 left-0 w-full h-[1vh]`,
             },
             border: b.transparent,
         },

@@ -61,8 +61,9 @@ export const useProgressButton = defineStore("progressButton", () => {
         },
         { deep: true }
     );
-    
-    const scrollDetectStatus = (elements) => runScrollDetectStatus(elements);
+
+    const scrollDetectStatus = (elements) => runScrollDetectStatus(elements)
+
     //Select berdasarkan id
     const choiseType = (id) => runChoiseType(typePositionScrollBar.value, id);
 
@@ -82,12 +83,12 @@ export const useProgressButton = defineStore("progressButton", () => {
 
         el.color = "bg-[#4169E1]";
         el.pageColor = "bg-[#4169E1]"
-        
+
         //Scroll ke Bawah
         el.element?.scrollIntoView({
             behavior: "smooth",
-            block: "center", 
-            inline: "center", 
+            block: "center",
+            inline: "center",
         });
     };
 
@@ -101,9 +102,9 @@ export const useProgressButton = defineStore("progressButton", () => {
         prevProgressCLick,
         choiseType,
         pickPage,
-        computedProgressBar : {
+        computedProgressBar: {
             readPage,
-            readTypePosition   
+            readTypePosition
         }
     };
 });

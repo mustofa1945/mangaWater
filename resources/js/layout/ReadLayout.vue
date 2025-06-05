@@ -24,7 +24,7 @@ const { readNavReadMenu, readComment , readHeader } = createShowCloseComputedGro
         :class="`relative max-w-full ${readNavReadMenu.readLayoutWidth} duration-250 transition-all flex flex-col overflow-x-hidden`">
         <Header :menu="{ status: true, height: 6, widht: 10, space: 5 }"
             :class="`duration-250 transition-all gap-x-3 w-full  relative`" />
-        <article :class="`bg-slate-800 h-[92.3vh] relative z-0 w-full`">
+        <article :class="`bg-slate-800 ${readHeader.scrollHeader} relative z-0 w-full overflow-y-hidden`">
             <slot />
         </article>
         <div v-if="modalError.status"

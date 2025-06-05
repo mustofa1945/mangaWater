@@ -1,4 +1,5 @@
 <script setup>
+import { useProgressButton } from '../../stores/useButtonProgress';
 import { useReadingDirec } from '../../stores/useReadingDirec';
 
 const status = defineProps({
@@ -9,12 +10,12 @@ const status = defineProps({
 
 
 const { compuReadDirec } = useReadingDirec()
+const { instanceProxy, scrollDetectStatus } = useProgressButton()
 
 </script>
 <template>
     <!-- SinglePage -->
-    <div v-if="status.singlePage"
-        :class="`Single-page h-full w-full flex ${compuReadDirec.readDirec.direc}`">
+    <div v-if="status.singlePage" :class="`Single-page h-full w-full flex ${compuReadDirec.readDirec.direc} overflow-x-hidden`">
         <slot name="singlePage" />
     </div>
     <!-- DoublePage -->
@@ -22,7 +23,8 @@ const { compuReadDirec } = useReadingDirec()
         <slot name="doublePage" />
     </div>
     <!-- LongStrip -->
-    <div v-if="status.longStrip" class="Long-strip h-full flex-col gap-y-2 w-full  flex items-center overflow-y-scroll ">
+    <div @scroll="scrollDetectStatus(instanceProxy)" v-if="status.longStrip"
+        class="Long-strip h-full flex-col gap-y-2 w-full  flex items-center overflow-y-scroll ">
         <slot name="longStrip" />
     </div>
 </template>
