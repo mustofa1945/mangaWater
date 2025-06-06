@@ -24,7 +24,7 @@ const { instanceProxy, scrollDetectStatus } = useProgressButton()
     </div>
     <!-- LongStrip -->
     <div @scroll="scrollDetectStatus(instanceProxy)" v-if="status.longStrip"
-        class="Long-strip h-full flex-col gap-y-2 w-full  flex items-center overflow-y-scroll ">
+        class="Long-strip  relative h-full flex-col gap-y-2 w-full  flex items-center overflow-y-scroll ">
         <slot name="longStrip" />
     </div>
 </template>

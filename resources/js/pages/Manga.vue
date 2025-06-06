@@ -5,7 +5,7 @@ import SosiaLinks from './components/partials/button/SosiaLinks.vue';
 import BoxLight from './components/ui/BoxLight.vue';
 import { useCompoStar } from './composable/compoStar';
 
-const { dataStar, scor , onOverHoverStar , grade , reset  } = useCompoStar()
+const { dataStar, scor, onOverHoverStar, grade, reset } = useCompoStar()
 
 defineOptions({ layout: MainLayout })
 </script>
@@ -94,14 +94,14 @@ defineOptions({ layout: MainLayout })
                     <span class="text-slate-500 text-[16.5px]">Megazines : <a href=""
                             class="text-white hover:text-sky-600 duration-150 transition-all">Shounen Jump</a></span>
                 </div>
-                <div 
+                <div
                     class="mt-10 h-[12vh] w-[45vh] text-white bg-slate-900  border-1 p-1 border-white/30  rounded-2xl flex gap-x-2 items-center justify-center">
                     <div class="pl-2 w-[45%]">
                         <h1 class="text-2xl">{{ scor }} / 10</h1>
                         <p class="text-slate-600">{{ grade }}</p>
                     </div>
-                    <div class="flex-1 h-full flex relative justify-center items-center gap-2" >
-                        <i v-for="star in dataStar" @mouseover="onOverHoverStar(star.id)" 
+                    <div class="flex-1 h-full flex relative justify-center items-center gap-2">
+                        <i v-for="star in dataStar" @mouseover="onOverHoverStar(star.id)"
                             :class="`${star.icon} ${star.scale} fa-star text-lg  font-bold text-yellow-300 transition-all duration-200`"></i>
                     </div>
                 </div>
@@ -142,9 +142,10 @@ defineOptions({ layout: MainLayout })
             <div
                 class="container relative z-10 col-span-3  row-span-1 border-1 border-slate-500/20 rounded-xl h-[80vh] mx-auto ">
                 <div class="flex justify-between items-center bg-slate-900 p-3 flex-1">
-                    <div class="flex items-center rounded-4xl bg-gray-800 py-1.5 px-4 ">
-                        <i class="fas fa-globe mr-2 text-white"></i>
-                        <span class="text-white">Language: EN</span>
+                    <div
+                        class="flex items-center rounded-4xl bg-gray-800 py-1.5 px-4 hover:contrast-70 duration-150  transition-all">
+                        <i class="fas fa-globe mr-2 text-gray-400"></i>
+                        <span class="text-gray-400">Language: EN</span>
                     </div>
                     <div class="relative w-[30vh] ">
                         <input type="text" placeholder="Chap number..."
@@ -155,9 +156,16 @@ defineOptions({ layout: MainLayout })
                 <!-- List Chapter -->
                 <div class="bg-slate-800/40 saturate-80 rounded h-[89%] text-white">
                     <ul class="divide-y divide-slate-100/10 h-full overflow-y-auto">
-                        <li v-for="item in 25" class="flex justify-between ">
-                            <span class="m-2 hover:text-sky-600">Chapter 2{{ item + 10 }}: Plan</span>
-                            <span class="m-2 hover:text-sky-600">Dec 26, 2024</span>
+                        <li v-for="item in 25">
+                            <div class="flex hover:translate-x-4 -translate-1 transition-all duration-400 hover:text-sky-600">
+                                <div class="w-[5%] bg-red-500">
+                                    <i class="fa-solid fa-square-caret-right"></i>
+                                </div>
+                                <div class="flex justify-between flex-1">
+                                    <span class="m-2 ">Chapter 2{{ item + 10 }}: Plan</span>
+                                    <span class="m-2 ">Dec 26, 2024</span>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>

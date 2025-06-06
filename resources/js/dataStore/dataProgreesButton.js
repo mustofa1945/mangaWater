@@ -58,7 +58,7 @@ export const useProvideDataProgressBar = () => {
             style: {
                 positionStatus: false,
                 property:
-                    "flex-col flex top-0 right-0 w-[2.1vh] h-full hover:w-[3vh] transition-all",
+                    "flex-col flex top-0 right-0 w-[1vh] h-full hover:w-[3vh] transition-all",
                 absolute: "left-[-8vh]",
             },
             border: b.transparent,

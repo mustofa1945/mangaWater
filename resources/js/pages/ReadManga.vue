@@ -1,10 +1,9 @@
     <script setup>
-    import { defineAsyncComponent, useTemplateRef, watchEffect } from 'vue';
+    import { defineAsyncComponent, useTemplateRef } from 'vue';
     // Stores
     import { useMangaViewer } from './stores/useMangaViewer';
     import { useMangaSize } from './stores/useSizeManga';
     import { useProgressButton } from './stores/useButtonProgress';
-    import { useShowClose } from './stores/useShowClose';
     import { useAdvanceSetting } from './stores/useAdvanceSetting';
     import { useReadingDirec } from './stores/useReadingDirec';
 
@@ -68,4 +67,6 @@
             </template>
         </div>
         <ProgressManga />
+        <!-- Supaya scroll Tidak Terlihat -->
+        <div class="h-full w-[3vh] absolute right-0 top-0  bg-slate-800"></div>
     </template>
