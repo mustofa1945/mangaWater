@@ -90,12 +90,14 @@ export const useProvideDataProgressBar = () => {
             status: true,
             color: "bg-[#4169E1]",
             pageColor: "bg-[#4169E1]",
+            pageTranslateX:"translate-x-4"
         },
         transparent: {
             status: false,
             color: "bg-transparent hover:bg-[#4169E1]/30",
             id: 1,
             pageColor: "bg-slate-900",
+            pageTranslateX: "-translate-x-3"
         },
     };
 

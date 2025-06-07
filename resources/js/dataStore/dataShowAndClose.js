@@ -21,7 +21,7 @@ export const useProvideDataShowAndClose = () => {
                 id: 1,
                 status: true,
                 onMenu : true ,
-                readLayoutWidth: "w-[75%]",
+                readLayoutWidth: "w-[78%]",
                 delayEffect: {
                     inClosure: {
                         property: "transform",
@@ -91,7 +91,7 @@ export const useProvideDataShowAndClose = () => {
                 id: 1,
                 status: true,
                 title: "Header Sticky",
-                scrollHeader : "h-[92.4vh]",
+                scrollHeader : "h-[91.4vh]",
                 delayEffect: {
                     inClosure: {
                         property: "transform",

@@ -64,7 +64,7 @@ defineOptions({ inheritAttrs: false })
             </button>
         </div>
         <!-- Chapter -->
-        <div v-if="menu.status" class="flex gap-x-3 text-white">
+        <div v-if="menu.status" class="flex gap-x-3 text-white cursor-pointer ">
             <span @click="showPage(pages[0].id)">Chapter 1 / 20</span>
             <span @click="showPage(pages[1].id)">{{ `Page ${computedProgressBar.readPage} /
             ${instanceProxy.length}` }}</span>

@@ -5,19 +5,19 @@ export const useProvideDataAdvanceSetting = () => {
             id: 1,
             status: true,
             title: "Page Layout",
-            borderBottom: "translate-x-0",
+            bg : "bg-sky-600",
         },
         {
             id: 2,
             status: false,
             title: "Image",
-            borderBottom: "translate-x-[100%]",
+            bg : "bg-slate-900",
         },
         {
             id: 3,
             status: false,
             title: "Shortcut",
-            borderBottom: "translate-x-[200%]",
+            bg : "bg-slate-900",
         },
     ]);
 

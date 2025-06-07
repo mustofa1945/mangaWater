@@ -1,16 +1,17 @@
-import { ref } from 'vue'
-import { useUtils } from '../utils/utilsFunctionStore'
+import { ref } from "vue";
+import { useUtils } from "../utils/utilsFunctionStore";
 
 export const useCompoStar = () => {
-    let scor = ref(2)
+    let scor = ref(2);
 
-    let grade = ref("by 1,094 reviews")
+    let grade = ref("by 1,094 reviews");
 
     const { regular, solid } = {
         regular: "fa-regular",
         solid: "fa-solid",
-    }
+    };
 
+    const { delay } = useUtils();
 
     const dataStar = ref([
         {
@@ -19,7 +20,7 @@ export const useCompoStar = () => {
             status: true,
             icon: solid,
             scor: 2,
-            scale: "scale-125"
+            scale: "scale-125",
         },
         {
             id: 2,
@@ -27,7 +28,7 @@ export const useCompoStar = () => {
             status: false,
             icon: regular,
             scor: 4,
-            scale: "scale-100"
+            scale: "scale-100",
         },
         {
             id: 3,
@@ -35,7 +36,7 @@ export const useCompoStar = () => {
             status: false,
             icon: regular,
             scor: 6,
-            scale: "scale-100"
+            scale: "scale-100",
         },
         {
             id: 4,
@@ -43,7 +44,7 @@ export const useCompoStar = () => {
             status: false,
             icon: regular,
             scor: 8,
-            scale: "scale-100"
+            scale: "scale-100",
         },
         {
             id: 5,
@@ -51,38 +52,34 @@ export const useCompoStar = () => {
             status: false,
             icon: regular,
             scor: 10,
-            scale: "scale-100"
-        }
-    ])
-
-    const delay = (time) => new Promise((resolve) => setTimeout(resolve, time))
+            scale: "scale-100",
+        },
+    ]);
 
     const onOverHoverStar = async (id) => {
-        const star = dataStar.value.find(el => el.id === id)
+        const star = dataStar.value.find((el) => el.id === id);
 
-        scor.value = star.scor
-        grade.value = star.title
+        scor.value = star.scor;
+        grade.value = star.title;
 
         if (!star.status) {
             for (let index = 0; index < star.id; index++) {
-                await delay(30)
-                dataStar.value[index].status = true
-                dataStar.value[index].icon = solid
-                dataStar.value[index].scale = "scale-125"
+                await delay(30);
+                dataStar.value[index].status = true;
+                dataStar.value[index].icon = solid;
+                dataStar.value[index].scale = "scale-125";
             }
         } else {
             for (let index = 5; index > star.id; index--) {
-                await delay(30)
-                dataStar.value[index - 1].status = false
-                dataStar.value[index - 1].icon = regular
-                dataStar.value[index - 1].scale = 'scale-100'
+                await delay(30);
+                dataStar.value[index - 1].status = false;
+                dataStar.value[index - 1].icon = regular;
+                dataStar.value[index - 1].scale = "scale-100";
             }
         }
+    };
 
-    }
+    const reset = () => (grade.value = "by 1,094 reviews");
 
-    const reset = () => grade.value = "by 1,094 reviews"
-    
-
-    return { dataStar, scor, onOverHoverStar , grade , reset }
-}
+    return { dataStar, scor, onOverHoverStar, grade, reset };
+};

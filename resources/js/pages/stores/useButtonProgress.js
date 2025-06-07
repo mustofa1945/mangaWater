@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { computed, watchEffect, ref, watch } from "vue";
+import { computed, watchEffect, ref, watch, reactive, nextTick } from "vue";
 import { useProvideDataProgressBar } from "../../dataStore/dataProgreesButton";
 import { useUtils } from "../utils/utilsFunctionStore";
 import { useProvideOneUtilsProgressBar } from "../utils/oneUtils/oneUtilsProgressBar";
@@ -15,6 +15,7 @@ export const useProgressButton = defineStore("progressButton", () => {
         findByStatus,
         choiseType: runChoiseType,
         findLastStatus,
+        delay,
     } = useUtils();
 
     const {
@@ -25,7 +26,9 @@ export const useProgressButton = defineStore("progressButton", () => {
     } = useProvideOneUtilsProgressBar();
 
     //Setiap nilai ef TypePosition berubah Jalankan GetByStatus
-    const readTypePosition = computed(() => findByStatus(typePositionScrollBar.value));
+    const readTypePosition = computed(() =>
+        findByStatus(typePositionScrollBar.value)
+    );
 
     const readPage = computed(() => page.value);
 
@@ -62,31 +65,33 @@ export const useProgressButton = defineStore("progressButton", () => {
         { deep: true }
     );
 
-    const scrollDetectStatus = (elements) => runScrollDetectStatus(elements)
+    const scrollDetectStatus = (elements) => runScrollDetectStatus(elements);
 
     //Select berdasarkan id
     const choiseType = (id) => runChoiseType(typePositionScrollBar.value, id);
 
-    const pickPage = (id) => {
+    const pickPage = async (id) => {
         instanceProxy.value.forEach((el) => {
             if (id >= el.id) {
                 el.status = true;
                 el.color = "bg-[#4169E1]/50";
             } else {
-                el.status = false
+                el.status = false;
                 el.color = "bg-transparent";
             }
-            el.pageColor = "bg-slate-900"
+            el.pageColor = "bg-slate-900";
+            el.pageTranslateX = "-translate-x-3";
         });
 
         const el = findLastStatus(instanceProxy.value);
 
         el.color = "bg-[#4169E1]";
-        el.pageColor = "bg-[#4169E1]"
+        el.pageColor = "bg-[#4169E1]";
+        el.pageTranslateX = "translate-x-4";
 
         //Scroll ke Bawah
         el.element?.scrollIntoView({
-            behavior: "smooth",
+            behavior: "instant",
             block: "center",
             inline: "center",
         });
@@ -104,7 +109,7 @@ export const useProgressButton = defineStore("progressButton", () => {
         pickPage,
         computedProgressBar: {
             readPage,
-            readTypePosition
-        }
+            readTypePosition,
+        },
     };
 });

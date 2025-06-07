@@ -9,7 +9,7 @@ const { typeMangaViewers, swicthById } = useMangaViewer()
 const { computedViewer } = useMangaViewer()
 const { readingDirec, applyChoiseType } = useReadingDirec()
 const { choiseType, typePositionScrollBar, instanceProxy } = useProgressButton()
-const storeAdvanceSetting = useAdvanceSetting()
+const { changeStatusButtonType, swip } = useAdvanceSetting()
 
 </script>
 <template>
@@ -17,7 +17,7 @@ const storeAdvanceSetting = useAdvanceSetting()
         <p class="text-sm text-gray-400 mb-2">Page Display Style</p>
         <div class="flex gap-2">
             <button v-for="el in typeMangaViewers" :key="el.id" @click="swicthById(el.id)"
-                :class="`flex-1 py-2 rounded border text-white ${el.border}`">{{ el.title }}</button>
+                :class="`flex-1 py-2 rounded border ${el.border}`">{{ el.title }}</button>
         </div>
     </div>
 
@@ -32,9 +32,8 @@ const storeAdvanceSetting = useAdvanceSetting()
             </div>
         </template>
         <template v-if="computedViewer.readMangaViewer.id === 1">
-            <StatusButton
-                @runChangeStatus="storeAdvanceSetting.changeStatusButtonType(item.id, storeAdvanceSetting.swip, instanceProxy)"
-                v-for="item in storeAdvanceSetting.swip" :text="item.title" :isActive="item.status" />
+            <StatusButton @runChangeStatus="changeStatusButtonType(item.id, swip, instanceProxy)" v-for="item in swip"
+                :text="item.title" :isActive="item.status" />
         </template>
     </div>
 

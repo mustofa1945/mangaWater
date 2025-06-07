@@ -30,12 +30,12 @@ const { showAndUpdate } = useAdvanceSetting()
 
 <template>
     <div v-showAndClose="readNavReadMenu.delayEffect"
-        :class="`Navread-menu py-2 px-5 box-border w-[25%] bg-slate-900 fixed z-20 right-0 top-0 flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden max-h-screen`">
+        :class="`Navread-menu py-2 px-5 box-border w-[22%] bg-slate-900 fixed z-20 right-0 top-0 flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden max-h-screen`">
         <!-- Title -->
         <div class="flex justify-between items-center gap-x-2">
             <h1 class="text-md font-semibold  ">The Seven Deadly Sins: Four Knights of the Apocalypse</h1>
             <PagReguler @click="showOrHidden(navReadMenu, readNavReadMenu, pages)"
-                :options="{ size: 'md', position: 'right' }" class="bg-slate-500 h-[4vh] w-[5vh] " />
+                :options="{ size: 'text-md', position: 'right' }" class="bg-slate-800/80 p-2 h-[4vh] w-[5vh] " />
         </div>
         <!-- Slide -->
         <div class="bg-slate-800/70 group flex items-center  rounded-lg p-3 hover:backdrop-brightness-300">
@@ -48,9 +48,9 @@ const { showAndUpdate } = useAdvanceSetting()
                     class="fas text-2xl group-hover:rotate-[360deg] group-hover:scale-130 transition-all duration-1000 fa-sync-alt text-gray-400 "></i>
             </div>
         </div>
-        <div class="bg-slate-800/70 flex  relative rounded-lg p-3 justify-center items-center">
+        <div class="bg-slate-800/70 flex  relative rounded-lg p-3 justify-center items-center cursor-pointer ">
             <div @click="showOrClose(langActive)" class="relative flex items-center  justify-center w-full ">
-                <span class="text-md text-gray-400 ">Language:</span>
+                <span class="text-md text-gray-400 font-thin ">Language:</span>
                 <span class="text-md  pl-1 text-white">English</span>
             </div>
             <!-- List Bahasa -->
@@ -61,38 +61,38 @@ const { showAndUpdate } = useAdvanceSetting()
             </div>
         </div>
         <PagNavMenu />
-        <div class="flex flex-col gap-y-2 relative">
+        <div class="flex flex-col gap-y-2 relative text-gray-300/80 font-thin">
             <BoxIcon @click="showOrHidden(comment, readComment)"
                 :options="{ title: 'Chapter 1 Comment', icon: 'fas fa-comment-alt', reverse: true }"
-                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl" />
+                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl cursor-pointer " />
             <BoxIcon :options="{ title: 'Bookmark', icon: 'fas fa-bookmark', reverse: true }"
-                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl " />
+                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl cursor-pointer " />
             <BoxIcon :options="{ title: 'Manga Detail', icon: 'fas fa-info-circle', reverse: true }"
-                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl " />
+                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl cursor-pointer " />
             <BoxIcon @click="showOrClose(modalError)"
                 :options="{ title: 'Report Error', icon: 'fas fa-exclamation-triangle', reverse: true }"
-                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl " />
+                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl cursor-pointer " />
         </div>
-        <div class="flex flex-col gap-y-2 mt-7">
+        <div class="flex flex-col gap-y-2 mt-7 text-gray-300/80 font-thin">
             <BoxIcon @click="showOrHidden(header, readHeader)"
-                :options="{ title: readHeader.title, icon: 'fas fa-comment-alt', reverse: false }"
-                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl " />
+                :options="{ title: readHeader.title, icon: 'fa-solid fa-note-sticky', reverse: false }"
+                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl cursor-pointer " />
             <BoxIcon @click="changeTypeViewer()"
                 :options="{ title: computedViewer.readMangaViewer.title, icon: computedViewer.readMangaViewer.icon, reverse: false }"
-                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl" />
+                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl cursor-pointer " />
             <BoxIcon
                 @click="changeSizeType(computedMangaSize.readModeStatus, computedMangaSize.readModeSize, computedViewer.readMangaViewer)"
                 :options="{ title: computedMangaSize.readModeSize.name, icon: computedMangaSize.readModeSize.icon, reverse: false }"
-                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl " />
+                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl cursor-pointer  " />
             <BoxIcon @click="applySwicthActive()"
                 :options="{ title: `${compuReadDirec.readDirec.title}`, icon: 'fas fa-exclamation-triangle', reverse: false }"
-                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl" />
+                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl cursor-pointer " />
             <BoxIcon @click="choiseTypePosition(computedProgressBar.readTypePosition, computedViewer.readMangaViewer)"
                 :options="{ title: `Bottom Progress ${computedProgressBar.readTypePosition.position}`, icon: 'fas fa-info-circle', reverse: false }"
-                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl" />
+                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl cursor-pointer " />
             <BoxIcon @click="showAndUpdate()"
                 :options="{ title: 'Advanced Settings', icon: 'fas fa-exclamation-triangle', reverse: false }"
-                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl" />
+                class="w-full h-[7vh] px-3  bg-slate-800 rounded-xl cursor-pointer " />
         </div>
         <PageMenu v-waitTransition="readNavReadMenu.onMenu" v-for="page in pages" :page="page.status"
             class="w-full top-13 " @slidePage="showPage(page.id)" :input="page.input" :display="page.display" />
