@@ -58,7 +58,7 @@ export const useProvideDataProgressBar = () => {
             style: {
                 positionStatus: false,
                 property:
-                    "flex-col flex top-0 right-0 w-[2.1vh] h-full hover:w-[3vh] transition-all",
+                    "flex-col flex top-0 right-0 w-[1vh] h-full hover:w-[3vh] transition-all",
                 absolute: "left-[-8vh]",
             },
             border: b.transparent,
@@ -90,12 +90,14 @@ export const useProvideDataProgressBar = () => {
             status: true,
             color: "bg-[#4169E1]",
             pageColor: "bg-[#4169E1]",
+            pageTranslateX:"translate-x-4"
         },
         transparent: {
             status: false,
             color: "bg-transparent hover:bg-[#4169E1]/30",
             id: 1,
             pageColor: "bg-slate-900",
+            pageTranslateX: "-translate-x-3"
         },
     };
 

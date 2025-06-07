@@ -13,17 +13,17 @@ const data = defineProps({
 })
 
 const { runDropdown, dropdownAnimationEnd, reset } = useDropStore()
-const canHover = toRef(useDropStore() , 'canHover')
+const canHover = toRef(useDropStore(), 'canHover')
 
 </script>
 <template>
-    <div :class="`text-white ${canHover ? 'trigger' : 'no-trigger'} text-lg relative `" @click="runDropdown(data.id)"
+    <div :class="` ${canHover ? 'trigger' : 'no-trigger'} text-lg relative `" @click="runDropdown(data.id)"
         @mouseout="reset(id)" @animationend="dropdownAnimationEnd(data.id)">
-        {{ data.title }}
+        <span class="text-gray-400 hover:text-gray-100 duration-200 transition-all">{{ data.title }}</span>
         <div
-            :class="`absolute show ${data.animation}-${data.title} transition-all ${data.display}  duration-300  left-0 overflow-hidden z-100  w-[${data.property.width}vh]  ${data.property.flexType} p-5 gap-y-2 bg-slate-900 border-1 border-slate-800`">
+            :class="`absolute show ${data.animation}-${data.title} transition-all ${data.display}  duration-300  left-0 overflow-hidden z-100  ${data.property.width}  ${data.property.flexType} p-5 gap-y-2 bg-slate-900 border-1 border-slate-800`">
             <Link
-                :class="`pl-3 box-border w-[30%] text-[${data.property.size}px] hover:border-sky-600 hover:bg-sky-300/10 hover:text-sky-700 duration-200 rounded-xl`"
+                :class="`pl-3 text-gray-300 box-border ${data.property.childWidth} text-[${data.property.size}px] hover:border-sky-600 hover:bg-sky-300/10 hover:text-sky-700 duration-200 rounded-xl`"
                 href="#" v-for="type in data.item">{{ type }}</Link>
         </div>
     </div>

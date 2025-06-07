@@ -6,7 +6,7 @@ const { modalLogin, showOrClose } = useShowClose()
 </script>
 <template>
     <div v-if="modalLogin.status"
-        class="fixed w-full h-full flex items-center justify-center bg-black/50 bg-opacity-10 z-50">
+        class="fixed w-full h-full top-0 flex items-center justify-center bg-black/50 bg-opacity-10 z-50">
         <div class="bg-slate-900 rounded-lg w-120 p-6">
             <div class="flex justify-between items-center mb-4 ">
                 <div>

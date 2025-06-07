@@ -23,8 +23,8 @@ const { instanceProxy, scrollDetectStatus } = useProgressButton()
         <slot name="doublePage" />
     </div>
     <!-- LongStrip -->
-    <div @scroll="scrollDetectStatus(instanceProxy)" v-if="status.longStrip"
-        class="Long-strip h-full flex-col gap-y-2 w-full  flex items-center overflow-y-scroll ">
+    <div @scroll="scrollDetectStatus(instanceProxy)"  v-if="status.longStrip"
+        class="Long-strip  relative h-full flex-col gap-y-2 w-full  flex items-center overflow-y-scroll ">
         <slot name="longStrip" />
     </div>
 </template>

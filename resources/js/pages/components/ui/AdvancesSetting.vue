@@ -1,12 +1,14 @@
 <script setup>
+import { watchEffect } from 'vue';
 import { useAdvanceSetting } from '../../stores/useAdvanceSetting';
 import Image from '../partials/setting/Image.vue';
 import PageLayout from '../partials/setting/PageLayout.vue';
 import ShortCut from '../partials/setting/ShortCut.vue';
 
-const { advanceSetting, selectSetting, showAndUpdate } = useAdvanceSetting()
+const { advanceSetting, selectSetting, showAndUpdate  } = useAdvanceSetting()
 const [pageLayout, image, shortCut] = advanceSetting
-const read = useAdvanceSetting()
+
+
 
 </script>
 <template>
@@ -18,12 +20,9 @@ const read = useAdvanceSetting()
       </div>
 
       <!-- Tabs -->
-      <div class="relative flex border-b w-full border-gray-700 mb-4  ">
-        <button v-for="setting in advanceSetting" @click="selectSetting(advanceSetting, setting.id)"
-          :class="`px-4 py-2 font-semibold text-blue-400 w-1/3 `">{{ setting.title }}</button>
-        <div
-          :class="`absolute bottom-0 left-0 ${read.readSetting.borderBottom} bg-blue-400 w-1/3 h-[0.3vh] duration-200 transition-all`">
-        </div>
+      <div class="relative flex border-b w-full border-blue-700/10 mb-4 rounded-lg border-1 overflow-hidden gap-x-0.5">
+        <button v-for="setting in advanceSetting" @click="selectSetting(setting.id)"
+          :class="`px-4 py-2 font-semibold  w-1/3 ${setting.bg} saturate-60 text-white duration-500 transition-all`">{{ setting.title }}</button>
       </div>
 
       <PageLayout v-if="pageLayout.status" />

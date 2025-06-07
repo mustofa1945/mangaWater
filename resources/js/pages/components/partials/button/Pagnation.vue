@@ -1,10 +1,10 @@
 <script setup>
-const pagination = defineProps(['position'])
+const pagination = defineProps(['position' , 'title'])
 </script>
 <template>
-    <div :class="`z-20 absolute w-8 top-1/2 ${pagination.position}-0 rounded-xl p-1 flex justify-center items-center bg-sky-500`">
+    <div :class="`z-20 absolute w-8 top-1/2 ${pagination.position} rounded-xl p-1 flex justify-center items-center bg-sky-600`">
                     <button class="text-lg text-white">
-                        <i :class="`fas fa-chevron-${pagination.position}`"></i>
+                        <i :class="`fas fa-chevron-${pagination.title}`"></i>
                     </button>
                 </div>
 </template>

@@ -54,6 +54,8 @@ export const useUtils = () => {
         }, proxy);
     };
 
+    const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
+
     return {
         switchActive,
         wait,
@@ -63,14 +65,14 @@ export const useUtils = () => {
         findByStatus,
         choiseType,
         changeStatus,
+        delay
     };
 };
 
 export const useUtilsReactive = () => {
+    const wrapRef = (callback) => toRefs(callback());
 
-    const wrapRef = (callback) => toRefs(callback())
-
-    return { wrapRef }
+    return { wrapRef };
     //     const createShowCloseComputedGroup = () => {
 
     //         const getGroup = shallowRef(null)
@@ -118,6 +120,4 @@ export const useUtilsReactive = () => {
     //     }
 
     //     return { createGroupComputed }
-}
-
-
+};

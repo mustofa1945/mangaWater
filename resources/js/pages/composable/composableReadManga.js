@@ -43,7 +43,7 @@ export function useCompoReadManga(
     );
 
     onMounted(() => {
-        window.addEventListener("keydown", (e) => {
+        window.addEventListener("keyup", (e) => {
             if (e.key == "h") {
                 showOrHidden(
                     header,
