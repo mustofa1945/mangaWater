@@ -1,18 +1,20 @@
-import { ref, watch, toRaw, nextTick, computed } from "vue";
-import { dataManga } from "../../data/dataManga";
+import { ref, watch, computed  } from "vue";
+import { dataManga, dataRecentlyUpdate } from "../../data/dataManga";
 import { useUtils } from "../utils/utilsFunctionStore";
-
+import { useProvideUtilsSlide } from "../utils/composabeUtils";
 
 export const useSlider = () => {
     const dataSlider = ref([...dataManga]);
 
-    const transition = ref("transition-all duration-400");
+    const property = ref({
+        transition: "transition-all duration-400",
+        numX: 0,
+        duration : "duration-500"
+    });
 
-    const numX = ref(0);
+    const { slideCard } = useProvideUtilsSlide();
 
-    const readTransition = computed(() => transition.value);
-
-    const { delay } = useUtils();
+    const readProperty = computed(() => property.value);
 
     const setElement = (templateRef) => {
         watch(
@@ -22,66 +24,53 @@ export const useSlider = () => {
                     el.element = templateRef[index];
                     el.translateX = "translateX(0vh)";
                 });
-                  
-                const mid = Math.floor(dataSlider.value.length / 2)
+
+                const mid = Math.floor(dataSlider.value.length / 2);
 
                 dataSlider.value[mid].element.scrollIntoView({
-                    behavior : "instant",
-                    inline : "end",
-                    block : "nearest"
-                })
+                    behavior: "instant",
+                    inline: "end",
+                    block: "nearest",
+                });
             },
             { immediate: true, once: true }
         );
     };
 
-    const prev = async () => {
-        numX.value += 110;
+    const next = () => {
+        property.value.numX -= 110;
 
-        const deleteEl = {
-            ...toRaw(dataSlider.value.shift()),
-        };
-        dataSlider.value.push(deleteEl);
+        const dataDelete = dataSlider.value.pop();
 
-        transition.value = "";
-
-        dataSlider.value.forEach((el) => {
-            el.translateX = `translate(${numX.value}vh)`;
-        });
-
-        await delay(10);
-
-        numX.value -= 110;
-
-        transition.value = "transition-all duration-500";
-
-        dataSlider.value.forEach((el) => {
-            el.translateX = `translateX(${numX.value}vh)`;
-        });
+        slideCard(
+            dataSlider.value,
+            dataDelete,
+            (data) => {
+                dataSlider.value.unshift(data);
+            },
+            () => {
+                property.value.numX += 110;
+            },
+            property.value
+        );
     };
 
-    const next = async () => {
-        numX.value -= 110;
-        const deleteEl = {
-            ...toRaw(dataSlider.value.pop()),
-        };
-        dataSlider.value.unshift(deleteEl);
+    const prev = async () => {
+        property.value.numX += 110;
 
-        transition.value = "";
+        const dataDelete = dataSlider.value.shift();
 
-        dataSlider.value.forEach((el) => {
-            el.translateX = `translate(${numX.value}vh)`;
-        });
-
-        await delay(10);
-
-        numX.value += 110;
-
-        transition.value = "transition-all duration-500";
-
-        dataSlider.value.forEach((el) => {
-            el.translateX = `translateX(${numX.value}vh)`;
-        });
+        slideCard(
+            dataSlider.value,
+            dataDelete,
+            (data) => {
+                dataSlider.value.push(data);
+            },
+            () => {
+                property.value.numX -= 110;
+            },
+            property.value
+        );
     };
 
     return {
@@ -89,6 +78,122 @@ export const useSlider = () => {
         next,
         prev,
         setElement,
-        computedSlider: { readTransition },
+        computedSlider: { readProperty },
+    };
+};
+
+export const useSliderProgressBar = () => {
+    const { findLastStatus } = useUtils();
+
+    const dataSubSlider = ref([...dataRecentlyUpdate]);
+
+    const instanceBar = ref([]);
+
+    const property = ref({
+        transition: "transition-all duration-400",
+        numX: 0,
+        duration : "duration-350"
+    });
+
+    const { slideCard } = useProvideUtilsSlide();
+
+    const readPropertyBar = computed(() => property.value);
+
+    // const readDataSubSlider = computed(() => dataSubSlider)
+
+    const setSubElement = (templateRef) => {
+        watch(
+            dataSubSlider,
+            (sliders) => {
+                sliders.forEach((el, index) => {
+                    el.element = templateRef[index];
+                    el.translateX = "translateX(0vh)";
+                });
+
+                const mid = Math.floor(sliders.length / 2);
+
+                sliders[mid].element.scrollIntoView({
+                    behavior: "instant",
+                    inline: "end",
+                    block: "nearest",
+                });
+
+                for (let bar = 0; bar < 14; bar++) {
+                    if (bar == 0) {
+                        instanceBar.value.push({
+                            id: bar,
+                            status: true,
+                            color: "bg-sky-600",
+                        });
+                    } else {
+                        instanceBar.value.push({
+                            id: bar,
+                            status: false,
+                            color: "bg-slate-800",
+                        });
+                    }
+                }
+
+                console.table(instanceBar.value);
+            },
+            { immediate: true, once: true }
+        );
+    };
+
+    const swicthBar = (callBack) => {
+        const findEl = findLastStatus(instanceBar.value);
+        findEl.status = false;
+        findEl.color = "bg-slate-800";
+        const index = callBack(findEl.id);
+        instanceBar.value[index].status = true;
+        instanceBar.value[index].color = "bg-sky-600";
+    };
+
+    const nextSub = () => {
+        property.value.numX -= 35;
+
+        const dataDelete = dataSubSlider.value.pop();
+
+        slideCard(
+            dataSubSlider.value,
+            dataDelete,
+            (data) => {
+                console.log(data);
+                dataSubSlider.value.unshift(data);
+            },
+            () => {
+                property.value.numX += 35;
+            },
+            property.value
+        );
+        swicthBar((id) => (id == instanceBar.value.length - 1 ? 0 : id + 1));
+    };
+
+    const prevSub = () => {
+        property.value.numX += 35;
+        const dataDelete = dataSubSlider.value.shift();
+
+        slideCard(
+            dataSubSlider.value,
+            dataDelete,
+            (data) => {
+                dataSubSlider.value.push(data);
+            },
+            () => {
+                property.value.numX -= 35;
+            },
+            property.value
+        );
+
+        swicthBar((id) => (id == 0 ? instanceBar.value.length - 1 : id - 1));
+    };
+
+    return {
+        setSubElement,
+        dataSubSlider,
+        nextSub,
+        prevSub,
+        instanceBar,
+        computedSliderBar: { readPropertyBar },
     };
 };

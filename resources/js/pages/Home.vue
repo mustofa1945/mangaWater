@@ -7,31 +7,45 @@ import CardRecentlyUpdate from "./components/partials/card/CardRecentlyUpdate.vu
 import BoxLight from "./components/ui/BoxLight.vue";
 import { dataManga } from "../data/dataManga";
 import PagReguler from "./components/partials/button/PagReguler.vue";
-import { datas, typeMangaSearch } from "../data/dataSearch";
+import { typeMangaSearch } from "../data/dataSearch";
 import MainLayout from "../layout/MainLayout.vue";
-import { useSlider } from "./composable/compoSLider";
+import { useSlider, useSliderProgressBar } from "./composable/compoSLider";
 import { onMounted, useTemplateRef } from "vue";
 
 const { dataSlider, next, prev, setElement, computedSlider } = useSlider();
 
+const {
+    dataSubSlider,
+    setSubElement,
+    nextSub,
+    prevSub,
+    computedSliderBar,
+    instanceBar,
+} = useSliderProgressBar();
+
 const sliders = useTemplateRef("sliders");
 
-onMounted(() => setElement(sliders.value));
+const sliderBar = useTemplateRef("sliderBar");
+
+onMounted(() => {
+    setElement(sliders.value);
+    setSubElement(sliderBar.value);
+});
 
 defineOptions({ layout: MainLayout });
 </script>
 <template>
     <BoxLight css="10">
         <div>
-            <div
-                class="relative flex"
-            >
-                <div class="flex justify-between items-center gap-x-[23px] overflow-hidden">
+            <div class="relative flex">
+                <div
+                    class="flex justify-between items-center gap-x-[23px] overflow-hidden"
+                >
                     <div
                         ref="sliders"
                         v-for="manga in dataSlider"
                         :style="{ transform: manga.translateX }"
-                        :class="`slider p-4 rounded-lg border-l-3 opacity-50 ${computedSlider.readTransition.value} group hover:opacity-100 border-sky-400 relative w-[106vh] flex-shrink-0 overflow-hidden bg-slate-800 z-10`"
+                        :class="`slider cursor-pointer p-4 rounded-lg border-l-3 opacity-50 ${computedSlider.readProperty.value.transition} ease-in-out group hover:opacity-100 border-sky-400 relative w-[106vh] flex-shrink-0 overflow-hidden bg-slate-800 z-10`"
                     >
                         <CardManga :card="manga" />
                     </div>
@@ -72,6 +86,7 @@ defineOptions({ layout: MainLayout });
                     v-for="(manga, index) in dataManga"
                     icon="true"
                     :key="manga.id"
+                    width="w-[28vh]"
                     :manga="{
                         title: manga.title,
                         url: manga.url,
@@ -79,10 +94,10 @@ defineOptions({ layout: MainLayout });
                     }"
                 />
             </div>
-            <span
-                class="absolute bottom-[-0.1vh] left-0 w-[30%] h-[1px] bg-sky-700"
-            ></span>
         </div>
+        <span
+            class="absolute bottom-[-0.1vh] left-0 w-[30%] h-[1px] bg-sky-700"
+        ></span>
 
         <!-- Recently Update -->
 
@@ -134,7 +149,7 @@ defineOptions({ layout: MainLayout });
         <!-- New Release -->
 
         <div
-            class="relative mt-[10vh] px-[10px] flex flex-col gap-y-3 items-left justify-around border-b-1 border-slate-500/50 pb-[10vh]"
+            class="relative mt-[10vh] px-[10px] flex flex-col gap-y-3 items-left w-full justify-around border-b-1 border-slate-500/50 pb-[10vh]"
         >
             <div class="mb-4 flex justify-between">
                 <h1 class="text-2xl text-white/80 font-bold mb-2">
@@ -142,11 +157,13 @@ defineOptions({ layout: MainLayout });
                 </h1>
                 <div class="flex items-center space-x-2">
                     <PagReguler
+                        @click="prevSub"
                         :options="{ size: 'md', position: 'left' }"
                         position="left"
                         class="w-7"
                     />
                     <PagReguler
+                        @click="nextSub"
                         :options="{ size: 'md', position: 'right' }"
                         position="right"
                         class="w-7"
@@ -154,16 +171,29 @@ defineOptions({ layout: MainLayout });
                 </div>
             </div>
 
-            <div class="flex items-center gap-x-4 justify-center w-full">
-                <CardMostViewed
-                    v-for="manga in dataManga"
-                    :key="manga.id"
-                    :manga="{ title: manga.title, url: manga.url }"
-                />
+            <div class="flex w-full overflow-hidden gap-x-3 h-full">
+                <div
+                    ref="sliderBar"
+                    :style="{ transform: mangaBar.translateX }"
+                    :class="`${computedSliderBar.readPropertyBar.value.transition} ease-in-out`"
+                    v-for="mangaBar in dataSubSlider"
+                >
+                    <CardMostViewed
+                        :key="mangaBar.id"
+                        width="w-[34vh]"
+                        :manga="{
+                            title: mangaBar.title,
+                            url: mangaBar.url,
+                        }"
+                    />
+                </div>
             </div>
-            <span
-                class="absolute bottom-[-0.1vh] left-0 w-[30%] h-[1px] bg-sky-700"
-            ></span>
+            <div class="flex gap-x-2 w-[40%] mx-auto mt-5">
+                <span
+                    v-for="bar in instanceBar"
+                    :class="`w-1/14 h-[0.3vh] ${bar.color} rounded-full`"
+                ></span>
+            </div>
         </div>
     </BoxLight>
 </template>
