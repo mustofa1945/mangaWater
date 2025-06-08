@@ -52,7 +52,7 @@
                     </div>
                 </template>
                 <template #longStrip>
-                    <div ref="itemLongStrip" value="30" v-for=" el in 30"
+                    <div ref="itemLongStrip" value="30" v-for="el in 30"
                         :class="`${computedMangaSize.readModeSize.height} flex-shrink-0 flex  bg-sky-500 ${computedMangaSize.readModeSize.width} flex justify-center items-center text-4xl`">
                         {{ el }}
                     </div>

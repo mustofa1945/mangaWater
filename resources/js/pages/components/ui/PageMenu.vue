@@ -31,7 +31,7 @@ const emit = defineEmits(['slidePage'])
         <!-- Content -->
         <div class="flex flex-col divide-y divide-gray-700">
             <div v-for="page in instanceProxy" @click="pickPage(page.id)"
-                :class="` relative w-full ${page.pageColor} hover:bg-[#4169E1] saturate-70  cursor-pointer transition-all duration-250`">
+                :class="` relative w-full ${page.pageColor} hover:bg-[#4169E1] saturate-70  cursor-pointer transition-all duration-100`">
                 <div
                     :class="`flex ${page.pageTranslateX} hover:translate-x-4 transition-all duration-500 items-center w-full py-2`">
                     <i class="fa-solid fa-play text-sm"></i>

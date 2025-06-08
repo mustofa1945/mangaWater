@@ -65,6 +65,73 @@ export const dataManga = reactive([
     },
 ]);
 
+export const dataRecentlyUpdate = [
+       ...dataManga,
+       {
+        id: 8,
+        title: "Namaiki Asahi-chan wo Wakarasetai",
+        url: "https://static.mangafire.to/50d1/i/5/e7/c1d66a89aa4338f8c23e9de8ec55430c.jpg",
+        type: "Manga",
+        lang: "EN",
+        chapter: ["1", "2", "3"],
+        date: "20 maret 2025",
+    },
+    {
+        id: 9,
+        title: "Dream☆Jumbo☆Girl",
+        url: "https://static.mangafire.to/d8fc/i/d/ac/37578d6c2366826044900dd5273fa4cc.jpg",
+        type: "Manga",
+        lang: "EN",
+        chapter: ["1", "2", "3"],
+        date: "20 maret 2025",
+    },
+    {
+        id: 10,
+        title: "You Were Experienced, I Was Not: Our Dating Story",
+        url: "https://static.mangafire.to/ccd1/i/4/45/45a164cdc8008ddc4096b721ab10f90c.jpg",
+        type: "Manga",
+        lang: "EN",
+        chapter: ["1", "2", "3"],
+        date: "20 maret 2025",
+    },
+    {
+        id: 11,
+        title: "The Day I Became a God",
+        url: "https://static.mangafire.to/be2b/i/4/8b/fb9365565cf9fa7db18473b82e7ea4a6.jpg",
+        type: "Manga",
+        lang: "EN",
+        chapter: ["1", "2", "3"],
+        date: "20 maret 2025",
+    },
+    {
+        id: 12,
+        title: "Monster #8",
+        url: "https://static.mangafire.to/1a45/i/2/2b/8b76b4aeaa15c06e3e05fa1248668915.jpg",
+        type: "Manga",
+        lang: "EN",
+        chapter: ["1", "2", "3"],
+        date: "20 maret 2025",
+    },
+    {
+        id: 13,
+        title: "Training Regimes of the World’s Strongest Women",
+        url: "https://static.mangafire.to/86bd/i/6/6d/6dbb3b7ccfb7e21c1ad9e5e8e70d8098.jpg",
+        type: "Manga",
+        lang: "EN",
+        chapter: ["1", "2", "3"],
+        date: "20 maret 2025",
+    },
+    {
+        id: 14,
+        title: "Sakamoto Days",
+        url: "https://static.mangafire.to/105c/i/a/ad/d7b3ca6d286f2f35c292aefe336b474a.jpg",
+        type: "Manga",
+        lang: "EN",
+        chapter: ["1", "2", "3"],
+        date: "20 maret 2025",
+    },
+
+]
 export const types = [
     "Manga",
     "One Shot",
