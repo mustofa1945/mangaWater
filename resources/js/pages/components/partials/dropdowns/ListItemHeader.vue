@@ -1,30 +1,26 @@
 <script setup>
-import { toRef } from 'vue';
-import { useDropStore } from '../../../stores/useDropdown';
-
-const data = defineProps({
+const props = defineProps({
     on: Boolean,
     display: String,
-    id: Number,
     animation: String,
     item: Object,
+    canHover: Boolean,
     title: String,
     property: Object
 })
 
-const { runDropdown, dropdownAnimationEnd, reset } = useDropStore()
-const canHover = toRef(useDropStore(), 'canHover')
+const emits = defineEmits(["reset" , "dropdownAnimationEnd" , "runDropdown"])
 
 </script>
 <template>
-    <div :class="` ${canHover ? 'trigger' : 'no-trigger'} text-lg relative `" @click="runDropdown(data.id)"
-        @mouseout="reset(id)" @animationend="dropdownAnimationEnd(data.id)">
-        <span class="text-gray-400 hover:text-gray-100 duration-200 transition-all">{{ data.title }}</span>
+    <div :class="` ${props.canHover ? 'trigger' : 'no-trigger'} text-lg relative `" @click="emits('runDropdown')"
+        @mouseout="emits('reset')" @animationend="emits('dropdownAnimationEnd')">
+        <span class="text-gray-400 hover:text-gray-100 duration-200 transition-all">{{ props.title }}</span>
         <div
-            :class="`absolute show ${data.animation}-${data.title} transition-all ${data.display}  duration-300  left-0 overflow-hidden z-100  ${data.property.width}  ${data.property.flexType} p-5 gap-y-2 bg-slate-900 border-1 border-slate-800`">
+            :class="`absolute show ${props.animation}-${props.title} transition-all ${props.display}  duration-300  left-0 overflow-hidden z-100  ${props.property.width}  ${props.property.flexType} p-5 gap-y-2 bg-slate-900 border-1 border-slate-800`">
             <Link
-                :class="`pl-3 text-gray-300 box-border ${data.property.childWidth} text-[${data.property.size}px] hover:border-sky-600 hover:bg-sky-300/10 hover:text-sky-700 duration-200 rounded-xl`"
-                href="#" v-for="type in data.item">{{ type }}</Link>
+                :class="`pl-3 text-gray-300 box-border ${props.property.childWidth} text-[${props.property.size}px] hover:border-sky-600 hover:bg-sky-300/10 hover:text-sky-700 duration-200 rounded-xl`"
+                href="#" v-for="type in props.item">{{ type }}</Link>
         </div>
     </div>
 </template>

@@ -10,14 +10,15 @@ export function useCompoReadManga(
     longStripEl,
     singleEl
 ) {
+
     const { computedViewer } = useMangaViewer()
-    const { instanceProxy, nextProgressCLick, prevProgressCLick, wacthScroll } = useProgressButton()
+    const { instanceProxy, nextProgressCLick, prevProgressCLick, watchTypeScroll} = useProgressButton()
     const { runProvideClickGiveStatus } = useProvideOneUtilsProgressBar()
     const { createShowCloseComputedGroup, showOrHidden, header, navReadMenu } = useShowClose()
     const { readHeader, readNavReadMenu } = createShowCloseComputedGroup()
     const { swip } = useAdvanceSetting()
     const { pages } = useSlidePage()
-
+    //Komputasi UseTemplate REf Jika Berubah Mode 
     const scrollElements = computed(() => {
         if (computedViewer.readMangaViewer.id === 3) {
             return longStripEl.value;
@@ -27,21 +28,21 @@ export function useCompoReadManga(
         }
         return null; // supaya watch terpicu saat berubah dari array → null dan sebaliknya
     });
-
+    //Berikan DOM Berdasakan Mode Yang DIpilih Scroll atau Swip Tanpa Mengubah Structur Main Instance Propertynya
     watch(
         () => scrollElements.value,
         async (val) => {
             await nextTick();
-            wacthScroll(val);
+            watchTypeScroll(val);
         }
     );
-
+    //Berikan Inital Value Pada Instance Ini Untuk Menghidari Bug dimana user Memilih fitur MangaViewer Sebelum memilih fitur ProgresBar
     watch(
         () => instanceProxy,
         (newValue) => runProvideClickGiveStatus(30, newValue),
         { immediate: true, once: true }
     );
-
+     //Event untuk Shorcut
     onMounted(() => {
         window.addEventListener("keyup", (e) => {
             if (e.key == "h") {

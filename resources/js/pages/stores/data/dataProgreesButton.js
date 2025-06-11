@@ -1,13 +1,13 @@
 import { ref, watchEffect } from "vue";
-import { useThemeGlobal } from "../pages/theme/globalStyle";
+import { useThemeGlobal } from "../../theme/globalStyle";
 import { setActivePinia, getActivePinia } from "pinia";
-import { useReadingDirec } from "../pages/stores/useReadingDirec";
+import { useReadingDirec } from "../useReadingDirec";
 export const useProvideDataProgressBar = () => {
     if (!getActivePinia()) {
         const { pinia } = require("../app"); // pastikan kamu ekspor `pinia` di suatu file global
         setActivePinia(pinia);
     }
-
+   
     const { compuReadDirec } = useReadingDirec();
 
     const { border: b } = useThemeGlobal();
@@ -17,6 +17,8 @@ export const useProvideDataProgressBar = () => {
     //Progress scroll berdasarkan viewPort
     const animationPoint = 150;
     const viewPortHeight = window.innerHeight;
+
+    let page = ref(1);
 
     const typePositionScrollBar = ref([
         {
@@ -107,5 +109,6 @@ export const useProvideDataProgressBar = () => {
         animationPoint,
         viewPortHeight,
         typeBar,
+        page
     };
 };

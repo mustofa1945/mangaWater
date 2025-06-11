@@ -1,6 +1,5 @@
-import { defineStore } from "pinia";
-import { useProvideDataDropDown } from "../../dataStore/dataDropDown";
-export const useDropStore = defineStore("drop", () => {
+import { useProvideDataDropDown } from "../stores/data/dataDropDown";
+export const useCompoDropDown = () => {
     //AMbil data Dari Provide
     const {
         elements,
@@ -20,7 +19,7 @@ export const useDropStore = defineStore("drop", () => {
             reverseTarget: elementsArray.filter((el) => el.id != id),
         };
     };
-    
+
     //Jalankan Animasi DropDown
     function runDropdown(id) {
         const { target, reverseTarget } = getElement(id);
@@ -74,5 +73,13 @@ export const useDropStore = defineStore("drop", () => {
         });
     }
 
-    return { reset, runDropdown, elements, dropdownAnimationEnd, canHover };
-});
+    return {
+        reset,
+        runDropdown,
+        elements,
+        dropdownAnimationEnd,
+        compuDropDown: {
+            canHover,
+        },
+    };
+};

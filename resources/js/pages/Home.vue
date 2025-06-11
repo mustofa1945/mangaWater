@@ -28,8 +28,8 @@ const sliders = useTemplateRef("sliders");
 const sliderBar = useTemplateRef("sliderBar");
 
 onMounted(() => {
-    setElement(sliders.value);
     setSubElement(sliderBar.value);
+    setElement(sliders.value);
 });
 
 defineOptions({ layout: MainLayout });
@@ -41,14 +41,15 @@ defineOptions({ layout: MainLayout });
                 <div
                     class="flex justify-between items-center gap-x-[23px] overflow-hidden"
                 >
+                <Link  v-for="manga in dataSlider" href="/manga">
                     <div
                         ref="sliders"
-                        v-for="manga in dataSlider"
                         :style="{ transform: manga.translateX }"
                         :class="`slider cursor-pointer p-4 rounded-lg border-l-3 opacity-50 ${computedSlider.readProperty.value.transition} ease-in-out group hover:opacity-100 border-sky-400 relative w-[106vh] flex-shrink-0 overflow-hidden bg-slate-800 z-10`"
                     >
                         <CardManga :card="manga" />
                     </div>
+                </Link>
                 </div>
                 <Pagnation @click="prev" position="left-0" title="left" />
                 <Pagnation @click="next" position="right-0" title="right" />

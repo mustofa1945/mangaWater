@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { useThemeGlobal } from "../pages/theme/globalStyle";
+import { useThemeGlobal } from "../../theme/globalStyle";
 
 export const useProvideDataReadingDirec = () => {
 

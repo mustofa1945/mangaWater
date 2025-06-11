@@ -1,12 +1,8 @@
 <script setup>
-import { watchEffect } from 'vue';
 import { useProgressButton } from '../../stores/useButtonProgress';
 
 const { computedProgressBar, instanceProxy, pickPage } = useProgressButton()
 
-watchEffect(() => {
-    console.log(instanceProxy.length)
-})
 </script>
 <template>
     <div

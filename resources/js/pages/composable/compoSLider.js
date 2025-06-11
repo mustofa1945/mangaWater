@@ -133,8 +133,6 @@ export const useSliderProgressBar = () => {
                         });
                     }
                 }
-
-                console.table(instanceBar.value);
             },
             { immediate: true, once: true }
         );
@@ -158,7 +156,6 @@ export const useSliderProgressBar = () => {
             dataSubSlider.value,
             dataDelete,
             (data) => {
-                console.log(data);
                 dataSubSlider.value.unshift(data);
             },
             () => {

@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
 import { computed } from "vue";
-import { useProvideDataSizeManga } from "../../dataStore/dataSizeManga";
+import { useProvideDataSizeManga } from "./data/dataSizeManga";
 import { useUtils } from "../utils/utilsFunctionStore";
+
 export const useMangaSize = defineStore("mangaSize", () => {
     const { mangaSizeSetting } = useProvideDataSizeManga();
 
@@ -14,11 +15,11 @@ export const useMangaSize = defineStore("mangaSize", () => {
     );
 
 
-    const changeSizeType = (changeMode) =>
+    const nextMangaSizeMode = (changeMode) =>
         switchActive(changeMode, mangaSizeSetting.value);
 
     return {
-        changeSizeType,
+        nextMangaSizeMode,
         mangaSizeSetting,
         computedMangaSize : {
              readModeStatus,

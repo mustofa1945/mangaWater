@@ -1,21 +1,18 @@
 import { defineStore } from "pinia";
-import { computed, watchEffect, ref, watch, reactive, nextTick } from "vue";
-import { useProvideDataProgressBar } from "../../dataStore/dataProgreesButton";
-import { useUtils } from "../utils/utilsFunctionStore";
+import { computed } from "vue";
+import { useProvideDataProgressBar } from "./data/dataProgreesButton";
 import { useProvideOneUtilsProgressBar } from "../utils/oneUtils/oneUtilsProgressBar";
+import { useUtils } from "../utils/utilsFunctionStore";
 
 export const useProgressButton = defineStore("progressButton", () => {
-    let page = ref(1);
     //Ambil Data Dari DataStore
-    const { instanceProxy, typePositionScrollBar } =
+    const { instanceProxy, typePositionScrollBar, page } =
         useProvideDataProgressBar();
     //Gunakan utils untuk mengambil element berdasarkan status dan mengubah mode secara berurutan
     const {
         switchActive,
         findByStatus,
-        choiseType: runChoiseType,
-        findLastStatus,
-        delay,
+        choiseType
     } = useUtils();
 
     const {
@@ -23,89 +20,52 @@ export const useProgressButton = defineStore("progressButton", () => {
         runNextProgressCLick,
         runPrevProgressCLick,
         runScrollDetectStatus,
+        pickPage: runPickPage,
+        updatePage,
+        updateDOM,
     } = useProvideOneUtilsProgressBar();
 
-    //Setiap nilai ef TypePosition berubah Jalankan GetByStatus
+    // Setiap perubahan pada typePositionScrollBar akan memicu pencarian status terkait
     const readTypePosition = computed(() =>
         findByStatus(typePositionScrollBar.value)
     );
-
+    //Computasi Untuk Page Update
     const readPage = computed(() => page.value);
 
-    //Matikan mode sekarang ActiveKan mode berikutnya
-    const choiseTypePosition = (position, typeMangaViewer) => {
+    const nextPositionMode = (position, typeMangaViewer) => {
         runProvideClickGiveStatus(
             30 / typeMangaViewer.bar,
             instanceProxy.value
         );
-
+        // Nonaktifkan mode saat ini dan aktifkan mode berikutnya berdasarkan posisi
         switchActive(position, typePositionScrollBar.value);
         //Relasikan dengan Advance Setting
-        runChoiseType(typePositionScrollBar.value, readTypePosition.value.id);
+        choiseType(typePositionScrollBar.value, readTypePosition.value.id);
     };
-
+    //Navigasi ke progress bar berikutnya
     const nextProgressCLick = () => runNextProgressCLick(instanceProxy.value);
-
+    // Navigasi ke progress bar sebelumnya
     const prevProgressCLick = () => runPrevProgressCLick(instanceProxy.value);
-
-    const wacthScroll = (elementScroll) => {
-        if (elementScroll !== null) {
-            instanceProxy.value.forEach(
-                (el, index) => (el.element = elementScroll[index])
-            );
-        }
-    };
-
-    watch(
-        () => instanceProxy.value,
-        (val) => {
-            const getPage = findLastStatus(val, true);
-            page.value = getPage.id;
-        },
-        { deep: true }
-    );
-
+    // Update DOM element berdasarkan mode yang active, tanpa mengubah struktur data aslinya
+    const watchTypeScroll = (tempRef) => updateDOM(tempRef, instanceProxy.value);
+    //// Manual trigger update karena computed tidak memantau object nested secara deep
+    updatePage(instanceProxy.value, page);
+    //Setiap ELement Terlihat DI ViewPort Berikan Status true
     const scrollDetectStatus = (elements) => runScrollDetectStatus(elements);
-
-    //Select berdasarkan id
-    const choiseType = (id) => runChoiseType(typePositionScrollBar.value, id);
-
-    const pickPage = async (id) => {
-        instanceProxy.value.forEach((el) => {
-            if (id >= el.id) {
-                el.status = true;
-                el.color = "bg-[#4169E1]/50";
-            } else {
-                el.status = false;
-                el.color = "bg-transparent";
-            }
-            el.pageColor = "bg-slate-900";
-            el.pageTranslateX = "-translate-x-3";
-        });
-
-        const el = findLastStatus(instanceProxy.value);
-
-        el.color = "bg-[#4169E1]";
-        el.pageColor = "bg-[#4169E1]";
-        el.pageTranslateX = "translate-x-4";
-
-        //Scroll ke Bawah
-        el.element?.scrollIntoView({
-            behavior: "instant",
-            block: "center",
-            inline: "center",
-        });
-    };
+    //Ubah mode Progress Bar berdasarkan ID yang dipilih
+    const selectProgressBarById  = (id) => choiseType(typePositionScrollBar.value, id);
+    //Memilih Page Berdasarkan Page Yang Dipilih
+    const pickPage = (id) => runPickPage(instanceProxy.value, id);
 
     return {
         typePositionScrollBar,
         scrollDetectStatus,
         instanceProxy,
-        choiseTypePosition,
-        wacthScroll,
+        nextPositionMode,
+        watchTypeScroll,
         nextProgressCLick,
         prevProgressCLick,
-        choiseType,
+        selectProgressBarById,
         pickPage,
         computedProgressBar: {
             readPage,

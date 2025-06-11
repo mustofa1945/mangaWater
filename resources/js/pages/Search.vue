@@ -1,5 +1,5 @@
 <script setup>
-import DropdownSearch from './components/partials/dropdowns/dropdownSearch.vue';
+import DropdownSearch from './components/partials/dropdowns/DropdownSearch.vue';
 import BoxLight from './components/ui/BoxLight.vue';
 import { dataManga } from '../data/dataManga';
 import CardRecentlyUpdate from './components/partials/card/CardRecentlyUpdate.vue'; 

@@ -2,8 +2,6 @@ import { defineStore } from "pinia";
 import {  ref} from "vue";
 
 export const useSlidePage = defineStore("slidePage", () => {
-    let pageOnMenu = ref(true)
-
     let pages = ref([
         {
             id: 1,
@@ -18,19 +16,20 @@ export const useSlidePage = defineStore("slidePage", () => {
             display: "hidden",
         },
     ]);
-
-    const getPages = (id) => {
+    //Dapatkan page yang dipilih dan tidak dipilih
+    const splitPagesById = (id) => {
         return {
             target: pages.value.find((el) => el.id == id),
             targetReverse: pages.value.filter((el) => el.id != id),
         };
     };
-
+    // Tampilkan page berdasarkan ID.
     function showPage(id) {
-        const { target, targetReverse } = getPages(id);
+        const { target, targetReverse } = splitPagesById(id);
         if (!target.status) {
-            target.display = "show";
+            target.display = "flex";
             setTimeout(() => (target.status = true), 20);
+            //Hanya Boleh Ada satu element yang muncul
             targetReverse.forEach((el) => {
                 if (el.status == true) {
                     el.status = false;
