@@ -1,6 +1,6 @@
 <script setup>
-import { computed, ref } from 'vue'
-import { useProvideDataStatusButton } from '../../../../dataStore/dataButton'
+import { computed } from 'vue'
+import { useProvideDataStatusButton } from '../../../stores/data/dataButton'
 import { useUtils } from '../../../utils/utilsFunctionStore'
 const props = defineProps({
     text: {

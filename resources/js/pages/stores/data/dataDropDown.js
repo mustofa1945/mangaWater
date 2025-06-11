@@ -1,5 +1,5 @@
 import { reactive, ref } from "vue";
-import { types, mangaGenres } from "../data/dataManga";
+import { types, mangaGenres } from "../../../data/dataManga";
 
 export const useProvideDataDropDown = () => {
     let canHover = ref(true);

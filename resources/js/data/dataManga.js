@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { reactive } from "vue";
 export const dataManga = reactive([
     {
         id: 1,
@@ -66,8 +66,8 @@ export const dataManga = reactive([
 ]);
 
 export const dataRecentlyUpdate = [
-       ...dataManga,
-       {
+    ...dataManga,
+    {
         id: 8,
         title: "Namaiki Asahi-chan wo Wakarasetai",
         url: "https://static.mangafire.to/50d1/i/5/e7/c1d66a89aa4338f8c23e9de8ec55430c.jpg",
@@ -130,8 +130,7 @@ export const dataRecentlyUpdate = [
         chapter: ["1", "2", "3"],
         date: "20 maret 2025",
     },
-
-]
+];
 export const types = [
     "Manga",
     "One Shot",
@@ -189,27 +188,37 @@ export const mangaGenres = [
 export const langs = [
     {
         id: 1,
+        status: true,
         lang: "English",
         url: "https://flagcdn.com/w320/us.png",
+        style : "bg-sky-600/30 text-blue-500"
     },
     {
         id: 2,
         lang: "French",
+        status: false,
         url: "https://flagcdn.com/w320/fr.png",
+        style : "bg-transparent"
     },
     {
         id: 3,
         lang: "Spanish",
+        status: false,
         url: "https://flagcdn.com/w320/es.png",
+        style : "bg-transparent"
     },
     {
         id: 4,
         lang: "Portugese",
+        status: false,
         url: "https://flagcdn.com/w320/pt.png",
+        style : "bg-transparent"
     },
     {
         id: 5,
         lang: "japanese",
+        status: false,
         url: "https://flagcdn.com/w320/jp.png",
+        style : "bg-transparent"
     },
 ];

@@ -1,6 +1,7 @@
-import { useProvideDataProgressBar } from "../../../dataStore/dataProgreesButton";
+import { reactive, watch } from "vue";
+import { useProvideDataProgressBar } from "../../stores/data/dataProgreesButton";
 import { useUtils } from "../utilsFunctionStore";
-import { reactive } from "vue";
+
 export const useProvideOneUtilsProgressBar = () => {
     const {
         viewPortHeight,
@@ -8,7 +9,7 @@ export const useProvideOneUtilsProgressBar = () => {
         typeBar: { bold, transparent },
     } = useProvideDataProgressBar();
 
-    const { pushElement, findByStatus, applyLogic, findLastStatus , delay} =
+    const { pushElement, findByStatus, applyLogic, findLastStatus } =
         useUtils();
 
     const runProvideClickGiveStatus = (numBar, instance) => {
@@ -94,7 +95,6 @@ export const useProvideOneUtilsProgressBar = () => {
     };
 
     const runScrollDetectStatus = async (instance) => {
-
         applyLogic((item) => {
             const reactEl = item.element.getBoundingClientRect().top;
 
@@ -111,12 +111,56 @@ export const useProvideOneUtilsProgressBar = () => {
             }
         }, instance);
 
-        
-
         const elLast = findLastStatus(instance);
         elLast.color = "bg-[#4169E1]";
         elLast.pageColor = "bg-[#4169E1]";
         elLast.pageTranslateX = "translate-x-4";
+    };
+
+    const pickPage = (instance, id) => {
+        instance.forEach((el) => {
+            if (id >= el.id) {
+                el.status = true;
+                el.color = "bg-[#4169E1]/50";
+            } else {
+                el.status = false;
+                el.color = "bg-transparent";
+            }
+            el.pageColor = "bg-slate-900";
+            el.pageTranslateX = "-translate-x-3";
+        });
+
+        const el = findLastStatus(instance);
+
+        el.color = "bg-[#4169E1]";
+        el.pageColor = "bg-[#4169E1]";
+        el.pageTranslateX = "translate-x-4";
+
+        //Scroll ke Bawah
+        el.element?.scrollIntoView({
+            behavior: "instant",
+            block: "center",
+            inline: "center",
+        });
+    };
+
+    const updatePage = (instance, page) => {
+        watch(
+            () => instance,
+            (val) => {
+                const getPage = findLastStatus(val, true);
+                page.value = getPage.id;
+            },
+            { deep: true }
+        );
+    };
+
+    const updateDOM = (templateRef , instance) => {
+        if (templateRef !== null) {
+            instance.forEach(
+                (el, index) => (el.element = templateRef[index])
+            );
+        }
     };
 
     return {
@@ -124,5 +168,8 @@ export const useProvideOneUtilsProgressBar = () => {
         runNextProgressCLick,
         runPrevProgressCLick,
         runScrollDetectStatus,
+        pickPage,
+        updatePage,
+        updateDOM
     };
 };

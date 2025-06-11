@@ -1,34 +1,36 @@
 import { defineStore } from "pinia";
 import { computed, nextTick } from "vue";
-import { useProvideDataAdvanceSetting } from "../../dataStore/dataAdvanceSetting";
+//Data Store
+import { useProvideDataAdvanceSetting } from "./data/dataAdvanceSetting";
+import { useProvideOneUtilsProgressBar } from "../utils/oneUtils/oneUtilsProgressBar";
+//Utils
 import { useUtils } from "../utils/utilsFunctionStore";
 import { useProvideUtilsData } from "../utils/utilsDatastore";
-import { useProvideOneUtilsProgressBar } from "../utils/oneUtils/oneUtilsProgressBar";
 
 export const useAdvanceSetting = defineStore("setting", () => {
+    //Data Driven UI AdvanceSetting
     const {
         advanceSetting,
         buttonType: { swip, imageSizing, imageColoring },
     } = useProvideDataAdvanceSetting();
 
     const { setting } = useProvideUtilsData();
-
+    //Utils Untuk Membuat Data Progress Bar Berdasarkan Jumlah Page 
     const { runProvideClickGiveStatus } = useProvideOneUtilsProgressBar();
-
-    const { changeStatus, findByStatus, findLastStatus } = useUtils();
-
+    
+    const { findByStatus, findLastStatus } = useUtils();
+    
     const readSetting = computed(() => findByStatus(advanceSetting.value));
-
+    //Mememilih Satu Opsi Setting Yang Ingin Ditampilkan 
     const selectSetting = (id) =>
         advanceSetting.value.forEach((type) => {
             type.status = type.id === id;
             type.bg = type.id === id ? "bg-sky-600" : "bg-slate-900";
         });
-
-    const showAndUpdate = () => changeStatus(setting);
-
+    //Mode Read SLide 
     const changeStatusButtonType = async (id, buttonType, progressBar) => {
         if (id === 1) {
+            //Singkronkan Property Denngan Mode Viewer Yang lainnya
             runProvideClickGiveStatus(30, progressBar);
             const el = findLastStatus(progressBar);
             //Tunggu Update Dom Terbaru Dan Masuk Ke viewPort
@@ -42,6 +44,7 @@ export const useAdvanceSetting = defineStore("setting", () => {
                 });
             }, 100);
         }
+        //Pilih Options Berdasarkan Id Element
         buttonType.forEach((el) => {
             if (el.id === id) el.status = !el.status;
         });
@@ -50,7 +53,6 @@ export const useAdvanceSetting = defineStore("setting", () => {
     return {
         advanceSetting,
         selectSetting,
-        showAndUpdate,
         setting,
         changeStatusButtonType,
         swip,

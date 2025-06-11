@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
-import { computed , watchEffect } from "vue";
+import { computed } from "vue";
 import { useUtils } from "../utils/utilsFunctionStore";
-import { useProvideDataMangaViewers } from "../../dataStore/dataMangaViewers";
+import { useProvideDataMangaViewers } from "./data/dataMangaViewers";
 import { useProvideOneUtilsMangaViewer } from "../utils/oneUtils/oneUtilsMangaViewer";
 
 export const useMangaViewer = defineStore("mangaViewer", () => {
-    //Ambil dari Provide yang kita buat supaya lebih refactor
+    //Ambil data mangaViewer dari provider
     const { typeMangaViewers } = useProvideDataMangaViewers();
 
     const { switchActive, findByStatus, choiseType } = useUtils();
@@ -16,12 +16,13 @@ export const useMangaViewer = defineStore("mangaViewer", () => {
         handleProgressBarUpdate,
         syncProgressElementAndScroll,
     } = useProvideOneUtilsMangaViewer();
-    //Kita ambil manga viewer yang akan digunakan NavReadMenu dan parameter pertama dari changeTypeViewer
+    // Computed: Ambil manga viewer aktif berdasarkan status — digunakan oleh NavReadMenu dan changeTypeViewer
+    const readMangaViewer = computed(() =>
+        findByStatus(typeMangaViewers.value)
+    );
 
-    const readMangaViewer = computed(() => findByStatus(typeMangaViewers.value));
-
-    //Menirima proxy dari component NavReadMenu
-    const changeTypeViewer = async () => {
+    //Memilih Mode Secara Berutan
+    const nextViewerMode = () => {
         //Ganti manga viewer ke mode selanjutnya
         switchActive(readMangaViewer.value, typeMangaViewers.value);
         //Jika type bar none maka bar tidak akan diberi status
@@ -33,8 +34,8 @@ export const useMangaViewer = defineStore("mangaViewer", () => {
         //Menyelaraskan dengan AdvanceSetting
         choiseType(typeMangaViewers.value, readMangaViewer.value.id);
     };
-
-    const swicthById = (id) => {
+    //Ubah mode manga viewer berdasarkan ID yang dipilih
+    const selectViewerById = (id) => {
         choiseType(typeMangaViewers.value, id);
         handleProgressBarUpdate(readMangaViewer.value);
         syncProgressElementAndScroll(readMangaViewer.value);
@@ -43,10 +44,10 @@ export const useMangaViewer = defineStore("mangaViewer", () => {
     };
     return {
         typeMangaViewers,
-        changeTypeViewer,
-        swicthById,
-        computedViewer : {
-           readMangaViewer
-        }
+        nextViewerMode,
+        selectViewerById,
+        computedViewer: {
+            readMangaViewer,
+        },
     };
 });

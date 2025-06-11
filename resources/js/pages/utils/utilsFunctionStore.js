@@ -1,5 +1,4 @@
-import { computed, isProxy, reactive, toRefs } from "vue";
-import { isReactive } from "vue";
+import { isProxy } from "vue";
 import { useThemeGlobal } from "../theme/globalStyle";
 export const useUtils = () => {
     const applyLogic = (callback, data) => data.forEach((el) => callback(el));
@@ -65,59 +64,12 @@ export const useUtils = () => {
         findByStatus,
         choiseType,
         changeStatus,
-        delay
+        delay,
     };
 };
 
-export const useUtilsReactive = () => {
-    const wrapRef = (callback) => toRefs(callback());
+export const useUtilsDOM = () => {
+    
+}
 
-    return { wrapRef };
-    //     const createShowCloseComputedGroup = () => {
 
-    //         const getGroup = shallowRef(null)
-
-    //         const setKeyAndValue = ref([
-    //             {
-    //                 key: "readNavReadMenu",
-    //                 value: navReadMenu
-    //             },
-    //             {
-    //                 key: "readComment",
-    //                 value: comment
-    //             },
-    //             {
-    //                 key: "readHeader",
-    //                 value: header
-    //             },
-    //         ])
-
-    //         watch(setKeyAndValue, (newValue) => {
-    //             getGroup.value = createGroupComputed(newValue)
-    //         }, { deep: true, immediate: true })
-
-    //         return getGroup
-    //     }
-
-    //     const { findByStatus } = useUtils()
-
-    //     const createGroupComputed = (itemComputed) => {
-
-    //         const isValueNull = itemComputed.some(el => el.key == undefined || el.value == undefined)
-
-    //         if (isValueNull) return console.error("Value and key cant be undifined")
-
-    //         const createdGroup = reactive({});
-
-    //         for (let i = 0; i < itemComputed.length; i++) {
-    //             if (!createdGroup[itemComputed[i].key]) {
-    //                 createdGroup[itemComputed[i].key] = findByStatus(itemComputed[i].value)
-    //             } else {
-    //                 return console.error("item cant be same")
-    //             }
-    //         }
-    //         return toRefs(createdGroup)
-    //     }
-
-    //     return { createGroupComputed }
-};
