@@ -2,14 +2,14 @@
 defineProps(['padding'])
 </script>
 <template>
-    <section :class="`pt-${padding} relative inset-0 px-4 overflow-hidden  border-b border-slate-900 pb-[25vh] `">
+    <section :class="`pt-${padding} relative inset-0 px-4 overflow-hidden  border-b border-slate-900 pb-[25dvh] `">
         
         <slot />
         <div
-            class="absolute glo-shadow  rounded-full bottom-[-25vh] right-[-20vh] h-[20vh] w-[20vh] border border-white">
+            class="absolute glo-shadow  rounded-full bottom-[-25dvh] right-[-20dvh] h-[20dvh] w-[20dvh] border border-white">
         </div>
         <div
-            class="absolute glo-shadow  rounded-full bottom-[-25vh] left-[-20vh] h-[20vh] w-[20vh] border border-white">
+            class="absolute glo-shadow  rounded-full bottom-[-25dvh] left-[-20dvh] h-[20dvh] w-[20dvh] border border-white">
         </div>
         <div class="absolute bottom-0 w-full h-8 bg-gradient-to-t from-white/10 to-transparent"></div>
     </section>

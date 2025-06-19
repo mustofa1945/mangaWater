@@ -21,14 +21,14 @@ defineOptions({ layout: MainLayout })
 
             <!-- Chap -->
             <div
-                class="container relative z-10 col-span-3  row-span-3 border-1 border-slate-500/20 rounded-xl h-[80vh] mx-auto ">
+                class="container relative z-10 col-span-3  row-span-3 border-1 border-slate-500/20 rounded-xl h-[80dvh] mx-auto ">
                 <div class="flex justify-between items-center bg-slate-900 p-3 flex-1">
                     <div
                         class="flex items-center rounded-4xl bg-gray-800 py-1.5 px-4 hover:contrast-70 duration-150  transition-all">
                         <i class="fas fa-globe mr-2 text-gray-400"></i>
                         <span class="text-gray-400">Language: EN</span>
                     </div>
-                    <div class="relative w-[30vh] ">
+                    <div class="relative w-[30dvh] ">
                         <input type="text" placeholder="Chap number..."
                             class="bg-gray-800 w-full  py-1 text-white rounded-full pl-10 border-1 border-slate-500 ">
                         <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>

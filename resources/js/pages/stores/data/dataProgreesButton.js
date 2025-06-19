@@ -37,7 +37,7 @@ export const useProvideDataProgressBar = () => {
             position: "top",
             style: {
                 positionStatus: true,
-                property: `flex top-0 left-0 w-full h-[0.5vh] hover:h-[1rem] transition-all`,
+                property: `flex top-0 left-0 w-full h-[0.5dvh] hover:h-[1rem] transition-all`,
             },
             border: b.transparent,
         },
@@ -48,8 +48,8 @@ export const useProvideDataProgressBar = () => {
             style: {
                 positionStatus: false,
                 property:
-                    "flex flex-col left-0 top-0 w-[1vh] h-full hover:w-[3vh] transition-all",
-                absolute: "right-[-8vh]",
+                    "flex flex-col left-0 top-0 w-[1dvh] h-full hover:w-[3dvh] transition-all",
+                absolute: "right-[-8dvh]",
             },
             border: b.transparent,
         },
@@ -60,8 +60,8 @@ export const useProvideDataProgressBar = () => {
             style: {
                 positionStatus: false,
                 property:
-                    "flex-col flex top-0 right-0 w-[1vh] h-full hover:w-[3vh] transition-all",
-                absolute: "left-[-8vh]",
+                    "flex-col flex top-0 right-0 w-[1dvh] h-full hover:w-[3dvh] transition-all",
+                absolute: "left-[-8dvh]",
             },
             border: b.transparent,
         },
@@ -71,7 +71,7 @@ export const useProvideDataProgressBar = () => {
             position: "bottom",
             style: {
                 positionStatus: true,
-                property: `flex  bottom-0 left-0 w-full h-[1vh]`,
+                property: `flex  bottom-0 left-0 w-full h-[1dvh]`,
             },
             border: b.transparent,
         },
@@ -82,8 +82,8 @@ export const useProvideDataProgressBar = () => {
 
         const [, top, , , bottom] = typePositionScrollBar.value;
 
-        top.style.property = `flex ${direc} top-0 left-0 w-full h-[0.5vh] hover:h-[1rem] transition-all`;
-        bottom.style.property = `flex ${direc} bottom-0 left-0 w-full h-[0.5vh]`;
+        top.style.property = `flex ${direc} top-0 left-0 w-full h-[0.5dvh] hover:h-[1rem] transition-all`;
+        bottom.style.property = `flex ${direc} bottom-0 left-0 w-full h-[0.5dvh]`;
     });
 
     const typeBar = {

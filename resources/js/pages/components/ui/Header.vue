@@ -95,7 +95,7 @@ defineOptions({ inheritAttrs: false });
                 type="text"
             />
             <button
-                class="bg-secondary text-white px-4 py-1 rounded-full text-sm absolute top-[0.6vh] right-[1vh]"
+                class="bg-secondary text-white px-4 py-1 rounded-full text-sm absolute top-[0.6dvh] right-[1dvh]"
             >
                 <i class="fa-solid fa-link"></i>
                 Filter
@@ -121,7 +121,7 @@ defineOptions({ inheritAttrs: false });
                 icon: ' fas fa-chevron-right',
                 reverse: false,
             }"
-            class="w-[12vh] rounded-full bg-sky-600 text-white h-[5vh] flex justify-center item-center gap-x-1"
+            class="w-[12dvh] rounded-full bg-sky-600 text-white h-[5dvh] flex justify-center item-center gap-x-1"
         />
         <BoxIcon
             @slide="showOrHidden(navReadMenu, readNavReadMenu, pages)"
@@ -131,7 +131,7 @@ defineOptions({ inheritAttrs: false });
                 icon: 'fa-solid fa-ellipsis-vertical',
                 reverse: true,
             }"
-            class="w-[12vh] bg-sky-700 h-[5vh] text-white px-3 rounded-lg"
+            class="w-[12dvh] bg-sky-700 h-[5dvh] text-white px-3 rounded-lg"
         />
     </nav>
     <Login

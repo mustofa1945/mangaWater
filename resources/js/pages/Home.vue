@@ -45,7 +45,7 @@ defineOptions({ layout: MainLayout });
                     <div
                         ref="sliders"
                         :style="{ transform: manga.translateX }"
-                        :class="`slider cursor-pointer p-4 rounded-lg border-l-3 opacity-50 ${computedSlider.readProperty.value.transition} ease-in-out group hover:opacity-100 border-sky-400 relative w-[106vh] flex-shrink-0 overflow-hidden bg-slate-800 z-10`"
+                        :class="`slider cursor-pointer p-4 rounded-lg border-l-3 opacity-50 ${computedSlider.readProperty.value.transition} ease-in-out group hover:opacity-100 border-sky-400 relative w-[100dvh] flex-shrink-0 overflow-hidden bg-slate-800 z-10`"
                     >
                         <CardManga :card="manga" />
                     </div>
@@ -78,7 +78,7 @@ defineOptions({ layout: MainLayout });
 
         <!-- Most View -->
         <div
-            class="relative mt-[5vh] px-[10px] flex flex-col gap-y-3 items-left justify-around border-b-1 border-slate-500/50 pb-[7vh]"
+            class="relative mt-[5dvh] px-[10px] flex flex-col gap-y-3 items-left justify-around border-b-1 border-slate-500/50 pb-[7dvh]"
         >
             <h1 class="text-[25px] font-bold text-gray-100">Most View</h1>
 
@@ -87,7 +87,7 @@ defineOptions({ layout: MainLayout });
                     v-for="(manga, index) in dataManga"
                     icon="true"
                     :key="manga.id"
-                    width="w-[28vh]"
+                    width="w-[28dvh]"
                     :manga="{
                         title: manga.title,
                         url: manga.url,
@@ -97,7 +97,7 @@ defineOptions({ layout: MainLayout });
             </div>
         </div>
         <span
-            class="absolute bottom-[-0.1vh] left-0 w-[30%] h-[1px] bg-sky-700"
+            class="absolute bottom-[-0.1dvh] left-0 w-[30%] h-[1px] bg-sky-700"
         ></span>
 
         <!-- Recently Update -->
@@ -150,7 +150,7 @@ defineOptions({ layout: MainLayout });
         <!-- New Release -->
 
         <div
-            class="relative mt-[10vh] px-[10px] flex flex-col gap-y-3 items-left w-full justify-around border-b-1 border-slate-500/50 pb-[10vh]"
+            class="relative mt-[10dvh] px-[10px] flex flex-col gap-y-3 items-left w-full justify-around border-b-1 border-slate-500/50 pb-[10dvh]"
         >
             <div class="mb-4 flex justify-between">
                 <h1 class="text-2xl text-white/80 font-bold mb-2">
@@ -181,7 +181,7 @@ defineOptions({ layout: MainLayout });
                 >
                     <CardMostViewed
                         :key="mangaBar.id"
-                        width="w-[34vh]"
+                        width="w-[34dvh]"
                         :manga="{
                             title: mangaBar.title,
                             url: mangaBar.url,
@@ -192,7 +192,7 @@ defineOptions({ layout: MainLayout });
             <div class="flex gap-x-2 w-[40%] mx-auto mt-5">
                 <span
                     v-for="bar in instanceBar"
-                    :class="`w-1/14 h-[0.3vh] ${bar.color} rounded-full`"
+                    :class="`w-1/14 h-[0.3dvh] ${bar.color} rounded-full`"
                 ></span>
             </div>
         </div>

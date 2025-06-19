@@ -11,7 +11,7 @@ const { computedProgressBar, instanceProxy, pickPage } = useProgressButton()
             v-for="el in instanceProxy" :style="{ width: 100 / instanceProxy.length + '%' }"
             :class="`${el.color} relative duration-400 transition-all group h-full cursor-pointer `">
             <span
-                class="absolute bottom-[-6vh] right-0 w-full h-[2rem] hidden group-hover:flex bg-[#4169E1] rounded-md text-white justify-center items-center">{{
+                class="absolute bottom-[-6dvh] right-0 w-full h-[2rem] hidden group-hover:flex bg-[#4169E1] rounded-md text-white justify-center items-center">{{
                     el.id }}</span>
         </span>
         <span v-if="!(computedProgressBar.readTypePosition.style.positionStatus)" @click="pickPage(el.id)"

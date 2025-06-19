@@ -12,7 +12,7 @@ export const useProvideDataDropDown = () => {
             animation: "none",
             display: "hidden",
             style: {
-                width: "w-[30vh]",
+                width: "w-[30dvh]",
                 childWidth : "w-full",
                 flexType: "flex-col",
                 size: 15,
@@ -25,7 +25,7 @@ export const useProvideDataDropDown = () => {
             animation: "none",
             display: "hidden",
             style: {
-                width: "w-[80vh]",
+                width: "w-[80dvh]",
                 childWidth : "w-[30%]",
                 flexType: "flex-wrap",
                 size: 17,

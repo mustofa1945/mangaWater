@@ -42,7 +42,7 @@ const { readNavReadMenu, readComment, readHeader } =
             v-for="page in pages"
             :display="page.display"
             :page="page.status"
-            class="w-[20vh] top-13"
+            class="w-[20dvh] top-13"
             @slidePage="showPage(page.id)"
             :input="page.input"
         />
@@ -50,6 +50,6 @@ const { readNavReadMenu, readComment, readHeader } =
     <Comment
         v-showAndClose="readComment.delayEffect"
         @showComment="showOrHidden(comment, readComment)"
-        :class="`absolute top-20 right-0 flex-col z-40  h-[80vh] transition-all duration-500  overflow-y-auto rounded-lg`"
+        :class="`absolute top-20 right-0 flex-col z-40  h-[80dvh] transition-all duration-500  overflow-y-auto rounded-lg`"
     />
 </template>

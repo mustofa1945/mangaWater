@@ -1,4 +1,4 @@
-import { computed, reactive, toRefs } from "vue";
+import { computed, reactive } from "vue";
 import { useUtils } from "../utils/utilsFunctionStore";
 import { langs } from "../../data/dataManga";
 import { useThemeGlobal } from "../theme/globalStyle";

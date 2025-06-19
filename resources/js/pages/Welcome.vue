@@ -12,20 +12,20 @@ defineOptions({ layout: MainLayout })
     </div>
     <BoxLight>
 
-        <div class="text-white pt-[15vh] flex flex-col items-left relative justify-center pl-[3vh] z-20">
+        <div class="text-white pt-[15dvh] flex flex-col items-left relative justify-center pl-[3dvh] z-20">
             <h1 class="text-5xl font-bold">
                 Read Manga Online For Free
             </h1>
             <p class="text-3xl tracking-wider mt-2">
                 Unveil Your Love for Manga Online.
             </p>
-            <Link class="mt-4 pl-4 py-2 text-sm w-[26vh]  bg-[#3c8bc6] text-white rounded-lg hover:bg-secondary duration-150" href="/home">
+            <Link class="mt-4 pl-4 py-2 text-sm w-[26dvh]  bg-[#3c8bc6] text-white rounded-lg hover:bg-secondary duration-150" href="/home">
                 GO TO HOME PAGE
                 <i class="fa-solid fa-arrow-right"></i>
             </Link>
         </div>
 
-        <div class=" text-slate-300 container mx-auto pr-4 relative py-8 mt-[15vh] z-20">
+        <div class=" text-slate-300 container mx-auto pr-4 relative py-8 mt-[15dvh] z-20">
 
             <div class=" bg-primary saturate-70  p-6 rounded-lg">
                 <SosiaLinks />
