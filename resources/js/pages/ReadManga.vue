@@ -72,5 +72,5 @@
         </div>
         <ProgressManga />
         <!-- Supaya scroll Tidak Terlihat -->
-        <div class="h-full w-[3vh] absolute right-0 top-0  bg-slate-800"></div>
+        <div class="h-full w-[3dvh] absolute right-0 top-0  bg-slate-800"></div>
     </template>

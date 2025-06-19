@@ -23,7 +23,7 @@ const choiseType = computed(() => findByStatus(dataButton.value, props.isActive)
         <button @click="emits('runChangeStatus')"
             :class="`border ${choiseType.styleParent} h-4 text-[12px] p-[1px] text-white font-bold w-8 rounded-full`">
             <span
-                :class="`h-full block rounded-full w-[2vh]  transition-all duration-200 ${choiseType.style}`"></span>
+                :class="`h-full block rounded-full w-[2dvh]  transition-all duration-200 ${choiseType.style}`"></span>
         </button>
         <span>{{ props.text }}</span>
     </div>

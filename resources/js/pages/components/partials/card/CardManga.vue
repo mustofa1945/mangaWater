@@ -1,11 +1,10 @@
 <script setup>
-import { useSlider } from "../../../composable/compoSLider";
 
 const props = defineProps(["card"]);
 
 </script>
 <template>
-        <div class="w-full h-full">
+        <div class="w-full  h-full">
             <div
                 class="absolute right-0 top-0 w-1/4 h-full group-hover:rotate-0 scale-140 group-hover:scale-100 transition-all rotate-20 -z-10 duration-200"
             >
@@ -31,7 +30,7 @@ const props = defineProps(["card"]);
                 </div>
             </div>
             <i
-                class="absolute hidden scale-0 group-hover:block group-hover:scale-180 text-yellow-500 top-[2vh] right-[2vh] fa-solid fa-award duration-300"
+                class="absolute hidden scale-0 group-hover:block group-hover:scale-180 text-yellow-500 top-[2dvh] right-[2dvh] fa-solid fa-award duration-300"
             ></i>
         </div>
 </template>

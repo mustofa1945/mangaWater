@@ -3,7 +3,7 @@ import SosiaLinks from '../button/SosiaLinks.vue';
 </script>
 <template>
     <div class="relative z-10 max-w-[100%] col-span-3 row-span-3  p-4">
-        <div class="flex h-[60vh] flex-col md:flex-row items-start md:items-center  p-4 rounded-lg">
+        <div class="flex h-[60dvh] flex-col md:flex-row items-start md:items-center  p-4 rounded-lg">
             <div class="w-[20%] h-full">
                 <img alt="Cover of Black Clover manga featuring a character with spiky hair and a dragon in the background"
                     class="object-cover w-full h-full rounded-lg" height="225"

@@ -39,20 +39,11 @@ export const useThemeGlobal = () => {
         ],
     };
 
-    const templateDropDown = [
-        {
-            id: 1,
-            status: true,
-            height: `h-0 duration-500  transition-all `,
-            delay : 10
-        },
-        {
-            id: 2,
-            status: false,
-            height: null ,
-            delay : null
-        },
-    ];
+    const templateDropDown = {
+        id : 1 , 
+        status : true ,
+        height : "h-0"
+    }
 
     return { border, templateStyleDrop, templateStyleFade , templateDropDown};
 };

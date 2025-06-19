@@ -16,7 +16,7 @@ defineProps(['width'])
 
 <template>
     <div class="flex  space-x-2 ">
-        <div v-for="sosial in media" :class="`${sosial.bg} text-white px-4 py-2 rounded w-[${width}vh] h-[5vh] flex justify-center gap-x-2 items-center hover:-translate-y-1 hover:opacity-80 duration-400`">
+        <div v-for="sosial in media" :class="`${sosial.bg} text-white px-4 py-2 rounded w-[${width}dvh] h-[5dvh] flex justify-center gap-x-2 items-center hover:-translate-y-1 hover:opacity-80 duration-400`">
             <i :class="sosial.icon"></i>
             {{ sosial.shared }}
         </div>  

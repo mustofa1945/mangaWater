@@ -49,7 +49,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
             <PagReguler
                 @click="showOrHidden(navReadMenu, readNavReadMenu, pages)"
                 :options="{ size: 'text-md', position: 'right' }"
-                class="bg-slate-800/80 p-2 h-[4vh] w-[5vh]"
+                class="bg-slate-800/80 p-2 h-[4dvh] w-[5dvh]"
             />
         </div>
         <!-- Slide -->
@@ -93,7 +93,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
                     :key="lang.id"
                     :title="lang.lang"
                     :url="lang.url"
-                    :class="`w-full h-[5vh] px-3 z-20  ${lang.style}`"
+                    :class="`w-full h-[5dvh] px-3 z-20  ${lang.style}`"
                 />
             </div>
         </div>
@@ -106,7 +106,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
                     icon: 'fas fa-comment-alt',
                     reverse: true,
                 }"
-                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl cursor-pointer"
+                class="w-full h-[7dvh] px-3 bg-slate-800 rounded-xl cursor-pointer"
             />
             <BoxIcon
                 :options="{
@@ -114,7 +114,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
                     icon: 'fas fa-bookmark',
                     reverse: true,
                 }"
-                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl cursor-pointer"
+                class="w-full h-[7dvh] px-3 bg-slate-800 rounded-xl cursor-pointer"
             />
             <BoxIcon
                 :options="{
@@ -122,7 +122,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
                     icon: 'fas fa-info-circle',
                     reverse: true,
                 }"
-                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl cursor-pointer"
+                class="w-full h-[7dvh] px-3 bg-slate-800 rounded-xl cursor-pointer"
             />
             <BoxIcon
                 @click="
@@ -136,7 +136,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
                     icon: 'fas fa-exclamation-triangle',
                     reverse: true,
                 }"
-                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl cursor-pointer"
+                class="w-full h-[7dvh] px-3 bg-slate-800 rounded-xl cursor-pointer"
             />
         </div>
         <div class="flex flex-col gap-y-2 mt-7 text-gray-300/80 font-thin">
@@ -147,7 +147,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
                     icon: 'fa-solid fa-note-sticky',
                     reverse: false,
                 }"
-                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl cursor-pointer"
+                class="w-full h-[7dvh] px-3 bg-slate-800 rounded-xl cursor-pointer"
             />
             <BoxIcon
                 @click="nextViewerMode()"
@@ -156,7 +156,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
                     icon: computedViewer.readMangaViewer.icon,
                     reverse: false,
                 }"
-                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl cursor-pointer"
+                class="w-full h-[7dvh] px-3 bg-slate-800 rounded-xl cursor-pointer"
             />
             <BoxIcon
                 @click="
@@ -171,7 +171,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
                     icon: computedMangaSize.readModeSize.icon,
                     reverse: false,
                 }"
-                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl cursor-pointer"
+                class="w-full h-[7dvh] px-3 bg-slate-800 rounded-xl cursor-pointer"
             />
             <BoxIcon
                 @click="nextReadingDirecMode()"
@@ -180,7 +180,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
                     icon: 'fas fa-exclamation-triangle',
                     reverse: false,
                 }"
-                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl cursor-pointer"
+                class="w-full h-[7dvh] px-3 bg-slate-800 rounded-xl cursor-pointer"
             />
             <BoxIcon
                 @click="
@@ -194,7 +194,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
                     icon: 'fas fa-info-circle',
                     reverse: false,
                 }"
-                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl cursor-pointer"
+                class="w-full h-[7dvh] px-3 bg-slate-800 rounded-xl cursor-pointer"
             />
             <BoxIcon
                 @click="
@@ -208,7 +208,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
                     icon: 'fas fa-exclamation-triangle',
                     reverse: false,
                 }"
-                class="w-full h-[7vh] px-3 bg-slate-800 rounded-xl cursor-pointer"
+                class="w-full h-[7dvh] px-3 bg-slate-800 rounded-xl cursor-pointer"
             />
         </div>
         <PageMenu

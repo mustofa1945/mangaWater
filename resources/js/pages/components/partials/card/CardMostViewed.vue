@@ -9,7 +9,7 @@ const limitText = title.length > 12 ? `${title.slice(0, 8)}...` : title;
 </script>
 <template>
     <div
-        :class="`group relative  ${props.width} flex-shrink-0 h-[50vh] flex flex-col gap-x-1 bg-slate-800 rounded-xl overflow-hidden`"
+        :class="`group relative  ${props.width} flex-shrink-0 h-[50dvh] flex flex-col gap-x-1 bg-slate-800 rounded-xl overflow-hidden`"
     >
         <div class="relative w-full overflow-hidden  flex-1">
             <div
@@ -30,7 +30,7 @@ const limitText = title.length > 12 ? `${title.slice(0, 8)}...` : title;
         <!-- number -->
         <div
             v-if="icon"
-            class="text-white/80 bg-slate-900 w-[3vh] group-hover:h-[7vh] h-[4vh] rounded-b-full rounded-t-full absolute top-1 right-2 flex justify-center items-end duration-200"
+            class="text-white/80 bg-slate-900 w-[3dvh] group-hover:h-[7dvh] h-[4dvh] rounded-b-full rounded-t-full absolute top-1 right-2 flex justify-center items-end duration-200"
         >
             {{ props.manga.index + 1 }}
         </div>

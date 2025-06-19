@@ -75,7 +75,7 @@ export const useProvideDataShowAndClose = () => {
                     inClosure: {
                         property: "width",
                         timeout: 10,
-                        width: "150vh",
+                        width: "150dvh",
                     },
                     outClosure: {
                         property: "display",
@@ -90,7 +90,7 @@ export const useProvideDataShowAndClose = () => {
                 id: 1,
                 status: true,
                 title: "Header Sticky",
-                scrollHeader : "h-[91.4vh]",
+                scrollHeader : "h-[92dvh]",
                 delayEffect: {
                     inClosure: {
                         property: "transform",
@@ -107,7 +107,7 @@ export const useProvideDataShowAndClose = () => {
                 id: 2,
                 status: false,
                 title: "Header Hidden",
-                scrollHeader : "h-[100vh]", 
+                scrollHeader : "h-[100dvh]", 
                 delayEffect: {
                     inClosure: {
                         property: "display",

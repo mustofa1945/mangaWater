@@ -19,7 +19,7 @@ const { onOverHoverStar, dataStar, grade, scor } = useCompoStar()
                     class="text-white hover:text-sky-600 duration-150 transition-all">Shounen Jump</a></span>
         </div>
         <div
-            class="mt-10 h-[12vh] w-[45vh] text-white bg-slate-900  border-1 p-1 border-white/30  rounded-2xl flex gap-x-2 items-center justify-center">
+            class="mt-10 h-[12dvh] w-[45dvh] text-white bg-slate-900  border-1 p-1 border-white/30  rounded-2xl flex gap-x-2 items-center justify-center">
             <div class="pl-2 w-[45%]">
                 <h1 class="text-2xl">{{ scor }} / 10</h1>
                 <p class="text-slate-600">{{ grade }}</p>
@@ -29,10 +29,10 @@ const { onOverHoverStar, dataStar, grade, scor } = useCompoStar()
                     :class="`${star.icon} ${star.scale} fa-star text-lg  font-bold text-yellow-300 transition-all duration-200`"></i>
             </div>
         </div>
-        <div class="mt-50 text-white border-1 border-white/30  rounded-2xl flex flex-col h-[20vh] overflow-hidden">
+        <div class="mt-50 text-white border-1 border-white/30  rounded-2xl flex flex-col h-[20dvh] overflow-hidden">
             <div class="flex justify-between items-center h-1/2 border-b-1 border-slate-400 p-3 bg-slate-900">
                 <h1 class="text-2xl text-slate-500">Related Manga</h1>
-                <div class="border-1 border-slate-600 w-[15vh] flex justify-center items-center rounded-2xl">
+                <div class="border-1 border-slate-600 w-[15dvh] flex justify-center items-center rounded-2xl">
                     <a href="">More</a>
                     <i class="fa-solid fa-bottom"></i>
                 </div>
