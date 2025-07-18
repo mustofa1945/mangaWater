@@ -15,8 +15,8 @@ const { instanceProxy, pickPage } = useProgressButton()
 const emit = defineEmits(['slidePage'])
 </script>
 <template>
-    <div
-        :class="`Page-menu w-[51.5dvh] ${!data.page ? 'translate-x-[100%]' : '-translate-x-0'} ${data.display} right-0 flex-col divide-y divide-gray-700  bg-gray-900 border-1 border-blue-900 text-white overflow-x-hidden overflow-y-scroll  h-[92dvh] fixed duration-250 transition-all`">
+    <div 
+        :class="`Page-menu w-[51.5dvhP] ${!data.page ? 'translate-x-[100%]' : '-translate-x-0'} ${data.display} right-0 flex-col divide-y divide-gray-700  bg-gray-900 border-1 border-blue-900 text-white overflow-x-hidden overflow-y-scroll  h-[92dvh] fixed duration-250 transition-all`">
         <div :class="`flex items-center ${!data.input ? 'justify-end' : ''}  bg-gray-800 px-3 py-2 `">
             <svg v-if="data.input" class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor"
                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +26,7 @@ const emit = defineEmits(['slidePage'])
             <input v-if="data.input" type="text" placeholder="Find number..."
                 class="bg-transparent focus:outline-none w-full text-sm placeholder-gray-200" />
             <PagReguler @click="emit('slidePage')" :options="{ size: 'md', position: 'right' }"
-                class="bg-slate-500 h-[4dvh] w-[5dvh] " />
+                class="bg-slate-500 h-[4dvhP] w-[5dvh] " />
         </div>
         <!-- Content -->
         <div class="flex flex-col divide-y divide-gray-700">

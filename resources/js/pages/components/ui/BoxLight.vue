@@ -1,8 +1,5 @@
-<script setup>
-defineProps(['padding'])
-</script>
 <template>
-    <section :class="`pt-${padding} relative inset-0 px-4 overflow-hidden  border-b border-slate-900 pb-[25dvh] `">
+    <section :class="` relative inset-0 overflow-hidden   border-b border-slate-900 pb-[25dvh] `">
         
         <slot />
         <div

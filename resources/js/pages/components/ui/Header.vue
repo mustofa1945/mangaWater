@@ -1,60 +1,82 @@
 <script setup>
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, ref } from "vue";
 //Component
 import BoxIcon from "../partials/box/BoxIcon.vue";
+import HeaderMiddle from "../responsif/header/HeaderMiddle.vue";
+import IconHeaderMobile from "../../mobile/components/IconHeaderMobile.vue";
+import InputSearch from "../partials/button/InputSearch.vue";
 //Store
 import { useSlidePage } from "../../stores/useSlidePage.js";
 import { useShowClose } from "../../stores/useShowClose.js";
 import { useProgressButton } from "../../stores/useButtonProgress.js";
-import { useCompoDropDown } from "../../composable/compoDropDown.js";
 import { useCompoToDownOrUp } from "../../composable/compoUpDownAnim.js";
-const ListItemHeader = defineAsyncComponent(() =>
-    import("../partials/dropdowns/ListItemHeader.vue")
-);
-const Login = defineAsyncComponent(() => import("./Login.vue"));
+import DropdownHeader from "../partials/dropdowns/DropdownHeader.vue";
+import { useCompoDropdownHeaderLarge } from "../../composable/compoDropDown.js";
 
-const { computedProgressBar, instanceProxy } = useProgressButton();
-const { compuToDownOrUp, showDown } = useCompoToDownOrUp();
-const { pages, showPage } = useSlidePage();
-const { createShowCloseComputedGroup, navReadMenu, showOrHidden } =
-    useShowClose();
-const { readHeader, readNavReadMenu } = createShowCloseComputedGroup();
-const { elements , reset , dropdownAnimationEnd , runDropdown , compuDropDown} = useCompoDropDown()
+const Login = defineAsyncComponent(() => import("./Login.vue"));
 
 defineProps(["menu"]);
 
+const { computedProgressBar, instanceProxy } = useProgressButton();
+
+const { compuToDownOrUp, showDown } = useCompoToDownOrUp();
+
+const { pages, showPage } = useSlidePage();
+
+const { createShowCloseComputedGroup, navReadMenu, showOrHidden } =
+    useShowClose();
+
+const { readHeader, readNavReadMenu } = createShowCloseComputedGroup();
+
+const { compuDropdownHeader , runDropdown} = useCompoDropdownHeaderLarge();
+
+let close = ref(false);
 defineOptions({ inheritAttrs: false });
 </script>
 <template>
     <nav
         v-bind="$attrs"
         v-showAndClose="readHeader.delayEffect"
-        :class="`flex bg-primary saturate-60  items-center justify-between p-2 z-30 `"
+        :class="`flex bg-primary saturate-60  items-center justify-between p-2 z-30  `"
     >
-        <div :class="`flex items-center gap-x-5`">
-            <Link href="/home">
+        <div
+            class="w-[5%] max-[1200px]:w-[100px] flex gap-x-1 justify-center items-center"
+        >
+            <div class="max-[1200px]:inline hidden flex-1 relative">
+                <i
+                    @click="() => (close = !close)"
+                    class="fa-solid fa-bars text-lg min-[1200px]:hidden text-gray-300 mr-1"
+                ></i>
+                <!-- HeaderMobile -->
+                <HeaderMiddle v-if="close" />
+            </div>
+            <Link href="/home" class="w-full max-[1200px]:w-[80%]">
                 <img
                     alt="MangaFire.io logo"
-                    :class="`${menu.height} ${menu.widht} bg-cover`"
+                    :class="`${menu.height} ${menu.widht} bg-cover `"
                     :src="`https://mangafire.to/assets/sites/mangafire/logo${
                         menu.status ? '-sm' : ''
                     }.png?v3`"
                 />
             </Link>
+        </div>
+
+        <!-- HeaderLarge -->
+        <div :class="`items-center gap-x-5 max-[1200px]:hidden flex`">
             >
-            <ListItemHeader
-                v-for="el in elements"
-                :key="el.id"
-                :animation="el.animation"
-                :display="el.display"
-                :item="el.data"
-                :title="el.title"
-                :property="el.style"
-                :canHover=" compuDropDown.canHover.value"
-                @reset="reset(el.id)"
-                @dropdownAnimationEnd="dropdownAnimationEnd(el.id)"
-                @runDropdown="runDropdown(el.id)"
+            <DropdownHeader
+                v-for="dataDrop in compuDropdownHeader.readDropDownHeader.value"
+                :key="dataDrop.id"
+                :dataDrop="dataDrop.dataDrop"
+                :title="dataDrop.title"
+                :property="dataDrop.property"
+                :childWidth="dataDrop.childWidth"
+                :height="dataDrop.height"
+                :animProper="dataDrop.animProper"
+                :status="dataDrop.status"
+                @click="() => runDropdown(dataDrop.id)"
             />
+
             <Link
                 v-if="!menu.status"
                 class="text-gray-400 hover:text-gray-100 transition-all duration-200 px-2 py-1 rounded text-x lg"
@@ -85,22 +107,9 @@ defineOptions({ inheritAttrs: false });
                 Random
             </Link>
         </div>
-        <div class="relative flex items-center flex-1 mx-2">
-            <i
-                class="fa-sharp fa-solid fa-magnifying-glass absolute top-2.5 left-3 text-md text-gray-400"
-            ></i>
-            <input
-                class="px-4 py-2 pl-9 w-full rounded-full bg-gray-800 text-white text-sm focus:outline-none"
-                placeholder="Search manga..."
-                type="text"
-            />
-            <button
-                class="bg-secondary text-white px-4 py-1 rounded-full text-sm absolute top-[0.6dvh] right-[1dvh]"
-            >
-                <i class="fa-solid fa-link"></i>
-                Filter
-            </button>
-        </div>
+
+        <InputSearch class="max-[576px]:hidden flex-1" />
+
         <!-- Chapter -->
         <div v-if="menu.status" class="flex gap-x-3 text-white cursor-pointer">
             <span @click="showPage(pages[0].id)">Chapter 1 / 20</span>
@@ -109,6 +118,7 @@ defineOptions({ inheritAttrs: false });
             ${instanceProxy.length}`
             }}</span>
         </div>
+        <!-- Dekstop Icon Login -->
         <BoxIcon
             @click="
                 showDown(
@@ -121,7 +131,17 @@ defineOptions({ inheritAttrs: false });
                 icon: ' fas fa-chevron-right',
                 reverse: false,
             }"
-            class="w-[12dvh] rounded-full bg-sky-600 text-white h-[5dvh] flex justify-center item-center gap-x-1"
+            class="w-[80px] min-[576px]:flex hidden rounded-full bg-sky-600 text-white h-[2rem] justify-center item-center gap-x-1"
+        />
+        <!-- Icon Mobile -->
+        <IconHeaderMobile
+            @showLogin="
+                showDown(
+                    compuToDownOrUp.readModalLogin.value,
+                    compuToDownOrUp.readStyleLogin.value
+                )
+            "
+            class="max-[576px]:flex hidden w-[65px] h-[2rem]"
         />
         <BoxIcon
             @slide="showOrHidden(navReadMenu, readNavReadMenu, pages)"
@@ -134,6 +154,7 @@ defineOptions({ inheritAttrs: false });
             class="w-[12dvh] bg-sky-700 h-[5dvh] text-white px-3 rounded-lg"
         />
     </nav>
+
     <Login
         @useToDownOrUp="
             showDown(

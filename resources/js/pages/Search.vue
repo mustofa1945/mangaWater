@@ -6,25 +6,41 @@ import CardRecentlyUpdate from "./components/partials/card/CardRecentlyUpdate.vu
 import PagReguler from "./components/partials/button/PagReguler.vue";
 import { typeMangaSearch } from "../data/dataSearch";
 import MainLayout from "../layout/MainLayout.vue";
-import { useDropDownSearch } from "./composable/compoDropDownSearch";
+import { useDropDownSearch } from "./composable/compoDropDown";
+import { useStoreToDownOrUp } from "./stores/storeToDownOrUp";
+import { onMounted } from "vue";
 
+const { compuDropSearch, runDropdown } = useDropDownSearch();
 
-const { compuDropSearch , runDropdown } = useDropDownSearch();
+const { compuPiniaToDownOrUp, stateShowDown } = useStoreToDownOrUp();
+
+onMounted(() => { 
+    compuDropSearch.readDataGenres.value.event = stateShowDown;
+    compuDropSearch.readDataGenres.value.fadeStyle = compuPiniaToDownOrUp.modalGenres;
+    compuDropSearch.readDataGenres.value.fadeActive  = compuPiniaToDownOrUp.readStyleModalGenres;
+    compuDropSearch.readDataYear.value.event = stateShowDown;
+    compuDropSearch.readDataYear.value.fadeStyle = compuPiniaToDownOrUp.modalYear;
+    compuDropSearch.readDataYear.value.fadeActive  = compuPiniaToDownOrUp.readStyleModalYear;
+});
 
 defineOptions({ layout: MainLayout });
 </script>
 
 <template>
-    <BoxLight css="4">
-        <div class="flex justify-between items-center px-3">
-            <h2 class="text-[4vh] text-white/70">Manga Manga</h2>
-            <span class="text-white/30">30,062 mangas</span>
+    <BoxLight class="px-5">
+        <div class="flex justify-between items-center mt-10">
+            <h2 class="text-xl text-white/70">New Release</h2>
+            <span class="text-white/30 text-sm">30,062 mangas</span>
         </div>
         <!-- Seacrh -->
-        <div class="mt-10 flex gap-x-2">
-            <div class="relative w-[11%]">
+        <div
+            class="relative z-30 mt-5 grid min-[1200px]:grid-cols-9 min-[410px]:grid-cols-9 min-[768px]:grid-cols-10 max-[410px]:grid-cols-10 gap-2"
+        >
+            <div
+                class="relative min-[1200px]:col-span-1 min-[768px]:col-span-2 min-[410px]:col-span-3 max-[410px]:col-span-5"
+            >
                 <div
-                    class="h-7 bg-slate-900 flex  border border-blue-600/20 rounded items-center"
+                    class="h-8 bg-slate-900 flex border border-blue-600/20 rounded items-center"
                 >
                     <input
                         placeholder="Search..."
@@ -53,42 +69,32 @@ defineOptions({ layout: MainLayout });
                     </label>
                 </div>
             </div>
-            <DropdownSearch v-for="dataDrop in compuDropSearch.readDropSearch.value"  @showDrop="runDropdown(dataDrop.id)" :key="dataDrop.id" :dataDrop="dataDrop" />
+            <DropdownSearch
+                v-for="dataDrop in compuDropSearch.readDropSearch.value"
+                @showDrop="
+                    () => {
+                        runDropdown(dataDrop.id);
+                        if (dataDrop.event) {
+                            dataDrop.event(
+                                dataDrop?.fadeStyle,
+                                dataDrop?.fadeActive
+                            );
+                        }
+                    }
+                "
+                :key="dataDrop.id"
+                :dataDrop="dataDrop"
+            />
             <button
-                class="bg-secondary saturate-70 hover:saturate-100 text-white font-bold px-4 rounded w-[11%]"
+                class="bg-secondary saturate-70 hover:saturate-100 text-white font-bold px-4 rounded min-[1200px]:col-span-1 min-[768px]:col-span-4 min-[410px]:col-span-3 max-[410px]:col-span-10"
             >
                 Filter
             </button>
         </div>
 
-        <div class="shadow-md rounded-lg p-5">
-            <!-- Child Div Pertama -->
-            <div class="mb-4 flex justify-between">
-                <h1 class="text-2xl text-white/80 font-bold mb-2">
-                    Recently Update
-                </h1>
-                <div class="flex items-center space-x-2">
-                    <!-- Child Div dari Child Div Pertama -->
-                    <span class="text-sky-700 px-3 py-1 rounded">All</span>
-                    <span
-                        v-for="type in typeMangaSearch"
-                        class="text-slate-400 hover:text-white/90 px-3 py-1 rounded duration-100"
-                        >{{ type }}</span
-                    >
-                    <PagReguler
-                        :options="{ size: 'md', position: 'left' }"
-                        position="left"
-                        class="w-7"
-                    />
-                    <PagReguler
-                        :options="{ size: 'md', position: 'right' }"
-                        position="right"
-                        class="w-7"
-                    />
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-3">
-                <CardRecentlyUpdate
+        <div class="shadow-md rounded-lg mt-4">               
+            <div class="flex flex-wrap gap-2">
+                <CardRecentlyUpdate 
                     v-for="manga in dataManga"
                     :key="manga.id"
                     :manga="{

@@ -13,9 +13,12 @@ export const useCompoToDownOrUp = () => {
         modalError: { ...templateStyleFade },
         modalSetting: { ...templateStyleFade },
         dropLangs: { ...templateStyleDrop, language: [...langs] },
+        InputSearch : {...templateStyleFade},
+        modalGenres : {...templateStyleFade},
+        modalYear : {...templateStyleFade}
     });
 
-    const { modalLogin, modalError, modalSetting, dropLangs } = listData;
+    const { modalLogin, modalError, modalSetting, dropLangs , InputSearch , modalGenres , modalYear } = listData;
 
     const readModalLogin = computed(() => modalLogin);
 
@@ -48,6 +51,7 @@ export const useCompoToDownOrUp = () => {
                     ? "bg-sky-600/30 text-blue-500"
                     : "bg-transparent";
         });
+        
         await delay(100);
         showDown(readDropLangs.value, readStyleDropLangs.value);
     };
@@ -56,8 +60,11 @@ export const useCompoToDownOrUp = () => {
         listData,
         showDown,
         modalError,
+        InputSearch,
         modalSetting,
+        modalGenres,
         selectLangById,
+        modalYear,
         compuToDownOrUp: {
             readModalLogin,
             readStyleLogin,
