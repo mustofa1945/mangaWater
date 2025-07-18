@@ -39,7 +39,7 @@ const { showDown, compuToDownOrUp , selectLangById  } = useCompoToDownOrUp();
 <template>
     <div
         v-showAndClose="readNavReadMenu.delayEffect"
-        :class="`Navread-menu py-2 px-5 box-border w-[22%] bg-slate-900 fixed z-20 right-0 top-0 flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden max-h-screen`"
+        :class="`Navread-menu py-2 pb-5  px-5    w-[22%] h-[41rem] bg-slate-900 fixed z-20 right-0 top-0 flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden `"
     >
         <!-- Title -->
         <div class="flex justify-between items-center gap-x-2">

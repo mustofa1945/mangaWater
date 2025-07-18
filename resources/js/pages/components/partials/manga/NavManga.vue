@@ -1,35 +1,10 @@
 <script setup>
 import { useCompoStar } from '../../../composable/compoStar';
 
-const { onOverHoverStar, dataStar, grade, scor } = useCompoStar()
-
 </script>
 <template>
-    <nav class="flex relative z-10 flex-col  w-full col-span-1 row-span-9 pt-5">
-        <div class="flex flex-col text-sm">
-            <span class="text-slate-500 text-[16.5px] ">Author : <a href=""
-                    class="text-white hover:text-sky-600 duration-150 transition-all">Yuuki Tabata</a></span>
-            <span class="text-slate-500 text-[16.5px]">Published : <span
-                    class="text-white hover:text-sky-600 duration-150 transition-all">February
-                    2015</span></span>
-            <span class="text-slate-500 text-[16.5px]">Genres : <a href=""
-                    class="text-white hover:text-sky-600 duration-150 transition-all">Comedy</a>,<a
-                    class="text-white hover:text-sky-600 duration-150 transition-all" href="">Action</a></span>
-            <span class="text-slate-500 text-[16.5px]">Megazines : <a href=""
-                    class="text-white hover:text-sky-600 duration-150 transition-all">Shounen Jump</a></span>
-        </div>
-        <div
-            class="mt-10 h-[12dvh] w-[45dvh] text-white bg-slate-900  border-1 p-1 border-white/30  rounded-2xl flex gap-x-2 items-center justify-center">
-            <div class="pl-2 w-[45%]">
-                <h1 class="text-2xl">{{ scor }} / 10</h1>
-                <p class="text-slate-600">{{ grade }}</p>
-            </div>
-            <div class="flex-1 h-full flex relative justify-center items-center gap-2">
-                <i v-for="star in dataStar" @mouseover="onOverHoverStar(star.id)"
-                    :class="`${star.icon} ${star.scale} fa-star text-lg  font-bold text-yellow-300 transition-all duration-200`"></i>
-            </div>
-        </div>
-        <div class="mt-50 text-white border-1 border-white/30  rounded-2xl flex flex-col h-[20dvh] overflow-hidden">
+    <nav class="flex relative z-10  flex-col  w-full col-span-1 row-span-5 ">
+        <div class=" text-white border-1 border-white/30  rounded-2xl flex flex-col h-[20dvh] overflow-hidden">
             <div class="flex justify-between items-center h-1/2 border-b-1 border-slate-400 p-3 bg-slate-900">
                 <h1 class="text-2xl text-slate-500">Related Manga</h1>
                 <div class="border-1 border-slate-600 w-[15dvh] flex justify-center items-center rounded-2xl">

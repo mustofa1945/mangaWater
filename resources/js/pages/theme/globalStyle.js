@@ -9,7 +9,7 @@ export const useThemeGlobal = () => {
         status: false,
         timeDelay: 500,
         style: [
-            {
+            { 
                 id: 1,
                 status: true,
                 style: "-translate-y-[20vh] opacity-0 transition-all duration-500",

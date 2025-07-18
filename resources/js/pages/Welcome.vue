@@ -11,24 +11,22 @@ defineOptions({ layout: MainLayout })
             src="https://mangafire.to/assets/t2/s1/images/index.jpg" width="1920" />
     </div>
     <BoxLight>
-
-        <div class="text-white pt-[15dvh] flex flex-col items-left relative justify-center pl-[3dvh] z-20">
-            <h1 class="text-5xl font-bold">
+        <div class="text-white pt-[20dvh] flex flex-col max-[768px]:items-center items-left relative justify-center min-[768px]:pl-[3dvh] z-20 ">
+            <h1 class="min-[1200px]:text-5xl min-[576px]:text-4xl text-3xl font-bold max-[576px]:text-center">
                 Read Manga Online For Free
             </h1>
-            <p class="text-3xl tracking-wider mt-2">
+            <p class="min-[1200px]:text-3xl min-[576px]:text-2xl text-xl tracking-wider mt-2 max-[576px]:text-center">
                 Unveil Your Love for Manga Online.
             </p>
-            <Link class="mt-4 pl-4 py-2 text-sm w-[26dvh]  bg-[#3c8bc6] text-white rounded-lg hover:bg-secondary duration-150" href="/home">
+            <Link class="mt-4 pl-4 py-2 text-sm w-[10.5rem]  bg-[#3c8bc6] text-white rounded-lg hover:bg-secondary duration-150" href="/home">
                 GO TO HOME PAGE
                 <i class="fa-solid fa-arrow-right"></i>
             </Link>
         </div>
+        <div class=" text-slate-300 mx-auto relative  mt-[15dvh] z-20">
 
-        <div class=" text-slate-300 container mx-auto pr-4 relative py-8 mt-[15dvh] z-20">
-
-            <div class=" bg-primary saturate-70  p-6 rounded-lg">
-                <SosiaLinks />
+            <div class=" bg-primary saturate-70  p-6 rounded-lg ">
+                <SosiaLinks class="min-[768px]:flex hidden"/>
                 <h2 class="text-2xl font-bold mb-4">
                     MangaFire - Read Manga Online Free
                 </h2>

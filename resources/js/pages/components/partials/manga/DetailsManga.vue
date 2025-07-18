@@ -2,7 +2,7 @@
 import SosiaLinks from '../button/SosiaLinks.vue';
 </script>
 <template>
-    <div class="relative z-10 max-w-[100%] col-span-3 row-span-3  p-4">
+    <div class="relative z-10 max-w-[100%] min-[1200px]:col-span-3 min-[768px]:col-span-4 min-[768px]:row-span-1 min-[1200px]:row-span-2 ">
         <div class="flex h-[60dvh] flex-col md:flex-row items-start md:items-center  p-4 rounded-lg">
             <div class="w-[20%] h-full">
                 <img alt="Cover of Black Clover manga featuring a character with spiky hair and a dragon in the background"
@@ -10,7 +10,7 @@ import SosiaLinks from '../button/SosiaLinks.vue';
                     src="https://static.mangafire.to/2385/i/d/d8/d8fd48b71ebd5f32a2392b5e71eeb3c6.jpg" />
             </div>
             <div class="md:ml-6 w-[70%] mt-4 md:mt-0">
-                <h1 class="text-md text-blue-400 mb-2 tracking-[5px]">
+                <h1 class="text-md text-blue-400 tracking-[5px]">
                     RELEASING
                 </h1>
                 <h1 class="text-2xl text-white font-bold">
@@ -53,7 +53,7 @@ import SosiaLinks from '../button/SosiaLinks.vue';
                         Read more +
                     </span>
                 </p>
-                <div class="flex items-center space-x-2 text-gray-400">
+                <div class="flex items-center space-x-2 max-[1200px]:hidden text-gray-400">
                     <span class="text-sm">
                         135 Shares
                     </span>
