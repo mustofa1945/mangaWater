@@ -47,7 +47,7 @@ defineOptions({ layout: MainLayout });
 <template>
     <BoxLight class="p-4">
         <div
-            class="relative z-10 w-full grid grid-cols-4 min-[1200px]:grid-rows-9   bg-gray-800/20 gap-5 saturate-80"
+            class="relative z-10   w-full grid grid-cols-4 min-[1200px]:grid-rows-9   bg-gray-800/20 gap-5 saturate-80"
         >
             <div
                 class="absolute top-0 h-full w-full blur-md opacity-10 z-0 saturate-80"
@@ -64,10 +64,10 @@ defineOptions({ layout: MainLayout });
             <DetailsManga/>
 
             <div
-                class="flex relative z-10 min-[1200px]:flex-col max-[1200px]:mb-7  justify-between w-full min-[1200px]:col-span-1 min-[768px]:col-span-4 min-[1200px]:row-span-2 min-[768px]:row-span-1"
+                class="flex relative z-10 min-[1200px]:flex-col max-[768px]:flex-col max-[1200px]:mb-7 max-[768px]:mb-0  justify-between w-full min-[1200px]:col-span-1 max-[1200px]:col-span-4 min-[1200px]:row-span-2 min-[768px]:row-span-1"
             >
-                <div class="flex flex-col text-sm  max-[1200px]:w-1/2 max-[1200px]:justify-center max-[1200px]:h-full">
-                    <span class="text-slate-500 text-[16.5px]"
+                <div class="flex flex-col text-sm  max-[1200px]:w-1/2 max-[768px]:w-full max-[1200px]:justify-center max-[1200px]:h-full">
+                    <span class="text-slate-500 text-[16.5px] max-[768px]:text-sm"
                         >Author :
                         <a
                             href=""
@@ -75,14 +75,14 @@ defineOptions({ layout: MainLayout });
                             >Yuuki Tabata</a
                         ></span
                     >
-                    <span class="text-slate-500 text-[16.5px]"
+                    <span class="text-slate-500  text-[16.5px] max-[768px]:text-sm"
                         >Published :
                         <span
                             class="text-white hover:text-sky-600 duration-150 transition-all"
                             >February 2015</span
                         ></span
                     >
-                    <span class="text-slate-500 text-[16.5px]"
+                    <span class="text-slate-500 text-[16.5px] max-[768px]:text-sm"
                         >Genres :
                         <a
                             href=""
@@ -94,7 +94,7 @@ defineOptions({ layout: MainLayout });
                             >Action</a
                         ></span
                     >
-                    <span class="text-slate-500 text-[16.5px]"
+                    <span class="text-slate-500 text-[16.5px] max-[768px]:text-sm"
                         >Megazines :
                         <a
                             href=""
@@ -104,16 +104,16 @@ defineOptions({ layout: MainLayout });
                     >
                 </div>
                  
-                <div class="min-[1200px]:h-1/2 h-full max-[1200px]:w-1/2 flex max-[1200px]:justify-end items-center">
+                <div class="min-[1200px]:h-1/2 h-full max-[1200px]:w-1/2 max-[768px]:w-full flex max-[1200px]:justify-end items-center">
                     <div
-                        class="mt-10 h-[12dvh] w-[15rem] text-white bg-slate-900 border-1 p-1 border-white/30 rounded-2xl flex gap-x-2 items-center justify-center"
+                        class="mt-10 h-[5rem] w-full text-white bg-slate-900 border-1 p-1 border-white/30 rounded-2xl flex gap-x-2 items-center justify-center"
                     >
                         <div class="pl-2 w-[45%]">
-                            <h1 class="text-2xl">{{ scor }} / 10</h1>
-                            <p class="text-slate-600">{{ grade }}</p>
+                            <h1 class="text-xl">{{ scor }} / 10</h1>
+                            <p class="text-slate-600 text-sm">{{ grade }}</p>
                         </div>
                         <div
-                            class="flex-1 h-full flex relative justify-center items-center gap-2"
+                            class="flex-1 h-full flex relative justify-end pr-2 items-center gap-2"
                         >
                             <i
                                 v-for="star in dataStar"
@@ -124,19 +124,19 @@ defineOptions({ layout: MainLayout });
                     </div>
                 </div>
             </div>
-
+         
             <!-- Chap -->
             <div
-                class="container relative z-10 max-w-[100%] min-[1200px]:col-span-3 min-[768px]:col-span-4 row-span-2 border-1 border-red-500"
+                class="flex flex-col  relative z-10 max-w-[100%] min-[1200px]:col-span-3 max-[1200px]:col-span-4 row-span-2"
             >
                 <!-- TYPE -->
                 <div
-                    class="absolute right-0 -top-[2.3rem] border-slate-300/40 border-1 flex h-[3rem] w-[15rem] rounded-lg -z-10 overflow-hidden"
+                    class="border-slate-300/40 border-1 max-[768px]:self-center self-end flex h-[2.5rem] w-[13rem] rounded-t-lg -z-10 overflow-hidden"
                 >
                     <div
                         v-for="type in typeManga"
                         @click="() => selectTypeMangaById(type.id)"
-                        :class="`h-full w-1/2 flex justify-center items-center text-white ${type.property} tracking-widest transition-all duration-200`"
+                        :class="`h-full w-1/2 text-sm flex justify-center  items-center text-white ${type.property} tracking-widest transition-all duration-200`"
                     >
                         {{ type.title }}
                     </div>
@@ -147,17 +147,18 @@ defineOptions({ layout: MainLayout });
                     <div
                         class="flex items-center rounded-4xl bg-gray-800 py-1.5 px-4 hover:contrast-70 duration-150 transition-all"
                     >
-                        <i class="fas fa-globe mr-2 text-gray-400"></i>
-                        <span class="text-gray-400">Language: EN</span>
+                        <i class="fas fa-globe mr-2 text-sm text-gray-400"></i>
+                        <span class="text-gray-400 text-sm max-[768px]:hidden">Language: EN</span>
+                        <span class="text-gray-400 text-sm min-[768px]:hidden">Lang :</span>
                     </div>
-                    <div class="relative w-[30dvh]">
+                    <div class="relative w-[9rem]">
                         <input
                             type="text"
                             placeholder="Chap number..."
-                            class="bg-gray-800 w-full py-1 text-white rounded-full pl-10 border-1 border-slate-500"
+                            class="bg-gray-800 w-full text-sm py-1 text-white rounded-full pl-10 border-1 border-slate-500"
                         />
                         <i
-                            class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                            class="fas fa-search text-sm absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                         ></i>
                     </div>
                 </div>
@@ -166,15 +167,14 @@ defineOptions({ layout: MainLayout });
                 <Volume v-if="2 === getActiveStatus.id" />
             </div>
 
-            <NavManga class="border-1 border-red-500" />
+            <NavManga class="" />
 
             <!-- Comment -->
             <div
-                class="relative z-10 w-full h-[35%] p-2 border-1 border-slate-600/20 col-span-3 row-span-4"
+                class="relative z-10 w-full min-[1200px]:h-[35%]  p-2 max-[1200px]:col-span-4 border-1 border-slate-600/20 min-[1200px]:col-span-3 min-[1200px]:row-span-4"
             >
                 <h1 class="text-xl text-gray-300">Comment</h1>
             </div>
         </div>
-        <div></div>
     </BoxLight>
 </template>
