@@ -3,7 +3,7 @@ import { useCompoStar } from '../../../composable/compoStar';
 
 </script>
 <template>
-    <nav class="flex relative z-10  flex-col  w-full col-span-1 row-span-5 ">
+    <nav class="flex relative z-10  flex-col   w-full min-[1200px]:col-span-1 min-[1200px]:row-span-5 max-[1200px]:col-span-4">
         <div class=" text-white border-1 border-white/30  rounded-2xl flex flex-col h-[20dvh] overflow-hidden">
             <div class="flex justify-between items-center h-1/2 border-b-1 border-slate-400 p-3 bg-slate-900">
                 <h1 class="text-2xl text-slate-500">Related Manga</h1>
