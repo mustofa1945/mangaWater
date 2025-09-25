@@ -20,10 +20,6 @@ export const useCompoToDownOrUp = () => {
 
     const { modalLogin, modalError, modalSetting, dropLangs , InputSearch , modalGenres , modalYear } = listData;
 
-    const readModalLogin = computed(() => modalLogin);
-
-    const readStyleLogin = computed(() => findByStatus(modalLogin.style));
-
     const readDropLangs = computed(() => dropLangs);
 
     const readStyleDropLangs = computed(() => findByStatus(dropLangs.style));
@@ -65,9 +61,8 @@ export const useCompoToDownOrUp = () => {
         modalGenres,
         selectLangById,
         modalYear,
+        modalLogin,
         compuToDownOrUp: {
-            readModalLogin,
-            readStyleLogin,
             readDropLangs,
             readStyleDropLangs,
             readLangByStatus,

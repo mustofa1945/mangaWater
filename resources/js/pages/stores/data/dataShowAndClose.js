@@ -18,9 +18,10 @@ export const useProvideDataShowAndClose = () => {
         navReadMenu: [
             {
                 id: 1,
-                status: true,
-                onMenu : true ,
-                readLayoutWidth: "w-[78%]",
+                status: false,
+                onMenu : false ,
+                readLayoutWidth: "min-[1200px]:w-[78%] w-full",
+                instanceParent : 'w-[19rem]',
                 delayEffect: {
                     inClosure: {
                         property: "transform",
@@ -35,9 +36,10 @@ export const useProvideDataShowAndClose = () => {
             },
             {
                 id: 2,
-                status: false,
-                onMenu : false,
+                status: true,
+                onMenu : true,
                 readLayoutWidth: "w-full",
+                instanceParent : 'w-[0rem]',
                 delayEffect: {
                     inClosure: {
                         property: "display",

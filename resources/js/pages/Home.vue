@@ -5,10 +5,10 @@ import CardManga from "./components/partials/card/CardManga.vue";
 import CardMostViewed from "./components/partials/card/CardMostViewed.vue";
 import CardRecentlyUpdate from "./components/partials/card/CardRecentlyUpdate.vue";
 import BoxLight from "./components/ui/BoxLight.vue";
-import { dataManga } from "../data/dataManga";
 import PagReguler from "./components/partials/button/PagReguler.vue";
+import DefaultLayout from "../layout/DefaultLayout.vue";
+import { dataManga } from "../data/dataManga";
 import { typeMangaSearch } from "../data/dataSearch";
-import MainLayout from "../layout/MainLayout.vue";
 import { useSlider, useSliderProgressBar } from "./composable/compoSLider";
 import { onMounted, useTemplateRef } from "vue";
 
@@ -32,7 +32,7 @@ onMounted(() => {
     setElement(sliders.value);
 });
 
-defineOptions({ layout: MainLayout });
+defineOptions({ layout: DefaultLayout });
 </script>
 <template>
     <BoxLight css="10">

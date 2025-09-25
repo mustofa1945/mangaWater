@@ -46,7 +46,9 @@ export const useUtils = () => {
     };
 
     const choiseType = (proxy, id) => {
+        
         const { border: b } = useThemeGlobal();
+
         applyLogic((el) => {
             el.status = el.id === id;
             el.border = el.id === id ? b.colorful : b.transparent;

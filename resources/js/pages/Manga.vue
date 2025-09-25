@@ -1,13 +1,13 @@
 <script setup>
-import MainLayout from "../layout/MainLayout.vue";
+import { computed, ref } from "vue";
+import { useUtils } from "./utils/utilsFunctionStore";
+import { useCompoStar } from "./composable/compoStar";
+import DefaultLayout from "../layout/DefaultLayout.vue";
 import BoxLight from "./components/ui/BoxLight.vue";
 import DetailsManga from "./components/partials/manga/DetailsManga.vue";
 import NavManga from "./components/partials/manga/NavManga.vue";
-import { computed, ref } from "vue";
 import Chapter from "./components/ui/Chapter.vue";
 import Volume from "./components/ui/Volume.vue";
-import { useUtils } from "./utils/utilsFunctionStore";
-import { useCompoStar } from "./composable/compoStar";
 
 const typeManga = ref([
     {
@@ -42,7 +42,7 @@ const selectTypeMangaById = (id) => {
 
 const { onOverHoverStar, dataStar, grade, scor } = useCompoStar();
 
-defineOptions({ layout: MainLayout });
+defineOptions({ layout: DefaultLayout });
 </script>
 <template>
     <BoxLight class="p-4">
