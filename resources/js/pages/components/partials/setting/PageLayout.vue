@@ -19,7 +19,7 @@ const { changeStatusButtonType, swip } = useAdvanceSetting();
                 v-for="el in typeMangaViewers"
                 :key="el.id"
                 @click="selectViewerById(el.id)"
-                :class="`flex-1 py-2 rounded border ${el.border}`"
+                :class="`flex-1 h-10 max-[400px]:text-sm rounded border ${el.border}`"
             >
                 {{ el.title }}
             </button>
@@ -61,7 +61,7 @@ const { changeStatusButtonType, swip } = useAdvanceSetting();
     <!-- Reading Direction -->
     <div class="mb-4">
         <p class="text-sm text-gray-400 mb-2">Reading Direction</p>
-        <div class="flex gap-2">
+        <div class="flex h-10 max-[400px]:text-sm gap-2">
             <button
                 v-for="readDirec in readingDirec"
                 :key="readDirec.id"
@@ -81,7 +81,7 @@ const { changeStatusButtonType, swip } = useAdvanceSetting();
                 @click="selectProgressBarById (typeButton.id)"
                 v-for="typeButton in typePositionScrollBar"
                 :key="typeButton.id"
-                :class="`py-2 border rounded text-gray-300 ${typeButton.border} w-1/4`"
+                :class="`h-10 max-[400px]:text-sm max-[400px]:px-1 border rounded text-gray-300 ${typeButton.border} w-1/4`"
             >
                 {{ typeButton.position }}
             </button>

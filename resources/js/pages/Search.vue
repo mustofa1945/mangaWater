@@ -5,7 +5,7 @@ import { dataManga } from "../data/dataManga";
 import CardRecentlyUpdate from "./components/partials/card/CardRecentlyUpdate.vue";
 import PagReguler from "./components/partials/button/PagReguler.vue";
 import { typeMangaSearch } from "../data/dataSearch";
-import MainLayout from "../layout/MainLayout.vue";
+import DefaultLayout from "../layout/DefaultLayout.vue";
 import { useDropDownSearch } from "./composable/compoDropDown";
 import { useStoreToDownOrUp } from "./stores/storeToDownOrUp";
 import { onMounted } from "vue";
@@ -23,7 +23,7 @@ onMounted(() => {
     compuDropSearch.readDataYear.value.fadeActive  = compuPiniaToDownOrUp.readStyleModalYear;
 });
 
-defineOptions({ layout: MainLayout });
+defineOptions({ layout: DefaultLayout });
 </script>
 
 <template>

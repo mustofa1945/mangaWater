@@ -4,49 +4,68 @@ import { defineAsyncComponent } from "vue";
 import AdvancesSetting from "../pages/components/ui/AdvancesSetting.vue";
 import Header from "../pages/components/ui/Header.vue";
 import NavReadMenu from "../pages/components/ui/NavReadMenu.vue";
+import InputSearchMobile from "../pages/mobile/components/InputSearchMobile.vue";
 const Comment = defineAsyncComponent(() =>
     import("../pages/components/ui/Comment.vue")
 );
 const PageMenu = defineAsyncComponent(() =>
     import("../pages/components/ui/PageMenu.vue")
 );
+
+const Login = defineAsyncComponent(() => import("../pages/components/ui/Login.vue"))
 //store
 import { useSlidePage } from "../pages/stores/useSlidePage";
 import { useShowClose } from "../pages/stores/useShowClose";
 import ModalError from "../pages/components/ui/ModalError.vue";
+import { useStoreToDownOrUp } from "../pages/stores/storeToDownOrUp";
 
 const { pages, showPage } = useSlidePage();
-const { createShowCloseComputedGroup, showOrHidden, comment } =
-    useShowClose();
+const { createShowCloseComputedGroup, showOrHidden, comment } = useShowClose();
 const { readNavReadMenu, readComment, readHeader } =
     createShowCloseComputedGroup();
+const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
 </script>
 <template>
-    <main
-        :class="`relative max-w-full ${readNavReadMenu.readLayoutWidth} duration-250 transition-all flex flex-col overflow-x-hidden`"
+    <div
+        class="w-full relative flex overflow-hidden h-[100dvh]"
     >
-        <Header
-            :menu="{ status: true, height: 'h-6', widht: 'w-10' }"
-            :class="`duration-250 transition-all gap-x-3 w-full  relative`"
-        />
-        <article
-            :class="`bg-slate-800 ${readHeader.scrollHeader} relative z-0 w-full overflow-hidden`"
+        <main
+            :class="`relative ${readNavReadMenu.readLayoutWidth}  z-0 top-0 duration-250 transition-all h-full flex flex-col overflow-hidden`"
         >
-            <slot />
-        </article>
+            <Header
+                :menu="{ status: true, height: 'h-6', widht: 'w-10' }"
+                :class="`duration-250 transition-all gap-x-3 w-full  relative`"
+            />
+            <article
+                :class="`bg-slate-800  ${readHeader.scrollHeader}  h-full relative  w-full overflow-hidden`"
+            >
+                <slot />
+            </article>
+            <PageMenu
+                v-waitTransition="!readNavReadMenu.onMenu"
+                v-for="page in pages"
+                :display="page.display"
+                :page="page.status"
+                class="w-[20dvh] top-13 z-40"
+                @slidePage="showPage(page.id)"
+                :input="page.input"
+            />
+        </main>
+        <Login
+            @useToDownOrUp="
+                stateShowDown(
+                    compuPiniaToDownOrUp.modalLogin,
+                    compuPiniaToDownOrUp.readStyleModalLogin
+                )
+            "
+            :readModalLogin="compuPiniaToDownOrUp.modalLogin"
+            :readStyleLogin="compuPiniaToDownOrUp.readStyleModalLogin"
+        />
         <AdvancesSetting />
         <ModalError />
         <NavReadMenu />
-        <PageMenu
-            v-waitTransition="!readNavReadMenu.onMenu"
-            v-for="page in pages"
-            :display="page.display"
-            :page="page.status"
-            class="w-[20dvh] top-13"
-            @slidePage="showPage(page.id)"
-            :input="page.input"
-        />
-    </main>
+        <InputSearchMobile class="max-[576px]:flex hidden" />
+    </div>
     <Comment
         v-showAndClose="readComment.delayEffect"
         @showComment="showOrHidden(comment, readComment)"

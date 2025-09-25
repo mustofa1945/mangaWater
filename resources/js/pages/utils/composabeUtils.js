@@ -2,7 +2,7 @@ import { useUtils } from "./utilsFunctionStore";
 import { toRaw, watch } from "vue";
 
 const { delay, findLastStatus, findByStatus, switchActive } = useUtils();
-
+ 
 export const useProvideUtilsSlide = () => {
     const runTransformUpdate = (instance, numX) => {
         instance.forEach((el) => {
@@ -23,7 +23,7 @@ export const useProvideUtilsSlide = () => {
                     el.element = templateRef[index];
                     el.translateX = "translateX(0vh)";
                 });
-
+                 
                 if (isHaveBar) {
                     for (let bar = 0; bar < 14; bar++) {
                         if (bar == 0) {
@@ -176,6 +176,7 @@ export const useCompoUtilsDropDown = () => {
     };
 
     const dropdown = async (id, dropDown) => {
+
         const { target, reverseTarget } = splitDataDropDownById(id, dropDown);
 
         const elStatusActive = findByStatus(target.animProper);

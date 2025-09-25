@@ -33,7 +33,7 @@ export const useProvideOneUtilsProgressBar = () => {
             //Kembalikan ukuran length ke semula setelah mode double di ganti
             if (instance.length === numBar / 2) {
                 let untilIndex = instance.length;
-                for (let index = 1; index <= numBar / 2; index++) {
+                for (let index = 1; index <= numBar / 2 ; index++) {
                     untilIndex++;
                     pushElement(
                         instance,

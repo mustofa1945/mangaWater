@@ -44,9 +44,7 @@ export const useProvideOneUtilsMangaViewer = () => {
         if (computedProgressBar.readTypePosition.position !== "none") {
             //Jika mode double page bagi instance proxy jadi 2
             if (readMangaViewer.id == 2) {
-                console.log("mode dou")
                 instanceProxy.length = 30 / 2;
-                console.table(instanceProxy)
                 //Mengontrol flow element supaya last bar colornya adalah bg-red-600 yang awalnya bg-red-600/50
                 const limit = instanceProxy.every(
                     (el) => el.status === true

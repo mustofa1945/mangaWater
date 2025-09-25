@@ -9,7 +9,7 @@
                 type="text"
             />
             <button
-                class="bg-secondary text-white px-4 py-1 rounded-full text-sm absolute top-[0.9dvh] right-[1dvh]"
+                class="bg-secondary text-white px-4 py-1 rounded-full text-sm absolute top-[4px] right-[1dvh]"
             >
                 <i class="fa-solid fa-link"></i>
                 Filter

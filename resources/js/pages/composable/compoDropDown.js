@@ -72,9 +72,9 @@ export const useCompoDropdownHeaderLarge = () => {
                 id: index + 1,
                 status: false,
                 dataDrop: el.dataDrop,
-                title : el.title,
+                title: el.title,
                 property: el.property,
-                childWidth : el.childWidth,
+                childWidth: el.childWidth,
                 animProper: [
                     { ...templateDropDown },
                     {
@@ -86,11 +86,10 @@ export const useCompoDropdownHeaderLarge = () => {
             };
         })
     );
-    
+
     const readDropDownHeader = computed(() => dataDropDownHeader.value);
 
     const runDropdown = (id) => dropdown(id, readDropDownHeader);
-
 
     return {
         runDropdown,
@@ -102,7 +101,7 @@ export const useCompoDropdownHeaderLarge = () => {
 export const useCompoDropDownHeader = () => {
     const headerHaveDrop = [
         { title: "Types", dataDrop: [...Manga], height: "h-[20dvh]" },
-        { title: "Genres", dataDrop: [...mangaGenres], height: "h-[128dvh]" },
+        { title: "Genres", dataDrop: [...mangaGenres], height: "h-155" },
     ];
 
     const headerHaventDrop = ["Newest", "Updated", "Added", "Random"];
@@ -119,6 +118,7 @@ export const useCompoDropDownHeader = () => {
                 id: 2,
                 status: false,
                 height: el.height,
+                parentHeight: el.parentHeight,
             },
         ],
         updateAnimeProper: { ...templateDropDown },
@@ -142,6 +142,8 @@ export const useCompoDropDownHeader = () => {
         concatDrop.value.some((el) => el.status == true)
     );
 
+    const readDropHeader = computed(() => concatDrop.value);
+
     const runDropDownHeader = (id) => dropdown(id, readDropHeader);
 
     //Monitor Object Sampai ke akar-akarnya
@@ -156,8 +158,6 @@ export const useCompoDropDownHeader = () => {
         },
         { deep: true }
     );
-
-    const readDropHeader = computed(() => concatDrop.value);
 
     return {
         compuDropHeader: {

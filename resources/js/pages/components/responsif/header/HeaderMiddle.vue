@@ -1,13 +1,15 @@
 <script setup>
+import {  computed } from 'vue';
 import { useCompoDropDownHeader } from '../../../composable/compoDropDown';
 
 const { compuDropHeader , runDropDownHeader } = useCompoDropDownHeader()
 
-console.table(compuDropHeader.concatDrop.value[0].animProper)
+const isGenreStatusActive = computed(() => compuDropHeader.concatDrop.value[1].status)
+
 </script>
 
 <template>
-    <div class="flex-col absolute  min-[576px]:flex left-0 top-10 w-fit h-fit overflow-hidden bg-slate-900 py-2 min-[1200px]:hidden">
+    <div :class="`flex-col absolute  min-[576px]:flex left-0 top-10 w-fit ${isGenreStatusActive ? 'h-[91dvh]' : 'h-fit'} overflow-y-scroll bg-slate-900 py-2 min-[1200px]:hidden transition-all duration-300`">
         <div v-for="item in compuDropHeader.concatDrop.value" :class="`relative   text-gray-300 ${compuDropHeader.isDropActive.value ? 'w-[320px]' : 'w-[130px]' }`">
             <div v-if="item.isHaveDrop" class="w-full  flex flex-col">
                 <div @click="runDropDownHeader(item.id)" class="w-full flex justify-center items-center gap-x-2 py-2  hover:bg-blue-900 hover:contrast-90 ">

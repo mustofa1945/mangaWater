@@ -11,12 +11,14 @@ export const useStoreToDownOrUp = defineStore("storeToDownOrUp", () => {
         InputSearch,
         modalGenres,
         modalYear,
+        modalLogin,
     } = useCompoToDownOrUp();
 
     const { findByStatus } = useUtils();
-    
-    const stateShowDown = (targetInstance, instance) =>
+
+    const stateShowDown = (targetInstance, instance) => {
         runShowDown(targetInstance, instance);
+    };
 
     const readStyleError = computed(() => findByStatus(modalError.style));
 
@@ -30,6 +32,7 @@ export const useStoreToDownOrUp = defineStore("storeToDownOrUp", () => {
 
     const readStyleModalYear = computed(() => findByStatus(modalYear.style));
 
+    const readStyleModalLogin = computed(() => findByStatus(modalLogin.style));
 
     return {
         stateShowDown,
@@ -39,11 +42,13 @@ export const useStoreToDownOrUp = defineStore("storeToDownOrUp", () => {
             InputSearch,
             modalGenres,
             modalYear,
+            modalLogin,
             readStyleError,
             readStyleSetting,
             readStyeInputSearch,
             readStyleModalGenres,
             readStyleModalYear,
+            readStyleModalLogin
         },
     };
 });

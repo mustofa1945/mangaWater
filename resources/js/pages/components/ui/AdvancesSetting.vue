@@ -11,10 +11,10 @@ const { compuPiniaToDownOrUp , stateShowDown} = useStoreToDownOrUp();
 </script>
 <template>
     <div v-if="compuPiniaToDownOrUp.modalSetting.status"
-        class="fixed inset-0 bg-black/40 flex flex-col items-center justify-center z-50 w-full h-full"
+        class="fixed  bg-black/40 flex flex-col items-center justify-center px-2 z-50 w-full h-full"
     >
         <div
-            :class="`bg-gray-800 text-white ${compuPiniaToDownOrUp.readStyleSetting.style} w-[45%] rounded-lg shadow-lg px-6 py-2 h-[80%]`"
+            :class="`bg-gray-800 text-white ${compuPiniaToDownOrUp.readStyleSetting.style} w-140 max-[576px]:w-full  rounded-lg shadow-lg px-6 py-2 h-120`"
         >
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-lg font-semibold">Advanced Settings</h2>
@@ -33,7 +33,7 @@ const { compuPiniaToDownOrUp , stateShowDown} = useStoreToDownOrUp();
                 <button
                     v-for="setting in advanceSetting"
                     @click="selectSetting(setting.id)"
-                    :class="`px-4 py-2 font-semibold  w-1/3 ${setting.bg} saturate-60 text-white duration-500 transition-all`"
+                    :class="`h-10 max-[400px]:text-sm font-semibold  w-1/3 ${setting.bg} saturate-60 text-white duration-500 transition-all`"
                 >
                     {{ setting.title }}
                 </button>

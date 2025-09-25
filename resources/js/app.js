@@ -4,7 +4,7 @@ import "../css/app.css";
 
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
-import MainLayout from "./layout/MainLayout.vue";
+import DefaultLayout from "./layout/DefaultLayout.vue";
 import ReadLayout from "./layout/ReadLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import { createPinia } from "pinia";
@@ -20,7 +20,7 @@ createInertiaApp({
     resolve: (name) => {
         const pages = import.meta.glob("./Pages/**/*.vue", { eager: true });
         let page = pages[`./Pages/${name}.vue`];
-        page.default.layout = page.default.layout || MainLayout || ReadLayout;
+        page.default.layout = page.default.layout || DefaultLayout || ReadLayout;
         return page;
     },
     setup({ el, App, props, plugin }) {

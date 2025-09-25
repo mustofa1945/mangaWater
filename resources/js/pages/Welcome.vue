@@ -1,9 +1,9 @@
 <script setup>
-import MainLayout from '../layout/MainLayout.vue';
+import DefaultLayout from '../layout/DefaultLayout.vue';
 import SosiaLinks from './components/partials/button/SosiaLinks.vue';
 import BoxLight from './components/ui/BoxLight.vue';
 
-defineOptions({ layout: MainLayout })
+defineOptions({ layout: DefaultLayout })
 </script>
 <template>
     <div class="absolute top-0  h-full w-full z-10 opacity-30 saturate-80 "> 
