@@ -21,7 +21,7 @@ export const useProvideDataShowAndClose = () => {
                 status: false,
                 onMenu : false ,
                 readLayoutWidth: "min-[1200px]:w-[78%] w-full",
-                instanceParent : 'w-[19rem]',
+                instanceParent : 'w-[22rem]',
                 delayEffect: {
                     inClosure: {
                         property: "transform",
