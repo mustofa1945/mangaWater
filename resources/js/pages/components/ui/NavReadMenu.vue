@@ -31,6 +31,7 @@ const { readNavReadMenu, readComment, readHeader } =
 const { pages, showPage } = useSlidePage();
 const { compuPiniaToDownOrUp, stateShowDown } = useStoreToDownOrUp();
 const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
+
 </script>
 
 <template>
@@ -218,7 +219,6 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
                 />
             </div>
             <PageMenu
-                v-waitTransition="readNavReadMenu.onMenu"
                 v-for="page in pages"
                 :page="page.status"
                 class="w-full top-13"

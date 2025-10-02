@@ -13,7 +13,7 @@ const { computedProgressBar } = useProgressButton()
         <PagReguler :options="{ size: 'text-xs', position: 'left' }" class="bg-slate-800  h-12 w-[12%] rounded-lg " />
         <BoxIcon @click="showPage(pageOne.id)"
             :options="{ title: 'Chapter 1', icon: 'fas fa-caret-down', reverse: false }"
-            class="w-[70%] rounded-lg h-12 px-3 bg-slate-800 cursor-pointer " />
+            class="w-[70%] rounded-lg h-12 px-3  bg-slate-800 cursor-pointer " />
         <PagReguler :options="{ size: 'text-xs', position: 'right' }" class="bg-slate-800 h-12 w-[12%] rounded-lg" />
         <PagReguler @click="prev" :options="{ size: 'text-xs', position: 'left' }" class="bg-slate-800 h-12 w-[12%] rounded-lg" />
         <BoxIcon @click="showPage(pageTwo.id)"

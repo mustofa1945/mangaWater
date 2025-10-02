@@ -1,5 +1,5 @@
 <script setup>
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, watchEffect } from "vue";
 
 import AdvancesSetting from "../pages/components/ui/AdvancesSetting.vue";
 import Header from "../pages/components/ui/Header.vue";
@@ -24,10 +24,11 @@ const { createShowCloseComputedGroup, showOrHidden, comment } = useShowClose();
 const { readNavReadMenu, readComment, readHeader } =
     createShowCloseComputedGroup();
 const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
+
 </script>
 <template>
     <div
-        class="w-full relative flex overflow-hidden h-[100dvh]"
+        class="max-w-full relative flex overflow-hidden h-[100dvh]"
     >
         <main
             :class="`relative ${readNavReadMenu.readLayoutWidth}  z-0 top-0 duration-250 transition-all h-full flex flex-col overflow-hidden`"
@@ -37,20 +38,19 @@ const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
                 :class="`duration-250 transition-all gap-x-3 w-full  relative`"
             />
             <article
-                :class="`bg-slate-800  ${readHeader.scrollHeader}  h-full relative  w-full overflow-hidden`"
+                :class="`bg-slate-800  ${readHeader.scrollHeader} z-0  h-full relative  w-full overflow-hidden`"
             >
                 <slot />
             </article>
-            <PageMenu
-                v-waitTransition="!readNavReadMenu.onMenu"
-                v-for="page in pages"
-                :display="page.display"
-                :page="page.status"
-                class="w-[20dvh] top-13 z-40"
-                @slidePage="showPage(page.id)"
-                :input="page.input"
-            />
         </main>
+        <PageMenu
+            v-for="page in pages"
+            :display="page.display"
+            :page="page.status"
+            class="top-13 z-40"
+            @slidePage="showPage(page.id)"
+            :input="page.input"
+        />
         <Login
             @useToDownOrUp="
                 stateShowDown(
