@@ -14,6 +14,7 @@ import PageMenu from "./PageMenu.vue";
 import LangNavButton from "../partials/button/LangNavButton.vue";
 import { useStoreToDownOrUp } from "../../stores/storeToDownOrUp";
 import { useCompoToDownOrUp } from "../../composable/compoUpDownAnim";
+import { watchEffect } from "vue";
 
 const { computedViewer, nextViewerMode } = useMangaViewer();
 const { computedMangaSize, nextMangaSizeMode } = useMangaSize();
@@ -25,6 +26,7 @@ const {
     navReadMenu,
     comment,
     header,
+    dataReact
 } = useShowClose();
 const { readNavReadMenu, readComment, readHeader } =
     createShowCloseComputedGroup();
@@ -35,7 +37,7 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
 </script>
 
 <template>
-    <div :class="`h-full ${readNavReadMenu.instanceParent} duration-250 transition-all max-[1200px]:fixed  right-0 top-0 z-30 `">
+    <div :class="[readNavReadMenu.instanceParent , 'h-full duration-250 transition-all max-[1200px]:fixed  right-0 top-0 z-30']">
         <div
             v-showAndClose="readNavReadMenu.delayEffect"
             :class="`Navread-menu py-2 pb-5 hidden px-5 h-full w-full bg-slate-900  flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden `"
@@ -89,7 +91,7 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
                 <!-- List Bahasa -->
                 <div
                     v-if="compuToDownOrUp.readDropLangs.value.status"
-                    :class="`w-full ${compuToDownOrUp.readStyleDropLangs.value.style} flex flex-col absolute left-0 top-13 border-1 border-blue-600/30 origin-top bg-slate-800 z-10 rounded-lg  overflow-hidden`"
+                    :class="[compuToDownOrUp.readStyleDropLangs.value.style , 'w-full flex flex-col absolute left-0 top-13 border-1 border-blue-600/30 origin-top bg-slate-800 z-10 rounded-lg  overflow-hidden']"
                 >
                     <LangNavButton
                         @click="selectLangById(lang.id)"
@@ -218,14 +220,17 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
                     class="w-full h-13 px-3 bg-slate-800 rounded-xl cursor-pointer"
                 />
             </div>
-            <PageMenu
-                v-for="page in pages"
-                :page="page.status"
-                class="w-full top-13"
-                @slidePage="showPage(page.id)"
-                :input="page.input"
-                :display="page.display"
-            />
+            <!-- Simpan Transform dalam tag yang tidak mengalami DOM Supaya tidak terjadi bug new stacking context -->
+            <div  class="w-full fixed top-13 z-50">
+                <PageMenu v-if="dataReact.onMenu"
+                    v-for="page in pages"
+                    :page="page.status"
+                    class="w-full"
+                    @slidePage="showPage(page.id)"
+                    :input="page.input"
+                    :display="page.display"
+                />
+            </div>
         </div>
     </div>
 </template>

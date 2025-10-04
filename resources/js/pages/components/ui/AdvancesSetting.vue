@@ -7,19 +7,28 @@ import ShortCut from "../partials/setting/ShortCut.vue";
 
 const { advanceSetting, selectSetting } = useAdvanceSetting();
 const [pageLayout, image, shortCut] = advanceSetting;
-const { compuPiniaToDownOrUp , stateShowDown} = useStoreToDownOrUp();
+const { compuPiniaToDownOrUp, stateShowDown } = useStoreToDownOrUp();
 </script>
 <template>
-    <div v-if="compuPiniaToDownOrUp.modalSetting.status"
-        class="fixed  bg-black/40 flex flex-col items-center justify-center px-2 z-50 w-full h-full"
+    <div
+        v-if="compuPiniaToDownOrUp.modalSetting.status"
+        class="fixed bg-black/40 flex flex-col items-center justify-center px-2 z-50 w-full h-full"
     >
         <div
-            :class="`bg-gray-800 text-white ${compuPiniaToDownOrUp.readStyleSetting.style} w-140 max-[576px]:w-full  rounded-lg shadow-lg px-6 py-2 h-120`"
+            :class="[
+                compuPiniaToDownOrUp.readStyleSetting.style,
+                'bg-gray-800 text-white w-140 max-[576px]:w-full  rounded-lg shadow-lg px-6 py-2 h-120',
+            ]"
         >
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-lg font-semibold">Advanced Settings</h2>
                 <button
-                    @click="stateShowDown(compuPiniaToDownOrUp.modalSetting , compuPiniaToDownOrUp.readStyleSetting)"
+                    @click="
+                        stateShowDown(
+                            compuPiniaToDownOrUp.modalSetting,
+                            compuPiniaToDownOrUp.readStyleSetting
+                        )
+                    "
                     class="text-gray-400 text-2xl hover:text-white"
                 >
                     &times;
@@ -33,7 +42,10 @@ const { compuPiniaToDownOrUp , stateShowDown} = useStoreToDownOrUp();
                 <button
                     v-for="setting in advanceSetting"
                     @click="selectSetting(setting.id)"
-                    :class="`h-10 max-[400px]:text-sm font-semibold  w-1/3 ${setting.bg} saturate-60 text-white duration-500 transition-all`"
+                    :class="[
+                        setting.bg,
+                        'h-10 max-[400px]:text-sm font-semibold  w-1/3 saturate-60 text-white duration-500 transition-all',
+                    ]"
                 >
                     {{ setting.title }}
                 </button>

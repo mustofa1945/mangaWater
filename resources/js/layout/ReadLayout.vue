@@ -20,7 +20,7 @@ import ModalError from "../pages/components/ui/ModalError.vue";
 import { useStoreToDownOrUp } from "../pages/stores/storeToDownOrUp";
 
 const { pages, showPage } = useSlidePage();
-const { createShowCloseComputedGroup, showOrHidden, comment } = useShowClose();
+const { createShowCloseComputedGroup, showOrHidden, comment , dataReact } = useShowClose();
 const { readNavReadMenu, readComment, readHeader } =
     createShowCloseComputedGroup();
 const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
@@ -43,7 +43,7 @@ const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
                 <slot />
             </article>
         </main>
-        <PageMenu
+        <PageMenu  v-if="!(dataReact.onMenu)"
             v-for="page in pages"
             :display="page.display"
             :page="page.status"

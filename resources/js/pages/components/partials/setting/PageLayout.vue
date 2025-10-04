@@ -7,7 +7,7 @@ import StatusButton from "../button/StatusButton.vue";
 
 const { typeMangaViewers, selectViewerById, computedViewer } = useMangaViewer();
 const { readingDirec, selectReadingDirecById } = useReadingDirec();
-const { selectProgressBarById , typePositionScrollBar, instanceProxy } =
+const { selectProgressBarById, typePositionScrollBar, instanceProxy } =
     useProgressButton();
 const { changeStatusButtonType, swip } = useAdvanceSetting();
 </script>
@@ -66,7 +66,10 @@ const { changeStatusButtonType, swip } = useAdvanceSetting();
                 v-for="readDirec in readingDirec"
                 :key="readDirec.id"
                 @click="selectReadingDirecById(readDirec.id)"
-                :class="`flex-1 py-2 border rounded text-gray-300 ${readDirec.border} `"
+                :class="[
+                    readDirec.border,
+                    'flex-1 py-2 border rounded text-gray-300',
+                ]"
             >
                 {{ readDirec.title }}
             </button>
@@ -78,10 +81,13 @@ const { changeStatusButtonType, swip } = useAdvanceSetting();
         <p class="text-sm text-gray-400 mb-2">Progress Bar Position</p>
         <div class="gap-2 flex">
             <button
-                @click="selectProgressBarById (typeButton.id)"
+                @click="selectProgressBarById(typeButton.id)"
                 v-for="typeButton in typePositionScrollBar"
                 :key="typeButton.id"
-                :class="`h-10 max-[400px]:text-sm max-[400px]:px-1 border rounded text-gray-300 ${typeButton.border} w-1/4`"
+                :class="[
+                    typeButton.border,
+                    'h-10 max-[400px]:text-sm max-[400px]:px-1 border rounded text-gray-300 w-1/4',
+                ]"
             >
                 {{ typeButton.position }}
             </button>

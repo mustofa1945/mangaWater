@@ -19,12 +19,12 @@ const limitText = title.length > 12 ? `${title.slice(0, 8)}...` : title;
                 <img
                     :src="props.manga.url"
                     alt=""
-                    class="top-0 w-full  min-[664px]:h-[15rem] aspect-3/5 object-cover"
+                    class="top-0 w-full   aspect-3/5 object-cover"
                 />
             </div>
         </div>
-        <div class="w-full h-[2rem] flex justify-center items-center">
-            <h1 class="text-white/40 text-[12px]">{{ limitText }}</h1>
+        <div class="w-full h-[2.5rem] flex justify-center items-center">
+            <h1 class="text-white/40 min-[500px]:text-[17px] text-[14px]">{{ limitText }}</h1>
         </div>
 
         <!-- number -->

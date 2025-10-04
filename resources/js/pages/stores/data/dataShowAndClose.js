@@ -1,6 +1,7 @@
 import { reactive, } from "vue";
 
 export const useProvideDataShowAndClose = () => {
+
     const dataShowAndClose = reactive({
         modalError: [
             {
@@ -19,7 +20,6 @@ export const useProvideDataShowAndClose = () => {
             {
                 id: 1,
                 status: false,
-                onMenu : false ,
                 readLayoutWidth: "min-[1200px]:w-[78%] w-full",
                 instanceParent : 'w-[22rem]',
                 delayEffect: {
@@ -37,7 +37,6 @@ export const useProvideDataShowAndClose = () => {
             {
                 id: 2,
                 status: true,
-                onMenu : true,
                 readLayoutWidth: "w-full",
                 instanceParent : 'w-[0rem]',
                 delayEffect: {

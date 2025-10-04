@@ -1,29 +1,39 @@
 <script setup>
-import { computed } from 'vue'
-import { useProvideDataStatusButton } from '../../../stores/data/dataButton'
-import { useUtils } from '../../../utils/utilsFunctionStore'
+import { computed } from "vue";
+import { useProvideDataStatusButton } from "../../../stores/data/dataButton";
+import { useUtils } from "../../../utils/utilsFunctionStore";
 const props = defineProps({
     text: {
-        type: String
+        type: String,
     },
-    isActive : Boolean
-})
+    isActive: Boolean,
+});
 
-const emits = defineEmits(["runChangeStatus"])
+const emits = defineEmits(["runChangeStatus"]);
 
-const { dataButton } = useProvideDataStatusButton()
+const { dataButton } = useProvideDataStatusButton();
 
-const { findByStatus } = useUtils()
+const { findByStatus } = useUtils();
 
-const choiseType = computed(() => findByStatus(dataButton.value, props.isActive))
-
+const choiseType = computed(() =>
+    findByStatus(dataButton.value, props.isActive)
+);
 </script>
 <template>
-    <div class="flex items-center space-x-2 ">
-        <button @click="emits('runChangeStatus')"
-            :class="`border ${choiseType.styleParent} h-4 text-[12px] p-[1px] text-white font-bold w-8 rounded-full`">
+    <div class="flex items-center space-x-2">
+        <button
+            @click="emits('runChangeStatus')"
+            :class="[
+                choiseType.styleParent,
+                'border h-4 text-[12px] p-[1px] text-white font-bold w-8 rounded-full',
+            ]"
+        >
             <span
-                :class="`h-full block rounded-full w-[2dvh]  transition-all duration-200 ${choiseType.style}`"></span>
+                :class="[
+                    choiseType.style,
+                    'h-full block rounded-full w-[2dvh]  transition-all duration-200',
+                ]"
+            ></span>
         </button>
         <span>{{ props.text }}</span>
     </div>

@@ -28,11 +28,11 @@ const el = computed(() => findByStatus(props.animProper));
         
             @click.stop
             v-if="props.status"
-            :class="`absolute show  transition-all flex  duration-300  left-0 overflow-hidden z-100  ${el.height}   bg-slate-900 border-1 border-slate-800`"
+            :class="[el.height , 'absolute show  transition-all flex  duration-300  left-0 overflow-hidden z-100  bg-slate-900 border-1 border-slate-800']"
         >
-         <div :class="`mt-2 ${props.property} gap-y-1 px-2 flex `">
+         <div :class="[props.property , 'mt-2 gap-y-1 px-2 flex']">
              <Link
-                 :class="`pl-3  text-gray-300 box-border ${childWidth} hover:border-sky-600 hover:bg-sky-300/10 hover:text-sky-700 duration-200 rounded-xl`"
+                 :class="[childWidth , 'pl-3  text-gray-300 box-border hover:border-sky-600 hover:bg-sky-300/10 hover:text-sky-700 duration-200 rounded-xl']"
                  href="#"
                  v-for="itemDrop in props.dataDrop"
                  >{{ itemDrop }}</Link

@@ -51,19 +51,19 @@ const el = computed(() => findByStatus(props.dataDrop.animProper));
         <div
             @click.stop
             v-if="props.dataDrop.status"
-            :class="`absolute z-40 rounded shadow bg-slate-900 ${props.dataDrop.proper} ${el.height} rounded-lg overflow-hidden mt-1 border border-blue-600/20 transition-all duration-300`"
+            :class="[props.dataDrop.proper , el.height , 'absolute z-40 shadow bg-slate-900 rounded-lg overflow-hidden mt-1 border border-blue-600/20 transition-all duration-300']"
         >
-            <div :class="`mt-2 ${props.dataDrop.proper} px-2 pb-2 gap-1 flex `">
+            <div :class="[props.dataDrop.proper , 'mt-2 px-2 pb-2 gap-1 flex']">
                 <div
                     @click="
                         selectItemDropById(data.id, props.dataDrop.dataDrop)
                     "
-                    :class="`cursor-pointer flex gap-x-1 pl-1 overflow-hidden justify-center text-gray-300 ${data.bg} hover:bg-sky-700/60 rounded-md transition-all duration-300 ${props.dataDrop.width} h-[1.5rem]`"
+                    :class="[data.bg , props.dataDrop.width , 'cursor-pointer flex gap-x-1 pl-1 overflow-hidden justify-center text-gray-300 hover:bg-sky-700/60 rounded-md transition-all duration-300  h-[1.5rem]']"
                     v-for="data in props.dataDrop.dataDrop"
                 >
                     <span class="flex-1 flex items-center justify-center">
                         <i
-                            :class="`${data.icon} text-sm text-gray-300 transition-all duration-300`"
+                            :class="[data.icon , 'text-sm text-gray-300 transition-all duration-300']"
                         ></i>
                     </span>
 

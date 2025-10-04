@@ -17,7 +17,7 @@ const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
     >
         <InputSearch
             @click.stop
-            :class="`w-full mt-2 ${compuPiniaToDownOrUp.readStyeInputSearch.style} transition-all duration-300 `"
+            :class="[compuPiniaToDownOrUp.readStyeInputSearch.style , 'w-full mt-2 transition-all duration-300']"
         />
     </div>
 </template>
