@@ -1,10 +1,116 @@
-@import 'tailwindcss';
-
+@import "tailwindcss";
 
 @theme {
     --color-primary: #040429;
-    --color-primary-500 : #0a0a68;
+    --color-primary-500: #0a0a68;
     --color-secondary: #05685e;
-    --color-orange: #0A1120;
-    --color-golden: #FACC15
+    --color-orange: #0a1120;
+    --color-golden: #facc15;
+
+    --breakpoint-xl: initial;
+    --breakpoint-xl: 1200px;
+    --breakpoint-sm: 576px;
+}
+
+@layer components {
+    /* GLobal */
+    .stack {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .align-center {
+        display: flex;
+        align-items: center;
+    }
+
+    .center {
+        display: flex;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .content-center {
+        display: flex;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .full-size {
+        width: 100%; /* w-full */
+        height: 100%;
+    }
+    /* Only Component Welcome.vue */
+    .info-text {
+        margin-bottom: 1rem; /* mb-4 */
+        font-size: 0.875rem; /* text-sm */
+    }
+
+    .title-text {
+        font-size: 1.25rem; /* text-xl */
+        font-weight: 600; /* font-semibold */
+        margin-bottom: 0.5rem; /* mb-2 */
+    }
+
+    /* Only Component Home  */
+    .micro-text {
+        font-size: 10px;
+    }
+
+    .home-top-slider {
+        position: relative; /* relative */
+        overflow: hidden;
+        z-index: 10;
+        cursor: pointer; /* cursor-pointer */
+        padding: 1rem; /* p-4 (1rem = 16px * 4/16) */
+        border-radius: 0.5rem; /* rounded-lg */
+        border-left-width: 3px; /* border-l-3 */
+        opacity: 0.5;
+        transition-timing-function: ease-in-out;
+        border-color: #0ea5e9; /* border-sky-400 */
+        opacity: 0.5;
+    }
+
+    .home-bug-nofification {
+        text-align: center; /* text-center */
+        color: #ffffff; /* text-white */
+        padding-top: 0.5rem; /* py-2 → 0.5rem */
+        padding-bottom: 0.5rem; /* py-2 */
+        padding-left: 0.5rem; /* px-2 → 0.5rem */
+        padding-right: 0.5rem; /* px-2 */
+        border-radius: 0.5rem; /* rounded-lg */
+        margin-top: 1rem; /* my-4 → 1rem */
+        margin-bottom: 1rem; /* my-4 */
+        font-size: 1rem; /* default text size */
+    }
+
+    /* Only Component Manga.vue */
+    .manga-text-hover-blue {
+        color: #ffffff; /* text-white */
+        transition: all 150ms ease; /* duration-150 + transition-all */
+    }
+
+    .manga-text-hover-blue:hover {
+        color: #0ea5e9;
+    }
+
+    .manga-desc-text {
+        color: #6b7280; /* text-slate-500 */
+        font-size: 16.5px; /* ukuran desktop */
+    }
+
+    @media (max-width: 768px) {
+        .manga-desc-text {
+            font-size: 0.875rem; /* text-sm ~ 14px */
+        }
+    }
+
+    .manga-smooth-transition {
+        transition: all 200ms ease;
+    }
+
+    .manga-caption-text {
+        font-size: 0.875rem; /* text-sm */
+        color: #9ca3af; /* text-gray-400 */
+    }
 }

@@ -36,7 +36,9 @@ defineOptions({ layout: ReadLayout });
 </script>
 <template>
     <!-- Gambar Manga -->
-    <div :class="`Instance-scroll  h-full w-full flex  items-center `">
+    <div
+        :class="`Instance-scroll full-size align-center justify-center `"
+    >
         <MangaViewer
             :singlePage="singlePage.status"
             :doublePage="doublePage.status"
@@ -46,7 +48,11 @@ defineOptions({ layout: ReadLayout });
                 <div
                     ref="itemSinglePage"
                     v-if="!swip[0].status"
-                    :class="`${computedMangaSize.readModeSize.height}  border-green-400 bg-sky-500 ${computedMangaSize.readModeSize.width} z-10 mx-auto flex justify-center items-center text-4xl`"
+                    :class="[
+                        computedMangaSize.readModeSize.height,
+                        computedMangaSize.readModeSize.width,
+                        'border-green-400 bg-sky-500  z-10 mx-auto flex justify-center items-center text-4xl',
+                    ]"
                 >
                     {{ computedProgressBar.readPage }}
                 </div>
@@ -54,7 +60,11 @@ defineOptions({ layout: ReadLayout });
                     <div
                         ref="itemSinglePageSwip"
                         v-for="item in 30"
-                        :class="`h-${computedMangaSize.readModeSize.height} flex-shrink-0 bg-red-900 ${computedMangaSize.readModeSize.width} mx-80 flex justify-center items-center text-4xl`"
+                        :class="[
+                            computedMangaSize.readModeSize.height,
+                            computedMangaSize.readModeSize.width,
+                            'shrink-0 bg-red-900  mx-80 flex justify-center items-center text-4xl',
+                        ]"
                     >
                         {{ item }}
                     </div>
@@ -64,7 +74,7 @@ defineOptions({ layout: ReadLayout });
                 <div
                     ref="itemDoublePage"
                     v-for="index in 2"
-                    :class="`${computedMangaSize.readModeSize.height} bg-sky-500  ${computedMangaSize.readModeSize.width} z-10 flex justify-center items-center text-4xl`"
+                    :class="[computedMangaSize.readModeSize.height , computedMangaSize.readModeSize.width , 'bg-sky-500  z-10 flex justify-center items-center text-4xl']"
                 >
                     {{ computedProgressBar.readPage }}
                 </div>
@@ -74,7 +84,11 @@ defineOptions({ layout: ReadLayout });
                     ref="itemLongStrip"
                     value="30"
                     v-for="el in 30"
-                    :class="`${computedMangaSize.readModeSize.height} flex-shrink-0 flex  bg-sky-500 ${computedMangaSize.readModeSize.width} flex justify-center items-center text-4xl`"
+                    :class="[
+                        computedMangaSize.readModeSize.height,
+                        computedMangaSize.readModeSize.width,
+                        'shrink-0 bg-sky-500 flex justify-center items-center text-4xl',
+                    ]"
                 >
                     {{ el }}
                 </div>
@@ -95,7 +109,7 @@ defineOptions({ layout: ReadLayout });
                             }
                         }
                     "
-                    :class="`${direc.position} z-20`"
+                    :class="[direc.position, 'z-2']"
                 />
             </template>
         </template>

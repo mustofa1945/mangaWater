@@ -17,11 +17,21 @@ export const useSlider = () => {
 
     const readProperty = computed(() => property.value);
 
-    const setElement = (templateRef) => set(templateRef, dataSlider);
+    const setElement = (cards) => {
+        const width =
+            window.innerWidth >= 1000
+                ? `${window.innerWidth / 2 - 35}`
+                : `${window.innerWidth - 35}`;
 
-    const next = () => nextSlide(isSlide, 103, property, dataSlider);
+        cards.forEach((el) => {
+            el.style.width = `${width}px`;
+        });
+        set(cards, dataSlider);
+    };
 
-    const prev = () => prevSLide(isSlide, 103, property, dataSlider);
+    const next = () => nextSlide(isSlide, 100, property, dataSlider);
+
+    const prev = () => prevSLide(isSlide, 105, property, dataSlider);
 
     return {
         dataSlider,
@@ -35,7 +45,7 @@ export const useSlider = () => {
 export const useSliderProgressBar = () => {
     let isSlide = ref(false);
 
-    let isSlideBar = ref(false)
+    let isSlideBar = ref(false);
 
     const dataSubSlider = ref([...dataRecentlyUpdate]);
 
@@ -53,7 +63,7 @@ export const useSliderProgressBar = () => {
         set(templateRef, dataSubSlider, true, instanceBar);
 
     const nextSub = () => {
-        nextSlide(isSlide, 28.8 , property, dataSubSlider);
+        nextSlide(isSlide, 100, property, dataSubSlider);
         swicthBar(
             isSlideBar,
             (id) => (id == instanceBar.value.length - 1 ? 0 : id + 1),
@@ -62,8 +72,7 @@ export const useSliderProgressBar = () => {
     };
 
     const prevSub = () => {
-
-        prevSLide(isSlide, 28.8 , property, dataSubSlider);
+        prevSLide(isSlide, 104, property, dataSubSlider);
 
         swicthBar(
             isSlideBar,

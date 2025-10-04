@@ -1,11 +1,13 @@
 import { defineStore } from "pinia";
 import { useProvideUtilsData } from "../utils/utilsDatastore";
-import { computed, reactive, toRefs } from "vue";
+import { computed, reactive, ref, toRefs } from "vue";
 import { useUtils } from "../utils/utilsFunctionStore";
 import { useProvideDataShowAndClose } from "./data/dataShowAndClose";
 
 export const useShowClose = defineStore("showClose", () => {
     const { langActive } = useProvideUtilsData();
+   
+    let onMenu = ref(false)
 
     const {
         dataShowAndClose: { navReadMenu, comment, header },
@@ -33,7 +35,10 @@ export const useShowClose = defineStore("showClose", () => {
             page.forEach((el) => {
                 el.display = "hidden";
             });
+           onMenu.value = !onMenu.value ? true : false
+           console.log(onMenu.value)
         }, 200);
+
 
         switchActive(partialProxy, proxy);
     };
@@ -48,5 +53,8 @@ export const useShowClose = defineStore("showClose", () => {
         langActive,
         showOrHidden,
         createShowCloseComputedGroup,
+        dataReact : {
+            onMenu
+        }
     };
 });

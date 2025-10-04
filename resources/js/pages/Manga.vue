@@ -47,10 +47,10 @@ defineOptions({ layout: DefaultLayout });
 <template>
     <BoxLight class="p-4">
         <div
-            class="relative z-10   w-full grid grid-cols-4 min-[1200px]:grid-rows-9   bg-gray-800/20 gap-5 saturate-80"
+            class="relative z-10 w-full grid grid-cols-4 xl:grid-rows-9 bg-gray-800/20 gap-5 saturate-80"
         >
             <div
-                class="absolute top-0 h-full w-full blur-md opacity-10 z-0 saturate-80"
+                class="absolute top-0 full-size blur-md opacity-10 z-0 saturate-80"
             >
                 <img
                     alt="Background image with various manga characters"
@@ -61,52 +61,48 @@ defineOptions({ layout: DefaultLayout });
                 />
             </div>
             <!-- Details Manga -->
-            <DetailsManga/>
+            <DetailsManga />
 
             <div
-                class="flex relative z-10 min-[1200px]:flex-col max-[768px]:flex-col max-[1200px]:mb-7 max-[768px]:mb-0  justify-between w-full min-[1200px]:col-span-1 max-[1200px]:col-span-4 min-[1200px]:row-span-2 min-[768px]:row-span-1"
+                class="flex relative z-10 xl:flex-col max-[768px]:flex-col max-[1200px]:mb-7 max-[768px]:mb-0 justify-between w-full xl:col-span-1 max-[1200px]:col-span-4 xl:row-span-2 md:row-span-1"
             >
-                <div class="flex flex-col text-sm  max-[1200px]:w-1/2 max-[768px]:w-full max-[1200px]:justify-center max-[1200px]:h-full">
-                    <span class="text-slate-500 text-[16.5px] max-[768px]:text-sm"
+                <div
+                    class="stack text-sm max-[1200px]:w-1/2 max-[768px]:w-full max-[1200px]:justify-center max-[1200px]:h-full"
+                >
+                    <span class="manga-desc-text"
                         >Author :
-                        <a
-                            href=""
-                            class="text-white hover:text-sky-600 duration-150 transition-all"
+                        <a href="" class="manga-text-hover-blue"
                             >Yuuki Tabata</a
                         ></span
                     >
-                    <span class="text-slate-500  text-[16.5px] max-[768px]:text-sm"
+                    <span
+                        class="text-slate-500 text-[16.5px] max-[768px]:text-sm"
                         >Published :
-                        <span
-                            class="text-white hover:text-sky-600 duration-150 transition-all"
+                        <span class="manga-text-hover-blue"
                             >February 2015</span
                         ></span
                     >
-                    <span class="text-slate-500 text-[16.5px] max-[768px]:text-sm"
+                    <span class="manga-desc-text"
                         >Genres :
-                        <a
-                            href=""
-                            class="text-white hover:text-sky-600 duration-150 transition-all"
-                            >Comedy</a
-                        >,<a
-                            class="text-white hover:text-sky-600 duration-150 transition-all"
+                        <a href="" class="manga-text-hover-blue">Comedy</a>,<a
+                            class="manga-text-hover-blue"
                             href=""
                             >Action</a
                         ></span
                     >
-                    <span class="text-slate-500 text-[16.5px] max-[768px]:text-sm"
+                    <span class="manga-desc-text"
                         >Megazines :
-                        <a
-                            href=""
-                            class="text-white hover:text-sky-600 duration-150 transition-all"
+                        <a href="" class="manga-text-hover-blue"
                             >Shounen Jump</a
                         ></span
                     >
                 </div>
-                 
-                <div class="min-[1200px]:h-1/2 h-full max-[1200px]:w-1/2 max-[768px]:w-full flex max-[1200px]:justify-end items-center">
+
+                <div
+                    class="xl:h-1/2 h-full max-[1200px]:w-1/2 max-[768px]:w-full flex max-[1200px]:justify-end items-center"
+                >
                     <div
-                        class="mt-10 h-[5rem] w-full text-white bg-slate-900 border-1 p-1 border-white/30 rounded-2xl flex gap-x-2 items-center justify-center"
+                        class="center mt-10 h-[5rem] w-full text-white bg-slate-900 border-1 p-1 border-white/30 rounded-2xl gap-x-2"
                     >
                         <div class="pl-2 w-[45%]">
                             <h1 class="text-xl">{{ scor }} / 10</h1>
@@ -118,16 +114,20 @@ defineOptions({ layout: DefaultLayout });
                             <i
                                 v-for="star in dataStar"
                                 @mouseover="onOverHoverStar(star.id)"
-                                :class="`${star.icon} ${star.scale} fa-star text-lg  font-bold text-yellow-300 transition-all duration-200`"
+                                :class="[
+                                    star.icon,
+                                    star.scale,
+                                    'fa-star text-lg  font-bold text-yellow-300 manga-smooth-transition',
+                                ]"
                             ></i>
                         </div>
                     </div>
                 </div>
             </div>
-         
+
             <!-- Chap -->
             <div
-                class="flex flex-col  relative z-10 max-w-[100%] min-[1200px]:col-span-3 max-[1200px]:col-span-4 row-span-2"
+                class="stack relative z-10 max-w-[100%] min-[1200px]:col-span-3 max-[1200px]:col-span-4 row-span-2"
             >
                 <!-- TYPE -->
                 <div
@@ -136,20 +136,25 @@ defineOptions({ layout: DefaultLayout });
                     <div
                         v-for="type in typeManga"
                         @click="() => selectTypeMangaById(type.id)"
-                        :class="`h-full w-1/2 text-sm flex justify-center  items-center text-white ${type.property} tracking-widest transition-all duration-200`"
+                        :class="[
+                            type.property,
+                            'flex justify-center items-center h-full w-1/2 text-sm text-white tracking-widest manga-smooth-transition',
+                        ]"
                     >
                         {{ type.title }}
                     </div>
                 </div>
                 <div
-                    class="flex justify-between items-center bg-slate-900 p-3 flex-1"
+                    class="align-center justify-between bg-slate-900 p-3 flex-1"
                 >
                     <div
-                        class="flex items-center rounded-4xl bg-gray-800 py-1.5 px-4 hover:contrast-70 duration-150 transition-all"
+                        class="align-center rounded-4xl bg-gray-800 py-1.5 px-4 hover:contrast-70 duration-150 transition-all"
                     >
-                        <i class="fas fa-globe mr-2 text-sm text-gray-400"></i>
-                        <span class="text-gray-400 text-sm max-[768px]:hidden">Language: EN</span>
-                        <span class="text-gray-400 text-sm min-[768px]:hidden">Lang :</span>
+                        <i class="fas fa-globe mr-2 manga-caption-text"></i>
+                        <span class="manga-caption-text max-[768px]:hidden"
+                            >Language: EN</span
+                        >
+                        <span class="manga-caption-text md:hidden">Lang :</span>
                     </div>
                     <div class="relative w-[9rem]">
                         <input
@@ -171,7 +176,7 @@ defineOptions({ layout: DefaultLayout });
 
             <!-- Comment -->
             <div
-                class="relative z-10 w-full min-[1200px]:h-[35%]  p-2 max-[1200px]:col-span-4 border-1 border-slate-600/20 min-[1200px]:col-span-3 min-[1200px]:row-span-4"
+                class="relative z-10 w-full min-[1200px]:h-[35%] p-2 max-[1200px]:col-span-4 border-1 border-slate-600/20 min-[1200px]:col-span-3 min-[1200px]:row-span-4"
             >
                 <h1 class="text-xl text-gray-300">Comment</h1>
             </div>

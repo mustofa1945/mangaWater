@@ -2,11 +2,11 @@ import { useUtils } from "./utilsFunctionStore";
 import { toRaw, watch } from "vue";
 
 const { delay, findLastStatus, findByStatus, switchActive } = useUtils();
- 
+
 export const useProvideUtilsSlide = () => {
     const runTransformUpdate = (instance, numX) => {
         instance.forEach((el) => {
-            el.translateX = `translate(${numX}vh)`;
+            el.translateX = `translate(${numX}%)`;
         });
     };
 
@@ -16,14 +16,15 @@ export const useProvideUtilsSlide = () => {
         isHaveBar = false,
         instanceBar = null
     ) => {
+        console.log(templateRef);
         watch(
             dataSlider,
             (sliders) => {
                 sliders.forEach((el, index) => {
                     el.element = templateRef[index];
-                    el.translateX = "translateX(0vh)";
+                    el.translateX = "translateX(0%)";
                 });
-                 
+
                 if (isHaveBar) {
                     for (let bar = 0; bar < 14; bar++) {
                         if (bar == 0) {
@@ -75,8 +76,6 @@ export const useProvideUtilsSlide = () => {
     const nextSlide = async (isSlide, offSite, property, dataSlider) => {
         if (isSlide.value) return;
 
-        isSlide.value = true;
-
         property.value.numX -= offSite;
 
         const dataDelete = dataSlider.value.pop();
@@ -119,25 +118,23 @@ export const useProvideUtilsSlide = () => {
             property.value
         );
 
-        
         await delay(property.value.duration);
 
         property.value.transition = "";
-        
+
         property.value.numX += offSite;
-        
+
         runTransformUpdate(dataSlider.value, property.value.numX);
-        
 
         dataSlider.value.shift();
 
-        isSlide.value = false
+        isSlide.value = false;
     };
 
-    const swicthBar = async (isSlideBar , callBack, instanceBar) => {
-        if(isSlideBar.value) return;
+    const swicthBar = async (isSlideBar, callBack, instanceBar) => {
+        if (isSlideBar.value) return;
 
-        isSlideBar.value = true
+        isSlideBar.value = true;
 
         const findEl = findLastStatus(instanceBar.value);
         findEl.status = false;
@@ -146,9 +143,9 @@ export const useProvideUtilsSlide = () => {
         instanceBar.value[index].status = true;
         instanceBar.value[index].color = "bg-sky-600";
 
-        await delay(200)
+        await delay(200);
 
-        isSlideBar.value = false
+        isSlideBar.value = false;
     };
 
     return {
@@ -162,7 +159,6 @@ export const useProvideUtilsSlide = () => {
 };
 
 export const useCompoUtilsDropDown = () => {
-    
     const selectDropById = (id, dropDown) => {
         const findDrop = dropDown.value.find((el) => el.id === id);
         findDrop.status = !findDrop.status;
@@ -176,7 +172,6 @@ export const useCompoUtilsDropDown = () => {
     };
 
     const dropdown = async (id, dropDown) => {
-
         const { target, reverseTarget } = splitDataDropDownById(id, dropDown);
 
         const elStatusActive = findByStatus(target.animProper);
@@ -200,17 +195,15 @@ export const useCompoUtilsDropDown = () => {
             selectDropById(id, dropDown);
         }
     };
-    
-    
-   const genaratePropertyObjects = (data) =>
 
-    data.map((el, index) => ({
-        id: index + 1,
-        status: false,
-        title: el,
-        icon: "fa-regular fa-square",
-        bg: "",
-    }));
+    const genaratePropertyObjects = (data) =>
+        data.map((el, index) => ({
+            id: index + 1,
+            status: false,
+            title: el,
+            icon: "fa-regular fa-square",
+            bg: "",
+        }));
 
-    return { selectDropById, dropdown , genaratePropertyObjects};
+    return { selectDropById, dropdown, genaratePropertyObjects };
 };

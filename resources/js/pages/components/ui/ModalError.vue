@@ -10,7 +10,7 @@ const {compuPiniaToDownOrUp , stateShowDown } = useStoreToDownOrUp()
         class="fixed inset-0 z-40 flex items-center justify-center bg-black/50 px-6 bg-opacity-10"
     >
         <div
-            :class="`bg-[#1e2a3a] relative rounded-md w-120 p-6 text-white shadow-lg ${compuPiniaToDownOrUp.readStyleError.style} `"
+            :class="[compuPiniaToDownOrUp.readStyleError.style ,  'bg-[#1e2a3a] relative rounded-md w-120 p-6 text-white shadow-lg ']"
         >
             <button
                 @click="stateShowDown(compuPiniaToDownOrUp.modalError , compuPiniaToDownOrUp.readStyleError)"

@@ -53,7 +53,7 @@ defineOptions({ inheritAttrs: false });
             <Link href="/home" class="w-full max-[1200px]:w-[80%]">
                 <img
                     alt="MangaFire.io logo"
-                    :class="`${menu.height} ${menu.widht} bg-cover `"
+                    :class="[menu.height , menu.widht , 'bg-cover']"
                     :src="`https://mangafire.to/assets/sites/mangafire/logo${
                         menu.status ? '-sm' : ''
                     }.png?v3`"
