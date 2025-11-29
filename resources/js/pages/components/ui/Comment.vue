@@ -6,7 +6,7 @@ const emit = defineEmits(['showComment'])
 <div :class="`bg-gray-900 p-4`">
     <div class="relative mb-7">
         <input type="text" name="" id="" placeholder="Comment..." class="bg-gray-600 w-full rounded-lg h-10 pl-3 text-white">
-        <PagReguler @click="emit('showComment')" :options="{ size: 'md', position: 'right'}" position="right" class="w-7 absolute right-5 top-3" />
+        <PagReguler @click="emit('showComment')" :options="{ size: 'md', position: 'fas fa-chevron-right'}" position="right" class="w-6 h-6 rounded-md absolute right-5 top-2" />
     </div>
     <!-- Comment Policy Section -->
     <div class="bg-gray-800 rounded-lg p-4 mb-6">

@@ -28,7 +28,8 @@ const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
 </script>
 <template>
     <div
-        class="max-w-full relative flex overflow-hidden h-[100dvh]"
+        class="max-w-full relative flex overflow-hidden h-[100dvh] bg-slate-800 
+        "
     >
         <main
             :class="`relative ${readNavReadMenu.readLayoutWidth}  z-0 top-0 duration-250 transition-all h-full flex flex-col overflow-hidden`"
@@ -47,7 +48,7 @@ const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
             v-for="page in pages"
             :display="page.display"
             :page="page.status"
-            class="top-13 z-40"
+            class="w-[21.1rem] top-13 z-40"
             @slidePage="showPage(page.id)"
             :input="page.input"
         />

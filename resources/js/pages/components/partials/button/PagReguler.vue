@@ -15,7 +15,6 @@ defineProps({
             <i
                 :class="[
                     options.size,
-                    'fas fa-chevron-',
                     options.position,
                     'stroke-2 text-gray-300 cursor-pointer',
                 ]"

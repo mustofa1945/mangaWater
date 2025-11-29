@@ -40,7 +40,7 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
     <div :class="[readNavReadMenu.instanceParent , 'h-full duration-250 transition-all max-[1200px]:fixed  right-0 top-0 z-30']">
         <div
             v-showAndClose="readNavReadMenu.delayEffect"
-            :class="`Navread-menu py-2 pb-5 hidden px-5 h-full w-full bg-slate-900  flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden `"
+            :class="`Navread-menu  py-2 pb-5 hidden px-5 h-full w-full bg-slate-900  flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden `"
         >
             <!-- Title -->
             <div class="flex justify-between items-center gap-x-2">
@@ -49,7 +49,7 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
                 </h1>
                 <PagReguler
                     @click="showOrHidden(navReadMenu, readNavReadMenu, pages)"
-                    :options="{ size: 'text-md', position: 'right' }"
+                    :options="{ size: 'text-md', position: 'fas fa-chevron-right' }"
                     class="bg-slate-800/80 p-2 h-[4dvh] w-[5dvh]"
                 />
             </div>
@@ -221,16 +221,16 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
                 />
             </div>
             <!-- Simpan Transform dalam tag yang tidak mengalami DOM Supaya tidak terjadi bug new stacking context -->
-            <div  class="w-full fixed top-13 z-50">
-                <PageMenu v-if="dataReact.onMenu"
-                    v-for="page in pages"
-                    :page="page.status"
-                    class="w-full"
-                    @slidePage="showPage(page.id)"
-                    :input="page.input"
-                    :display="page.display"
-                />
-            </div>
+        </div>
+        <div  class="fixed top-13 z-50">
+            <PageMenu v-if="dataReact.onMenu"
+                v-for="page in pages"
+                :page="page.status"
+                class="w-[21.1rem]"
+                @slidePage="showPage(page.id)"
+                :input="page.input"
+                :display="page.display"
+            />
         </div>
     </div>
 </template>

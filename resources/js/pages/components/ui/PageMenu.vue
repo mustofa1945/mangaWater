@@ -19,7 +19,7 @@ const emit = defineEmits(["slidePage"]);
         :class="[
             !data.page ? 'translate-x-[100%]' : 'translate-x-0',
             data.display,
-            'Page-menu fixed right-0 w-[22rem]  flex-col divide-y divide-gray-700  bg-gray-900 border-1 border-blue-900 text-white overflow-x-hidden overflow-y-scroll  h-[92dvh] duration-250 transition-all',
+            'Page-menu fixed right-0  flex-col divide-y divide-gray-700  bg-gray-900 border-1 border-blue-900 text-white overflow-x-hidden overflow-y-scroll  h-[92dvh] duration-250 transition-all',
         ]"
     >
         <div
@@ -51,7 +51,7 @@ const emit = defineEmits(["slidePage"]);
             />
             <PagReguler
                 @click="emit('slidePage')"
-                :options="{ size: 'md', position: 'right' }"
+                :options="{ size: 'md', position: 'fas fa-chevron-right' }"
                 class="bg-slate-500 h-[4dvhP] w-[5dvh] rounded-lg p-1"
             />
         </div>
