@@ -55,7 +55,7 @@ defineOptions({ layout: DefaultLayout });
                                 :class="[
                                     computedSlider.readProperty.value
                                         .transition,
-                                    'home-top-slider group hover:opacity-10 bg-slate-800',
+                                    'home-top-slider group hover:contrast-110 bg-slate-800',
                                 ]"
                             >
                                 <CardManga :card="manga" />
@@ -203,7 +203,7 @@ defineOptions({ layout: DefaultLayout });
                     <h1
                         class="sm:text-2xl text-lg text-white/80 font-bold mb-2"
                     >
-                        Recently Update
+                        Manga Release
                     </h1>
                     <div class="align-center space-x-2">
                         <PagReguler

@@ -13,8 +13,6 @@ import DropdownHeader from "../partials/dropdowns/DropdownHeader.vue";
 import { useCompoDropdownHeaderLarge } from "../../composable/compoDropDown.js";
 import { useStoreToDownOrUp } from "../../stores/storeToDownOrUp.js";
 
-const Login = defineAsyncComponent(() => import("./Login.vue"));
-
 defineProps(["menu"]);
 
 const { computedProgressBar, instanceProxy } = useProgressButton();

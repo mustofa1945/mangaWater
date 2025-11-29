@@ -158,8 +158,8 @@ export const useProvideDataDropDown = () => {
             title: "Genres",
             dataDrop: mangaGenres,
             property: "flex-wrap w-[30rem] text-[15px]",
-            height : 'h-[25rem] ',
-            childWidth : 'w-[33%] h-[1.5rem] flex items-center'
+            height : 'h-[26rem]',
+            childWidth : 'w-[33%] h-[1.7rem] flex items-center'
         },
     ]
 

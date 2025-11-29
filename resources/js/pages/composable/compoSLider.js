@@ -31,7 +31,7 @@ export const useSlider = () => {
 
     const next = () => nextSlide(isSlide, 100, property, dataSlider);
 
-    const prev = () => prevSLide(isSlide, 105, property, dataSlider);
+    const prev = () => prevSLide(isSlide, 103.5, property, dataSlider);
 
     return {
         dataSlider,
@@ -72,7 +72,7 @@ export const useSliderProgressBar = () => {
     };
 
     const prevSub = () => {
-        prevSLide(isSlide, 104, property, dataSubSlider);
+        prevSLide(isSlide, 104.5, property, dataSubSlider);
 
         swicthBar(
             isSlideBar,
