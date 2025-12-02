@@ -162,7 +162,7 @@ export const useCompoDropDownHeader = () => {
     return {
         compuDropHeader: {
             concatDrop,
-            isDropActive,
+            isDropActive,                                                                                                                                                    
         },
         runDropDownHeader,
     };

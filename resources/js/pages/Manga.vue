@@ -8,6 +8,8 @@ import DetailsManga from "./components/partials/manga/DetailsManga.vue";
 import NavManga from "./components/partials/manga/NavManga.vue";
 import Chapter from "./components/ui/Chapter.vue";
 import Volume from "./components/ui/Volume.vue";
+import LangNavButton from "./components/partials/button/LangNavButton.vue";
+import { langsWithChapter } from "../data/dataManga";
 
 const typeManga = ref([
     {
@@ -24,21 +26,14 @@ const typeManga = ref([
     },
 ]);
 
-const { findByStatus } = useUtils();
+const { findByStatus, selectById } = useUtils();
 
 const getActiveStatus = computed(() => findByStatus(typeManga.value));
 
-const selectTypeMangaById = (id) => {
-    typeManga.value.forEach((el) => {
-        if (id === el.id) {
-            el.status = true;
-            el.property = "bg-sky-600";
-        } else {
-            el.status = false;
-            el.property = "hover:bg-gray-300/20";
-        }
-    });
-};
+const selectTypeMangaById = (id) => 
+    selectById(typeManga.value, id, "bg-sky-600", "hover:bg-gray-300/20");
+
+console.log(langsWithChapter);
 
 const { onOverHoverStar, dataStar, grade, scor } = useCompoStar();
 
@@ -147,14 +142,23 @@ defineOptions({ layout: DefaultLayout });
                 <div
                     class="align-center justify-between bg-slate-900 p-3 flex-1"
                 >
-                    <div
-                        class="align-center rounded-4xl bg-gray-800 py-1.5 px-4 hover:contrast-70 duration-150 transition-all"
+                    <div click=""
+                        class="align-center relative rounded-4xl bg-gray-800 py-1.5 px-4 hover:contrast-70 duration-150 transition-all"
                     >
                         <i class="fas fa-globe mr-2 manga-caption-text"></i>
                         <span class="manga-caption-text max-[768px]:hidden"
                             >Language: EN</span
                         >
                         <span class="manga-caption-text md:hidden">Lang :</span>
+                        <!-- <LangNavButton
+                        @click=""
+                        v-for="lang in compuToDownOrUp.readDropLangs.value
+                            .language"
+                        :key="lang.id"
+                        :title="lang.lang"
+                        :url="lang.url"
+                        :class="`w-full h-[5dvh] px-3 z-20  ${lang.style}`"
+                    /> -->
                     </div>
                     <div class="relative w-[9rem]">
                         <input

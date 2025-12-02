@@ -9,11 +9,7 @@ export const useProgressButton = defineStore("progressButton", () => {
     const { instanceProxy, typePositionScrollBar, page } =
         useProvideDataProgressBar();
     //Gunakan utils untuk mengambil element berdasarkan status dan mengubah mode secara berurutan
-    const {
-        switchActive,
-        findByStatus,
-        choiseType
-    } = useUtils();
+    const { switchActive, findByStatus, choiseType } = useUtils();
 
     const {
         runProvideClickGiveStatus,
@@ -33,6 +29,7 @@ export const useProgressButton = defineStore("progressButton", () => {
     const readPage = computed(() => page.value);
 
     const nextPositionMode = (position, typeMangaViewer) => {
+        console.log(typeMangaViewer)
         runProvideClickGiveStatus(
             30 / typeMangaViewer.bar,
             instanceProxy.value
@@ -47,13 +44,15 @@ export const useProgressButton = defineStore("progressButton", () => {
     // Navigasi ke progress bar sebelumnya
     const prevProgressCLick = () => runPrevProgressCLick(instanceProxy.value);
     // Update DOM element berdasarkan mode yang active, tanpa mengubah struktur data aslinya
-    const watchTypeScroll = (tempRef) => updateDOM(tempRef, instanceProxy.value);
+    const watchTypeScroll = (tempRef) =>
+        updateDOM(tempRef, instanceProxy.value);
     //// Manual trigger update karena computed tidak memantau object nested secara deep
     updatePage(instanceProxy.value, page);
     //Setiap ELement Terlihat DI ViewPort Berikan Status true
     const scrollDetectStatus = (elements) => runScrollDetectStatus(elements);
     //Ubah mode Progress Bar berdasarkan ID yang dipilih
-    const selectProgressBarById  = (id) => choiseType(typePositionScrollBar.value, id);
+    const selectProgressBarById = (id) =>
+        choiseType(typePositionScrollBar.value, id);
     //Memilih Page Berdasarkan Page Yang Dipilih
     const pickPage = (id) => runPickPage(instanceProxy.value, id);
 
@@ -67,9 +66,7 @@ export const useProgressButton = defineStore("progressButton", () => {
         prevProgressCLick,
         selectProgressBarById,
         pickPage,
-        computedProgressBar: {
-            readPage,
-            readTypePosition,
-        },
+        readPage,
+        readTypePosition,
     };
 });

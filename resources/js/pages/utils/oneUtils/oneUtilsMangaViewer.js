@@ -1,12 +1,11 @@
 import { useUtils } from "../utilsFunctionStore";
 import { nextTick } from "vue";
 import { useProvideOneUtilsProgressBar } from "./oneUtilsProgressBar";
-import { getActivePinia, setActivePinia } from "pinia";
+import { getActivePinia, setActivePinia, storeToRefs } from "pinia";
 import { useMangaSize } from "../../stores/useSizeManga";
 import { useProgressButton } from "../../stores/useButtonProgress";
 
 export const useProvideOneUtilsMangaViewer = () => {
-
     if (!getActivePinia()) {
         const { pinia } = require("../../../app");
         setActivePinia(pinia);
@@ -14,12 +13,13 @@ export const useProvideOneUtilsMangaViewer = () => {
 
     const { mangaSizeSetting } = useMangaSize();
 
-    const { computedProgressBar, instanceProxy } = useProgressButton();
+    const { instanceProxy } = useProgressButton();
+
+    const { readTypePosition } = storeToRefs(useProgressButton());
 
     const { findLastStatus, wait, findByStatus, switchActive } = useUtils();
 
     const { runProvideClickGiveStatus } = useProvideOneUtilsProgressBar();
-
 
     const syncMangaViewerSizes = () => {
         mangaSizeSetting.forEach((el) => {
@@ -41,22 +41,17 @@ export const useProvideOneUtilsMangaViewer = () => {
     };
 
     const handleProgressBarUpdate = (readMangaViewer) => {
-        if (computedProgressBar.readTypePosition.position !== "none") {
+        if (readTypePosition.position !== "none") {
             //Jika mode double page bagi instance proxy jadi 2
             if (readMangaViewer.id == 2) {
                 instanceProxy.length = 30 / 2;
                 //Mengontrol flow element supaya last bar colornya adalah bg-red-600 yang awalnya bg-red-600/50
-                const limit = instanceProxy.every(
-                    (el) => el.status === true
-                );
+                const limit = instanceProxy.every((el) => el.status === true);
                 if (limit) {
-                    const lastEL = findLastStatus(
-                        instanceProxy
-                    );
+                    const lastEL = findLastStatus(instanceProxy);
                     lastEL.color = "bg-[#4169E1]";
                 }
-            } else
-                runProvideClickGiveStatus(30, instanceProxy);
+            } else runProvideClickGiveStatus(30, instanceProxy);
         }
     };
 

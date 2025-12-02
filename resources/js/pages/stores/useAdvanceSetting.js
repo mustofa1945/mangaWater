@@ -32,6 +32,7 @@ export const useAdvanceSetting = defineStore("setting", () => {
         if (id === 1) {
             //Singkronkan Property Denngan Mode Viewer Yang lainnya
             runProvideClickGiveStatus(30, progressBar);
+            
             const el = findLastStatus(progressBar);
             //Tunggu Update Dom Terbaru Dan Masuk Ke viewPort
             await nextTick();

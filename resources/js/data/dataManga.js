@@ -222,3 +222,7 @@ export const langs = [
         style : "bg-transparent"
     },
 ];
+
+const listChapter = [120 , 80 , 90 , 70 , 90]
+
+export const langsWithChapter = langs.map((e , index) => ({...e , chapter : listChapter[index]}))

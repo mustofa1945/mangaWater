@@ -2,6 +2,7 @@
 const props = defineProps(["readModalLogin" , "readStyleLogin"])
 
 const emit = defineEmits(["useToDownOrUp"])
+
 </script>
 <template>
     <div

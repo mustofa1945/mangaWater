@@ -46,7 +46,6 @@ export const useUtils = () => {
     };
 
     const choiseType = (proxy, id) => {
-        
         const { border: b } = useThemeGlobal();
 
         applyLogic((el) => {
@@ -56,6 +55,13 @@ export const useUtils = () => {
     };
 
     const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
+
+    const selectById = (proxy, id, ctxTrue, ctxFal) => {
+        proxy.forEach((el) => {
+            el.status = id == lang.id;
+            el.style = id == lang.id ? ctxTrue : ctxFal;
+        });
+    };
 
     return {
         switchActive,
@@ -67,11 +73,8 @@ export const useUtils = () => {
         choiseType,
         changeStatus,
         delay,
+        selectById,
     };
 };
 
-export const useUtilsDOM = () => {
-    
-}
-
-
+export const useUtilsDOM = () => {};

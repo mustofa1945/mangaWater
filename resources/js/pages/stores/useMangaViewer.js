@@ -46,8 +46,6 @@ export const useMangaViewer = defineStore("mangaViewer", () => {
         typeMangaViewers,
         nextViewerMode,
         selectViewerById,
-        computedViewer: {
-            readMangaViewer,
-        },
+        readMangaViewer
     };
 });

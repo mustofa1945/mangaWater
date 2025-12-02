@@ -1,27 +1,24 @@
 <script setup>
+import { storeToRefs } from "pinia";
 import { useDropDownSearch } from "../../composable/compoDropDown";
 import { useStoreToDownOrUp } from "../../stores/storeToDownOrUp";
 
-const { compuPiniaToDownOrUp, stateShowDown } = useStoreToDownOrUp();
+const { stateShowDown } = useStoreToDownOrUp();
 
+const { modalYear, readStyleModalYear } = storeToRefs(useStoreToDownOrUp());
 const { selectItemDropById, compuDropSearch } = useDropDownSearch();
 </script>
 
 <template>
     <div
-        @click="
-            stateShowDown(
-                compuPiniaToDownOrUp.modalYear,
-                compuPiniaToDownOrUp.readStyleModalYear
-            )
-        "
-        v-if="compuPiniaToDownOrUp.modalYear.status"
+        @click="stateShowDown(modalYear, readStyleModalYear)"
+        v-if="modalYear.status"
         class="fixed w-full h-full max-[768px]:flex hidden top-0 items-center justify-center border-2 border-green-700 bg-black/50 bg-opacity-10 z-50"
     >
         <div
             @click.stop
             :class="[
-                compuPiniaToDownOrUp.readStyleModalYear.style,
+                readStyleModalYear.style,
                 'overflow-y-scroll gap-y-1 bg-slate-900 flex-shrink-0 transition-all duration-200 flex flex-col h-[20rem] w-[85%] ',
             ]"
         >
@@ -32,7 +29,10 @@ const { selectItemDropById, compuDropSearch } = useDropDownSearch();
                         compuDropSearch.readDataYear.value.dataDrop
                     )
                 "
-                :class="[data.bg , 'cursor-pointer flex w-full  text-gray-300  hover:bg-sky-700/60 rounded-md transition-all duration-300  h-[3rem]']"
+                :class="[
+                    data.bg,
+                    'cursor-pointer flex w-full  text-gray-300  hover:bg-sky-700/60 rounded-md transition-all duration-300  h-[3rem]',
+                ]"
                 v-for="data in compuDropSearch.readDataYear.value.dataDrop"
             >
                 <span class="flex-1 flex pl-1 items-center justify-center">

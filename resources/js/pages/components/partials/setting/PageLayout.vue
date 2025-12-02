@@ -1,11 +1,13 @@
 <script setup>
+import { storeToRefs } from "pinia";
 import { useAdvanceSetting } from "../../../stores/useAdvanceSetting";
 import { useProgressButton } from "../../../stores/useButtonProgress";
 import { useMangaViewer } from "../../../stores/useMangaViewer";
 import { useReadingDirec } from "../../../stores/useReadingDirec";
 import StatusButton from "../button/StatusButton.vue";
 
-const { typeMangaViewers, selectViewerById, computedViewer } = useMangaViewer();
+const { typeMangaViewers, selectViewerById } = useMangaViewer();
+const { readMangaViewer } = storeToRefs(useMangaViewer());
 const { readingDirec, selectReadingDirecById } = useReadingDirec();
 const { selectProgressBarById, typePositionScrollBar, instanceProxy } =
     useProgressButton();
@@ -28,7 +30,7 @@ const { changeStatusButtonType, swip } = useAdvanceSetting();
 
     <!-- Strip Margin -->
     <div class="mb-4 flex">
-        <template v-if="computedViewer.readMangaViewer.id === 3">
+        <template v-if="readMangaViewer.id === 3">
             <label
                 class="text-sm text-gray-400 flex items-center mb-1 w-1/6 justify-center"
                 >Strip Margin</label
@@ -46,7 +48,7 @@ const { changeStatusButtonType, swip } = useAdvanceSetting();
                 </button>
             </div>
         </template>
-        <template v-if="computedViewer.readMangaViewer.id === 1">
+        <template v-if="readMangaViewer.id === 1">
             <StatusButton
                 @runChangeStatus="
                     changeStatusButtonType(item.id, swip, instanceProxy)

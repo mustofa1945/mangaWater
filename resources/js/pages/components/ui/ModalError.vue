@@ -1,19 +1,22 @@
 <script setup>
+import { storeToRefs } from 'pinia';
 import { useStoreToDownOrUp } from '../../stores/storeToDownOrUp';
 
-const {compuPiniaToDownOrUp , stateShowDown } = useStoreToDownOrUp()
+const { stateShowDown } = useStoreToDownOrUp()
+
+const {modalError , readStyleError} = storeToRefs(useStoreToDownOrUp())
 
 </script>
 <template>
     <div
-        v-if="compuPiniaToDownOrUp.modalError.status"
+        v-if="modalError.status"
         class="fixed inset-0 z-40 flex items-center justify-center bg-black/50 px-6 bg-opacity-10"
     >
         <div
-            :class="[compuPiniaToDownOrUp.readStyleError.style ,  'bg-[#1e2a3a] relative rounded-md w-120 p-6 text-white shadow-lg ']"
+            :class="[readStyleError.style ,  'bg-[#1e2a3a] relative rounded-md w-120 p-6 text-white shadow-lg ']"
         >
             <button
-                @click="stateShowDown(compuPiniaToDownOrUp.modalError , compuPiniaToDownOrUp.readStyleError)"
+                @click="stateShowDown(modalError , readStyleError)"
                 aria-label="Close"
                 class="absolute top-4 right-4 text-gray-400 hover:text-gray-300"
             >
