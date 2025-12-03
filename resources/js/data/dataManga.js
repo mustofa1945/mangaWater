@@ -1,4 +1,5 @@
 import { reactive } from "vue";
+
 export const dataManga = reactive([
     {
         id: 1,
@@ -6,8 +7,64 @@ export const dataManga = reactive([
         url: "https://static.mangafire.to/8bbd/i/0/b9/0945897490b74943c8ad0c42becf9e6e.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 2,
@@ -15,8 +72,64 @@ export const dataManga = reactive([
         url: "https://static.mangafire.to/f0a8/i/4/48/489a202cc7127577cd27018bccabf3fc.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 3,
@@ -24,8 +137,64 @@ export const dataManga = reactive([
         url: "https://static.mangafire.to/9088/i/c/c7/e988e486bb925872053f1ab8677ca026.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 4,
@@ -33,8 +202,64 @@ export const dataManga = reactive([
         url: "https://static.mangafire.to/bc3f/i/4/98/08e3a72c2e6bc69c284d2b394e566935.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 5,
@@ -42,8 +267,64 @@ export const dataManga = reactive([
         url: "https://static.mangafire.to/1a45/i/2/2b/8b76b4aeaa15c06e3e05fa1248668915.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 6,
@@ -51,8 +332,64 @@ export const dataManga = reactive([
         url: "https://static.mangafire.to/0da8/i/1/1f/1f7f59fa25776f57c6903aba522ce851.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 7,
@@ -60,8 +397,64 @@ export const dataManga = reactive([
         url: "https://static.mangafire.to/105c/i/a/ad/d7b3ca6d286f2f35c292aefe336b474a.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
 ]);
 
@@ -73,8 +466,64 @@ export const dataRecentlyUpdate = [
         url: "https://static.mangafire.to/50d1/i/5/e7/c1d66a89aa4338f8c23e9de8ec55430c.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 9,
@@ -82,8 +531,64 @@ export const dataRecentlyUpdate = [
         url: "https://static.mangafire.to/d8fc/i/d/ac/37578d6c2366826044900dd5273fa4cc.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 10,
@@ -91,8 +596,64 @@ export const dataRecentlyUpdate = [
         url: "https://static.mangafire.to/ccd1/i/4/45/45a164cdc8008ddc4096b721ab10f90c.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 11,
@@ -100,8 +661,64 @@ export const dataRecentlyUpdate = [
         url: "https://static.mangafire.to/be2b/i/4/8b/fb9365565cf9fa7db18473b82e7ea4a6.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 12,
@@ -109,8 +726,64 @@ export const dataRecentlyUpdate = [
         url: "https://static.mangafire.to/1a45/i/2/2b/8b76b4aeaa15c06e3e05fa1248668915.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 13,
@@ -118,8 +791,64 @@ export const dataRecentlyUpdate = [
         url: "https://static.mangafire.to/86bd/i/6/6d/6dbb3b7ccfb7e21c1ad9e5e8e70d8098.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 14,
@@ -127,8 +856,64 @@ export const dataRecentlyUpdate = [
         url: "https://static.mangafire.to/105c/i/a/ad/d7b3ca6d286f2f35c292aefe336b474a.jpg",
         type: "Manga",
         lang: "EN",
-        chapter: ["1", "2", "3"],
-        date: "20 maret 2025",
+        dataActive: [
+            {
+                id: 1,
+                type: "chap",
+                status: true,
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "chap",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        label: "chap",
+                        date: "21 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "chap",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                status: false,
+                type: "vol",
+                data: [
+                    {
+                        id: 1,
+                        order: 1,
+                        label: "vol",
+                        date: "20 maret 2025",
+                        lang: "EN",
+                    },
+                    {
+                        id: 2,
+                        order: 2,
+                        date: "21 maret 2025",
+                        label: "vol",
+                        lang: "EN",
+                    },
+                    {
+                        id: 3,
+                        order: 3,
+                        label: "vol",
+                        date: "22 maret 2025",
+                        lang: "EN",
+                    },
+                ],
+            },
+        ],
     },
 ];
 export const types = [
@@ -191,38 +976,41 @@ export const langs = [
         status: true,
         lang: "English",
         url: "https://flagcdn.com/w320/us.png",
-        style : "bg-sky-600/30 text-blue-500"
+        style: "bg-sky-600/30 text-blue-500",
     },
     {
         id: 2,
         lang: "French",
         status: false,
         url: "https://flagcdn.com/w320/fr.png",
-        style : "bg-transparent"
+        style: "bg-transparent",
     },
     {
         id: 3,
         lang: "Spanish",
         status: false,
         url: "https://flagcdn.com/w320/es.png",
-        style : "bg-transparent"
+        style: "bg-transparent",
     },
     {
         id: 4,
         lang: "Portugese",
         status: false,
         url: "https://flagcdn.com/w320/pt.png",
-        style : "bg-transparent"
+        style: "bg-transparent",
     },
     {
         id: 5,
         lang: "japanese",
         status: false,
         url: "https://flagcdn.com/w320/jp.png",
-        style : "bg-transparent"
+        style: "bg-transparent",
     },
 ];
 
-const listChapter = [120 , 80 , 90 , 70 , 90]
+const listChapter = [120, 80, 90, 70, 90];
 
-export const langsWithChapter = langs.map((e , index) => ({...e , chapter : listChapter[index]}))
+export const langsWithChapter = langs.map((e, index) => ({
+    ...e,
+    chapter: listChapter[index],
+}));

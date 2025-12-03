@@ -58,8 +58,8 @@ export const useUtils = () => {
 
     const selectById = (proxy, id, ctxTrue, ctxFal) => {
         proxy.forEach((el) => {
-            el.status = id == lang.id;
-            el.style = id == lang.id ? ctxTrue : ctxFal;
+            el.status = id == el.id;
+            el.style = id == el.id ? ctxTrue : ctxFal;
         });
     };
 

@@ -10,15 +10,10 @@ import DefaultLayout from "../layout/DefaultLayout.vue";
 import { dataManga } from "../data/dataManga";
 import { typeMangaSearch } from "../data/dataSearch";
 import { useSlider, useSliderProgressBar } from "./composable/compoSLider";
-import { onMounted, useTemplateRef, watchEffect } from "vue";
+import { onMounted, toRaw, useTemplateRef, watchEffect , ref} from "vue";
+import { useUtils } from "./utils/utilsFunctionStore";
 
 const { dataSlider, next, prev, setElement, computedSlider } = useSlider();
-
-watchEffect(() => {
-    dataSlider.value.forEach((el) => {
-        console.log(el);
-    });
-});
 
 const {
     dataSubSlider,
@@ -29,9 +24,16 @@ const {
     instanceBar,
 } = useSliderProgressBar();
 
+
 const sliders = useTemplateRef("sliders");
 
 const sliderBar = useTemplateRef("sliderBar");
+
+watchEffect(() => {
+    dataSlider.value.forEach((el) => {
+        console.log(el);
+    });
+});
 
 onMounted(() => {
     setSubElement(sliderBar.value);
@@ -183,12 +185,15 @@ defineOptions({ layout: DefaultLayout });
                     <CardRecentlyUpdate
                         v-for="manga in dataManga"
                         :key="manga.id"
+                        @select-type="selectTypeMangaById"
+                        :typeManga="typeManga"
                         :manga="{
+                            idManga : manga.id,
                             title: manga.title,
                             url: manga.url,
                             date: manga.date,
                             type: manga.type,
-                            chapter: manga.chapter,
+                            dataActive : manga.dataActive,
                             lang: manga.lang,
                         }"
                     />

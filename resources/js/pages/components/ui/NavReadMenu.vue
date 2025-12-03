@@ -13,16 +13,16 @@ import PagReguler from "../partials/button/PagReguler.vue";
 import PageMenu from "./PageMenu.vue";
 import LangNavButton from "../partials/button/LangNavButton.vue";
 import { useStoreToDownOrUp } from "../../stores/storeToDownOrUp";
-import { useCompoToDownOrUp } from "../../composable/compoUpDownAnim";
 import { useCompoUtilsShowDown } from "../../utils/composabeUtils";
 import { storeToRefs } from "pinia";
 import { useAdvanceSetting } from "../../stores/useAdvanceSetting";
+import { useSingleDrop } from "../../stores/useSingleDrop";
 
 const { nextViewerMode } = useMangaViewer();
 const { readMangaViewer } = storeToRefs(useMangaViewer());
 const { nextMangaSizeMode } = useMangaSize();
 const { readModeSize, readModeStatus } = storeToRefs(useMangaSize());
-const { nextPositionMode  , instanceProxy } = useProgressButton();
+const { nextPositionMode, instanceProxy } = useProgressButton();
 const { readTypePosition } = storeToRefs(useProgressButton());
 const { nextReadingDirecMode } = useReadingDirec();
 const { readDirec } = storeToRefs(useReadingDirec());
@@ -40,7 +40,10 @@ const { pages, showPage } = useSlidePage();
 const { stateShowDown } = useStoreToDownOrUp();
 const { modalError, readStyleError, modalSetting, readStyleSetting } =
     storeToRefs(useStoreToDownOrUp());
-const { compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
+const { selectLangById } = useSingleDrop();
+const { readDropLangs, readStyleDropLangs, readLangByStatus } = storeToRefs(
+    useSingleDrop()
+);
 const { showDown } = useCompoUtilsShowDown();
 const { swip } = useAdvanceSetting();
 </script>
@@ -92,8 +95,8 @@ const { swip } = useAdvanceSetting();
                 <div
                     @click="
                         showDown(
-                            compuToDownOrUp.readDropLangs.value,
-                            compuToDownOrUp.readStyleDropLangs.value
+                            readDropLangs,
+                            readStyleDropLangs
                         )
                     "
                     class="relative flex items-center justify-center w-full"
@@ -102,25 +105,27 @@ const { swip } = useAdvanceSetting();
                         >Language:</span
                     >
                     <span class="text-md pl-1 text-white">{{
-                        compuToDownOrUp.readLangByStatus.value.lang
+                        readLangByStatus.lang
                     }}</span>
                 </div>
                 <!-- List Bahasa -->
                 <div
-                    v-if="compuToDownOrUp.readDropLangs.value.status"
+                    v-if="readDropLangs.status"
                     :class="[
-                        compuToDownOrUp.readStyleDropLangs.value.style,
+                        readStyleDropLangs.style,
                         'w-full flex flex-col absolute left-0 top-13 border-1 border-blue-600/30 origin-top bg-slate-800 z-10 rounded-lg  overflow-hidden',
                     ]"
                 >
                     <LangNavButton
                         @click="
                             selectLangById(
-                                compuToDownOrUp.readDropLangs.value.language,
-                                lang.id
+                                readDropLangs.language,
+                                lang.id,
+                                readDropLangs,
+                                readStyleDropLangs
                             )
                         "
-                        v-for="lang in compuToDownOrUp.readDropLangs.value
+                        v-for="lang in readDropLangs
                             .language"
                         :key="lang.id"
                         :title="lang.lang"
@@ -197,7 +202,7 @@ const { swip } = useAdvanceSetting();
                     class="w-full h-13 px-3 bg-slate-800 rounded-xl cursor-pointer"
                 />
                 <BoxIcon
-                    @click="nextReadingDirecMode(swip[0] , instanceProxy )"
+                    @click="nextReadingDirecMode(swip[0], instanceProxy)"
                     :options="{
                         title: `${readDirec.title}`,
                         icon: 'fas fa-exclamation-triangle',

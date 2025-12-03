@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { computed, reactive } from "vue";
-import { useCompoToDownOrUp } from "../composable/compoUpDownAnim";
 import { useUtils } from "../utils/utilsFunctionStore";
 import { useThemeGlobal } from "../theme/globalStyle";
 import { useCompoUtilsShowDown } from "../utils/composabeUtils";

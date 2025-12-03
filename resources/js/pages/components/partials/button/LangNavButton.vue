@@ -2,7 +2,8 @@
 
 const data = defineProps({
     title: String,
-    url: String
+    url: String ,
+    chap: String 
 })
 </script>
 <template>
@@ -10,6 +11,6 @@ const data = defineProps({
         <div class="w-7 h-4">
             <img :src="data.url" alt="Indonesia" class="w-full h-full  bg-cover">
         </div>
-        <h2 class="ml-4 text-[14px] ">{{ data.title }}</h2>
+        <h2 class="ml-4 text-[14px] ">{{ data.title  + " (" + data.chap + ")"}} </h2>
     </div>
 </template>
