@@ -54,25 +54,25 @@ const emits = defineEmits(["select-type"]);
             />
         </div>
         <div class="h-full flex flex-col flex-1 px-5">
-            <div class="pt-2 flex justify-between">
-                <div>
+            <div class="pt-2 flex flex-col">
+                <div class="w-full flex justify-between">
                     <h1 class="text-[15px] text-sky-600">
                         {{ props.manga.type }}
                     </h1>
-                    <h1 class="text-white">{{ props.manga.title }}</h1>
-                </div>
-                <div class="flex gap-x-1">
-                    <div
-                        @click="selectTypeMangaById(type.id, typeManga , props.manga.idManga , readType)"
-                        v-for="type in typeManga"
-                        :class="[
-                            type.style,
-                            'flex justify-center items-center text-[8px] rounded-lg border-1 p-1  h-5  text-white tracking-widest manga-smooth-transition',
-                        ]"
-                    >
-                        {{ type.title }}
+                    <div class="flex gap-x-1">
+                        <div
+                            @click="selectTypeMangaById(type.id, typeManga , props.manga.idManga , readType)"
+                            v-for="type in typeManga"
+                            :class="[
+                                type.style,
+                                'flex justify-center items-center text-[8px] rounded-lg border-1 p-1  h-5  text-white tracking-widest manga-smooth-transition',
+                            ]"
+                        >
+                            {{ type.title }}
+                        </div>
                     </div>
                 </div>
+                <h1 class="text-white max-[554px]:text-[12px] w-full">{{ props.manga.title }}</h1>
             </div>
             <div
                 class="flex flex-col gap-y-1 items-center justify-center pt-[2dvh]"

@@ -1,8 +1,8 @@
 import { ref, computed, watch } from "vue";
 import { Manga } from "../../data/dataSearch";
 import { useThemeGlobal } from "../theme/globalStyle";
-import { useCompoUtilsDropDown } from "../utils/composabeUtils";
 import { mangaGenres } from "../../data/dataManga";
+import { useCompoUtilsDropDown } from "../utils/composabeUtils";
 import { useUtils } from "../utils/utilsFunctionStore";
 import { useProvideDataDropDown } from "./data/dataDropdown";
 
@@ -65,7 +65,7 @@ export const useDropDownSearch = () => {
 //Dekstop
 export const useCompoDropdownHeaderLarge = () => {
     const { propertyDropDownHeader } = useProvideDataDropDown();
-
+    console.log(propertyDropDownHeader[0])
     const dataDropDownHeader = ref(
         propertyDropDownHeader.map((el, index) => {
             return {
@@ -162,7 +162,7 @@ export const useCompoDropDownHeader = () => {
     return {
         compuDropHeader: {
             concatDrop,
-            isDropActive,                                                                                                                                                    
+            isDropActive,
         },
         runDropDownHeader,
     };

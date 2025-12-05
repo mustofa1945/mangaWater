@@ -1,6 +1,8 @@
-import { mangaGenres, types } from "../../../data/dataManga";
-
 import { useCompoUtilsDropDown } from "../../utils/composabeUtils";
+import { handleTypeService } from "../../services/typeService";
+import { ref , watchEffect } from "vue";
+import { mangaGenres } from "../../../data/dataManga";
+
 
 const year = [];
 
@@ -18,7 +20,7 @@ const {
     length,
     recently,
     year: makedYear,
-    langueges
+    langueges,
 } = {
     manga: ["manga", "One-Shot", "Doujinshi", "Novel", "Manhua", "Manwua"],
     langueges: [
@@ -61,8 +63,19 @@ const {
     year,
 };
 
-export const useProvideDataDropDown = () => {
+export const useProvideDataDropDown =  () => {
+    const types = ref(null);
+
+    const genres = ref(null);   
+
     const { genaratePropertyObjects: runGenerate } = useCompoUtilsDropDown();
+
+    watchEffect(async() => {
+        const data = await handleTypeService()
+
+        types.value = data
+    })
+   
 
     const {
         objManga,
@@ -71,7 +84,7 @@ export const useProvideDataDropDown = () => {
         objRecently,
         objYear,
         objStatus,
-        objLang
+        objLang,
     } = {
         objManga: runGenerate(manga),
         objMangaGenres: runGenerate(mangaGenres),
@@ -79,7 +92,7 @@ export const useProvideDataDropDown = () => {
         objLength: runGenerate(length),
         objRecently: runGenerate(recently),
         objYear: runGenerate(makedYear),
-        objLang:runGenerate(langueges)
+        objLang: runGenerate(langueges),
     };
 
     const propertyDropdownSearch = [
@@ -143,25 +156,24 @@ export const useProvideDataDropDown = () => {
         },
     ];
 
-
-    const propertyDropDownHeader =  [
-            {
+    const propertyDropDownHeader = [
+        {
             id: 1,
             title: "Types",
-            dataDrop: types,
+            dataDrop: types.value,
             property: "w-[9rem] flex-col text-[16px]",
-            height : 'h-[10rem]',
-            childWidth : null
+            height: "h-[10rem]",
+            childWidth: null,
         },
         {
             id: 2,
             title: "Genres",
-            dataDrop: mangaGenres,
+            dataDrop: genres.value,
             property: "flex-wrap w-[30rem] text-[15px]",
-            height : 'h-[26rem]',
-            childWidth : 'w-[33%] h-[1.7rem] flex items-center'
+            height: "h-[26rem]",
+            childWidth: "w-[33%] h-[1.7rem] flex items-center",
         },
-    ]
+    ];
 
-    return { propertyDropdownSearch , propertyDropDownHeader};
+    return { propertyDropdownSearch, propertyDropDownHeader };
 };

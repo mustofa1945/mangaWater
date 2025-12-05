@@ -1,5 +1,5 @@
 <script setup>
-import { defineAsyncComponent, ref } from "vue";
+import { defineAsyncComponent, onMounted, ref, watchEffect } from "vue";
 //Component
 import BoxIcon from "../partials/box/BoxIcon.vue";
 import HeaderMiddle from "../responsif/header/HeaderMiddle.vue";
@@ -40,7 +40,7 @@ defineOptions({ inheritAttrs: false });
     <nav
         v-bind="$attrs"
         v-showAndClose="readHeader.delayEffect"
-        :class="`flex bg-primary saturate-60  items-center justify-between  p-2 z-30  `"
+        :class="`flex bg-[#07090A] saturate-60  items-center justify-between  p-2 z-30  `"
     >
         <div
             class="w-[5%] max-[1200px]:w-[50px] flex gap-x-1 justify-center items-center"
@@ -82,28 +82,28 @@ defineOptions({ inheritAttrs: false });
 
             <Link
                 v-if="!menu.status"
-                class="text-gray-400 hover:text-gray-100 transition-all duration-200 px-2 py-1 rounded text-x lg"
+                class="text-[#FFFFFF] hover:text-[#18715F] transition-all duration-200 px-2 py-1 rounded text-x lg"
                 href="#"
             >
                 Newest
             </Link>
             <Link
                 v-if="!menu.status"
-                class="text-gray-400 hover:text-gray-100 transition-all duration-200 px-2 py-1 rounded text-xlg"
+                class="text-[#FFFFFF] hover:text-[#18715F] transition-all duration-200 px-2 py-1 rounded text-xlg"
                 href="#"
-            >
+            >   
                 Updated
             </Link>
             <Link
                 v-if="!menu.status"
-                class="text-gray-400 hover:text-gray-100 transition-all duration-200 text-lg"
+                class="text-[#FFFFFF] hover:text-[#18715F] transition-all duration-200 text-lg"
                 href="#"
             >
                 Added
             </Link>
             <Link
                 v-if="!menu.status"
-                class="text-gray-400 hover:text-gray-100 transition-all duration-200 text-lg"
+                class="text-[#FFFFFF] hover:text-[#18715F] transition-all duration-200 text-lg"
                 href="#"
             >
                 <i class="fas fa-random"></i>

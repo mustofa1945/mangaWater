@@ -916,6 +916,7 @@ export const dataRecentlyUpdate = [
         ],
     },
 ];
+
 export const types = [
     "Manga",
     "One Shot",
