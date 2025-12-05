@@ -6,8 +6,8 @@ import { useProvideDataShowAndClose } from "./data/dataShowAndClose";
 
 export const useShowClose = defineStore("showClose", () => {
     const { langActive } = useProvideUtilsData();
-   
-    let onMenu = ref(false)
+
+    let onMenu = ref(false);
 
     const {
         dataShowAndClose: { navReadMenu, comment, header },
@@ -35,10 +35,9 @@ export const useShowClose = defineStore("showClose", () => {
             page.forEach((el) => {
                 el.display = "hidden";
             });
-           onMenu.value = !onMenu.value ? true : false
-           console.log(onMenu.value)
+            onMenu.value = !onMenu.value ? true : false;
+            console.log(onMenu.value);
         }, 200);
-
 
         switchActive(partialProxy, proxy);
     };
@@ -53,8 +52,6 @@ export const useShowClose = defineStore("showClose", () => {
         langActive,
         showOrHidden,
         createShowCloseComputedGroup,
-        dataReact : {
-            onMenu
-        }
+        onMenu,
     };
 });

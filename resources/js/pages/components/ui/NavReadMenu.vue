@@ -13,34 +13,51 @@ import PagReguler from "../partials/button/PagReguler.vue";
 import PageMenu from "./PageMenu.vue";
 import LangNavButton from "../partials/button/LangNavButton.vue";
 import { useStoreToDownOrUp } from "../../stores/storeToDownOrUp";
-import { useCompoToDownOrUp } from "../../composable/compoUpDownAnim";
-import { watchEffect } from "vue";
+import { useCompoUtilsShowDown } from "../../utils/composabeUtils";
+import { storeToRefs } from "pinia";
+import { useAdvanceSetting } from "../../stores/useAdvanceSetting";
+import { useSingleDrop } from "../../stores/useSingleDrop";
 
-const { computedViewer, nextViewerMode } = useMangaViewer();
-const { computedMangaSize, nextMangaSizeMode } = useMangaSize();
-const { computedProgressBar, nextPositionMode } = useProgressButton();
-const { compuReadDirec, nextReadingDirecMode } = useReadingDirec();
+const { nextViewerMode } = useMangaViewer();
+const { readMangaViewer } = storeToRefs(useMangaViewer());
+const { nextMangaSizeMode } = useMangaSize();
+const { readModeSize, readModeStatus } = storeToRefs(useMangaSize());
+const { nextPositionMode, instanceProxy } = useProgressButton();
+const { readTypePosition } = storeToRefs(useProgressButton());
+const { nextReadingDirecMode } = useReadingDirec();
+const { readDirec } = storeToRefs(useReadingDirec());
 const {
     showOrHidden,
     createShowCloseComputedGroup,
     navReadMenu,
     comment,
     header,
-    dataReact
 } = useShowClose();
+const { onMenu } = storeToRefs(useShowClose());
 const { readNavReadMenu, readComment, readHeader } =
     createShowCloseComputedGroup();
 const { pages, showPage } = useSlidePage();
-const { compuPiniaToDownOrUp, stateShowDown } = useStoreToDownOrUp();
-const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
-
+const { stateShowDown } = useStoreToDownOrUp();
+const { modalError, readStyleError, modalSetting, readStyleSetting } =
+    storeToRefs(useStoreToDownOrUp());
+const { selectLangById } = useSingleDrop();
+const { readDropLangs, readStyleDropLangs, readLangByStatus } = storeToRefs(
+    useSingleDrop()
+);
+const { showDown } = useCompoUtilsShowDown();
+const { swip } = useAdvanceSetting();
 </script>
 
 <template>
-    <div :class="[readNavReadMenu.instanceParent , 'h-full duration-250 transition-all max-[1200px]:fixed  right-0 top-0 z-30']">
+    <div
+        :class="[
+            readNavReadMenu.instanceParent,
+            'h-full duration-250 transition-all max-[1200px]:fixed  right-0 top-0 z-30',
+        ]"
+    >
         <div
             v-showAndClose="readNavReadMenu.delayEffect"
-            :class="`Navread-menu py-2 pb-5 hidden px-5 h-full w-full bg-slate-900  flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden `"
+            :class="`Navread-menu  py-2 pb-5 hidden px-5 h-full w-full bg-slate-900  flex-col gap-y-2 transition-all duration-250 text-white/90 overflow-y-auto overflow-hidden `"
         >
             <!-- Title -->
             <div class="flex justify-between items-center gap-x-2">
@@ -49,7 +66,10 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
                 </h1>
                 <PagReguler
                     @click="showOrHidden(navReadMenu, readNavReadMenu, pages)"
-                    :options="{ size: 'text-md', position: 'right' }"
+                    :options="{
+                        size: 'text-md',
+                        position: 'fas fa-chevron-right',
+                    }"
                     class="bg-slate-800/80 p-2 h-[4dvh] w-[5dvh]"
                 />
             </div>
@@ -75,8 +95,8 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
                 <div
                     @click="
                         showDown(
-                            compuToDownOrUp.readDropLangs.value,
-                            compuToDownOrUp.readStyleDropLangs.value
+                            readDropLangs,
+                            readStyleDropLangs
                         )
                     "
                     class="relative flex items-center justify-center w-full"
@@ -85,17 +105,27 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
                         >Language:</span
                     >
                     <span class="text-md pl-1 text-white">{{
-                        compuToDownOrUp.readLangByStatus.value.lang
+                        readLangByStatus.lang
                     }}</span>
                 </div>
                 <!-- List Bahasa -->
                 <div
-                    v-if="compuToDownOrUp.readDropLangs.value.status"
-                    :class="[compuToDownOrUp.readStyleDropLangs.value.style , 'w-full flex flex-col absolute left-0 top-13 border-1 border-blue-600/30 origin-top bg-slate-800 z-10 rounded-lg  overflow-hidden']"
+                    v-if="readDropLangs.status"
+                    :class="[
+                        readStyleDropLangs.style,
+                        'w-full flex flex-col absolute left-0 top-13 border-1 border-blue-600/30 origin-top bg-slate-800 z-10 rounded-lg  overflow-hidden',
+                    ]"
                 >
                     <LangNavButton
-                        @click="selectLangById(lang.id)"
-                        v-for="lang in compuToDownOrUp.readDropLangs.value
+                        @click="
+                            selectLangById(
+                                readDropLangs.language,
+                                lang.id,
+                                readDropLangs,
+                                readStyleDropLangs
+                            )
+                        "
+                        v-for="lang in readDropLangs
                             .language"
                         :key="lang.id"
                         :title="lang.lang"
@@ -134,12 +164,7 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
                     class="w-full h-13 px-3 bg-slate-800 rounded-xl cursor-pointer"
                 />
                 <BoxIcon
-                    @click="
-                        stateShowDown(
-                            compuPiniaToDownOrUp.modalError,
-                            compuPiniaToDownOrUp.readStyleError
-                        )
-                    "
+                    @click="stateShowDown(modalError, readStyleError)"
                     :options="{
                         title: 'Report Error',
                         icon: 'fas fa-exclamation-triangle',
@@ -161,57 +186,41 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
                 <BoxIcon
                     @click="nextViewerMode()"
                     :options="{
-                        title: computedViewer.readMangaViewer.title,
-                        icon: computedViewer.readMangaViewer.icon,
+                        title: readMangaViewer.title,
+                        icon: readMangaViewer.icon,
                         reverse: false,
                     }"
                     class="w-full h-13 px-3 bg-slate-800 rounded-xl cursor-pointer"
                 />
                 <BoxIcon
-                    @click="
-                        nextMangaSizeMode(
-                            computedMangaSize.readModeStatus,
-                            computedMangaSize.readModeSize,
-                            computedViewer.readMangaViewer
-                        )
-                    "
+                    @click="nextMangaSizeMode(readModeStatus)"
                     :options="{
-                        title: computedMangaSize.readModeSize.name,
-                        icon: computedMangaSize.readModeSize.icon,
+                        title: readModeSize.name,
+                        icon: readModeSize.icon,
                         reverse: false,
                     }"
                     class="w-full h-13 px-3 bg-slate-800 rounded-xl cursor-pointer"
                 />
                 <BoxIcon
-                    @click="nextReadingDirecMode()"
+                    @click="nextReadingDirecMode(swip[0], instanceProxy)"
                     :options="{
-                        title: `${compuReadDirec.readDirec.title}`,
+                        title: `${readDirec.title}`,
                         icon: 'fas fa-exclamation-triangle',
                         reverse: false,
                     }"
                     class="w-full h-13 px-3 bg-slate-800 rounded-xl cursor-pointer"
                 />
                 <BoxIcon
-                    @click="
-                        nextPositionMode(
-                            computedProgressBar.readTypePosition,
-                            computedViewer.readMangaViewer
-                        )
-                    "
+                    @click="nextPositionMode(readTypePosition, readMangaViewer)"
                     :options="{
-                        title: `Bottom Progress ${computedProgressBar.readTypePosition.position}`,
+                        title: `Bottom Progress ${readTypePosition.position}`,
                         icon: 'fas fa-info-circle',
                         reverse: false,
                     }"
                     class="w-full h-13 px-3 bg-slate-800 rounded-xl cursor-pointer"
                 />
                 <BoxIcon
-                    @click="
-                        stateShowDown(
-                            compuPiniaToDownOrUp.modalSetting,
-                            compuPiniaToDownOrUp.readStyleSetting
-                        )
-                    "
+                    @click="stateShowDown(modalSetting, readStyleSetting)"
                     :options="{
                         title: 'Advanced Settings',
                         icon: 'fas fa-exclamation-triangle',
@@ -221,16 +230,17 @@ const { showDown, compuToDownOrUp, selectLangById } = useCompoToDownOrUp();
                 />
             </div>
             <!-- Simpan Transform dalam tag yang tidak mengalami DOM Supaya tidak terjadi bug new stacking context -->
-            <div  class="w-full fixed top-13 z-50">
-                <PageMenu v-if="dataReact.onMenu"
-                    v-for="page in pages"
-                    :page="page.status"
-                    class="w-full"
-                    @slidePage="showPage(page.id)"
-                    :input="page.input"
-                    :display="page.display"
-                />
-            </div>
+        </div>
+        <div class="fixed top-13 z-50">
+            <PageMenu
+                v-if="onMenu"
+                v-for="page in pages"
+                :page="page.status"
+                class="w-[21.1rem]"
+                @slidePage="showPage(page.id)"
+                :input="page.input"
+                :display="page.display"
+            />
         </div>
     </div>
 </template>

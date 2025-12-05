@@ -1,8 +1,11 @@
 <script setup>
+import { storeToRefs } from "pinia";
 import { useDropDownSearch } from "../../composable/compoDropDown";
 import { useStoreToDownOrUp } from "../../stores/storeToDownOrUp";
 
-const { compuPiniaToDownOrUp, stateShowDown } = useStoreToDownOrUp();
+const {stateShowDown } = useStoreToDownOrUp();
+
+const {modalGenres , readStyleModalGenres} = storeToRefs(useStoreToDownOrUp())
 
 const { selectItemDropById, compuDropSearch } = useDropDownSearch();
 </script>
@@ -11,16 +14,16 @@ const { selectItemDropById, compuDropSearch } = useDropDownSearch();
     <div
         @click="
             stateShowDown(
-                compuPiniaToDownOrUp.modalGenres,
-                compuPiniaToDownOrUp.readStyleModalGenres
+                modalGenres,
+                readStyleModalGenres
             )
         "
-        v-if="compuPiniaToDownOrUp.modalGenres.status"
+        v-if="modalGenres.status"
         class="fixed w-full h-full max-[950px]:flex hidden top-0 items-center justify-center bg-black/50 bg-opacity-10 z-50"
     >
         <div
             @click.stop
-            :class="[compuPiniaToDownOrUp.readStyleModalGenres.style , 'overflow-y-scroll gap-y-1 bg-slate-900 flex-shrink-0 transition-all duration-200 flex flex-col h-[20rem] w-[85%]']"
+            :class="[readStyleModalGenres.style , 'overflow-y-scroll gap-y-1 bg-slate-900 flex-shrink-0 transition-all duration-200 flex flex-col h-[20rem] w-[85%]']"
         >
             <div
                 @click="

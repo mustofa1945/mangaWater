@@ -1,4 +1,5 @@
 <script setup>
+import { storeToRefs } from "pinia";
 import { useStoreToDownOrUp } from "../../stores/storeToDownOrUp";
 import { useAdvanceSetting } from "../../stores/useAdvanceSetting";
 import Image from "../partials/setting/Image.vue";
@@ -7,16 +8,17 @@ import ShortCut from "../partials/setting/ShortCut.vue";
 
 const { advanceSetting, selectSetting } = useAdvanceSetting();
 const [pageLayout, image, shortCut] = advanceSetting;
-const { compuPiniaToDownOrUp, stateShowDown } = useStoreToDownOrUp();
+const {  stateShowDown } = useStoreToDownOrUp();
+const { modalSetting , readStyleSetting } = storeToRefs(useStoreToDownOrUp())
 </script>
 <template>
     <div
-        v-if="compuPiniaToDownOrUp.modalSetting.status"
+        v-if="modalSetting.status"
         class="fixed bg-black/40 flex flex-col items-center justify-center px-2 z-50 w-full h-full"
     >
         <div
             :class="[
-                compuPiniaToDownOrUp.readStyleSetting.style,
+                readStyleSetting.style,
                 'bg-gray-800 text-white w-140 max-[576px]:w-full  rounded-lg shadow-lg px-6 py-2 h-120',
             ]"
         >
@@ -25,8 +27,8 @@ const { compuPiniaToDownOrUp, stateShowDown } = useStoreToDownOrUp();
                 <button
                     @click="
                         stateShowDown(
-                            compuPiniaToDownOrUp.modalSetting,
-                            compuPiniaToDownOrUp.readStyleSetting
+                            modalSetting,
+                            readStyleSetting
                         )
                     "
                     class="text-gray-400 text-2xl hover:text-white"

@@ -5,13 +5,15 @@ import Footer from "../pages/components/ui/Footer.vue";
 import InputSearchMobile from "../pages/mobile/components/InputSearchMobile.vue";
 import GenreModal from "../pages/mobile/components/GenreModal.vue";
 import YearModal from "../pages/mobile/components/YearModal.vue";
-import { useCompoToDownOrUp } from "../pages/composable/compoUpDownAnim";
 import { useStoreToDownOrUp } from "../pages/stores/storeToDownOrUp";
+import { storeToRefs } from "pinia";
 const Login = defineAsyncComponent(() =>
     import("../pages/components/ui/Login.vue")
 );
 
-const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
+const { stateShowDown } = useStoreToDownOrUp();
+const { modalLogin, readStyleModalLogin } = storeToRefs(useStoreToDownOrUp());
+
 </script>
 
 <template>
@@ -26,12 +28,12 @@ const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
         <Login
             @useToDownOrUp="
                 stateShowDown(
-                    compuPiniaToDownOrUp.modalLogin,
-                    compuPiniaToDownOrUp.readStyleModalLogin
+                    modalLogin,
+                    readStyleModalLogin
                 )
             "
-            :readModalLogin="compuPiniaToDownOrUp.modalLogin"
-            :readStyleLogin="compuPiniaToDownOrUp.readStyleModalLogin"
+            :readModalLogin="modalLogin"
+            :readStyleLogin="readStyleModalLogin"
         />
         <InputSearchMobile class="max-[576px]:flex hidden" />
         <GenreModal />

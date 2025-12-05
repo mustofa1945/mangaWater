@@ -1,6 +1,6 @@
 import { ref, watchEffect } from "vue";
 import { useThemeGlobal } from "../../theme/globalStyle";
-import { setActivePinia, getActivePinia } from "pinia";
+import { setActivePinia, getActivePinia, storeToRefs } from "pinia";
 import { useReadingDirec } from "../useReadingDirec";
 export const useProvideDataProgressBar = () => {
     if (!getActivePinia()) {
@@ -8,7 +8,7 @@ export const useProvideDataProgressBar = () => {
         setActivePinia(pinia);
     }
    
-    const { compuReadDirec } = useReadingDirec();
+    const { readDirec} = storeToRefs(useReadingDirec());
 
     const { border: b } = useThemeGlobal();
     //Simpan element
@@ -78,7 +78,7 @@ export const useProvideDataProgressBar = () => {
     ]);
 
     watchEffect(() => {
-        const direc = compuReadDirec.readDirec.direc;
+        const direc = readDirec.direc;
 
         const [, top, , , bottom] = typePositionScrollBar.value;
 

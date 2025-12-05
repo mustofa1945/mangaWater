@@ -1,6 +1,4 @@
 <script setup>
-import { computed, ref } from "vue";
-import { useUtils } from "./utils/utilsFunctionStore";
 import { useCompoStar } from "./composable/compoStar";
 import DefaultLayout from "../layout/DefaultLayout.vue";
 import BoxLight from "./components/ui/BoxLight.vue";
@@ -8,39 +6,29 @@ import DetailsManga from "./components/partials/manga/DetailsManga.vue";
 import NavManga from "./components/partials/manga/NavManga.vue";
 import Chapter from "./components/ui/Chapter.vue";
 import Volume from "./components/ui/Volume.vue";
-
-const typeManga = ref([
-    {
-        id: 1,
-        status: true,
-        title: "CHAPTER",
-        property: "bg-sky-600",
-    },
-    {
-        id: 2,
-        status: false,
-        title: "VOLUME",
-        property: "hover:bg-gray-300",
-    },
-]);
-
-const { findByStatus } = useUtils();
-
-const getActiveStatus = computed(() => findByStatus(typeManga.value));
-
-const selectTypeMangaById = (id) => {
-    typeManga.value.forEach((el) => {
-        if (id === el.id) {
-            el.status = true;
-            el.property = "bg-sky-600";
-        } else {
-            el.status = false;
-            el.property = "hover:bg-gray-300/20";
-        }
-    });
-};
+import LangNavButton from "./components/partials/button/LangNavButton.vue";
+import { langsWithChapter } from "../data/dataManga";
+import { useSelect } from "./stores/useSelectEl";
+import { storeToRefs } from "pinia";
+import { useUtils } from "./utils/utilsFunctionStore";
+import { useCompoUtilsShowDown } from "./utils/composabeUtils";
+import { useSingleDrop } from "./stores/useSingleDrop";
 
 const { onOverHoverStar, dataStar, grade, scor } = useCompoStar();
+
+const { selectTypeMangaById } = useSelect();
+
+const { typeManga, getActiveStatus } = storeToRefs(useSelect());
+
+const { showDown } = useCompoUtilsShowDown();
+
+const {
+    readDropLangWithChap,
+    readStyleDropLangWithChap,
+    readLangWithChapByStatus,
+} = storeToRefs(useSingleDrop());
+
+const { selectLangById } = useSingleDrop();
 
 defineOptions({ layout: DefaultLayout });
 </script>
@@ -137,7 +125,7 @@ defineOptions({ layout: DefaultLayout });
                         v-for="type in typeManga"
                         @click="() => selectTypeMangaById(type.id)"
                         :class="[
-                            type.property,
+                            type.style,
                             'flex justify-center items-center h-full w-1/2 text-sm text-white tracking-widest manga-smooth-transition',
                         ]"
                     >
@@ -148,11 +136,17 @@ defineOptions({ layout: DefaultLayout });
                     class="align-center justify-between bg-slate-900 p-3 flex-1"
                 >
                     <div
-                        class="align-center rounded-4xl bg-gray-800 py-1.5 px-4 hover:contrast-70 duration-150 transition-all"
+                        @click="
+                            showDown(
+                                readDropLangWithChap,
+                                readStyleDropLangWithChap
+                            )
+                        "
+                        class="align-center relative rounded-4xl bg-gray-800 py-1.5 px-4 hover:contrast-70 duration-150 transition-all"
                     >
                         <i class="fas fa-globe mr-2 manga-caption-text"></i>
                         <span class="manga-caption-text max-[768px]:hidden"
-                            >Language: EN</span
+                            >Language: {{ readLangWithChapByStatus.lang }}</span
                         >
                         <span class="manga-caption-text md:hidden">Lang :</span>
                     </div>
@@ -166,6 +160,30 @@ defineOptions({ layout: DefaultLayout });
                             class="fas fa-search text-sm absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                         ></i>
                     </div>
+                </div>
+                <div
+                    v-if="readDropLangWithChap.status"
+                    :class="[
+                        readStyleDropLangWithChap.style,
+                        'w-[14rem] flex flex-col absolute left-3  z-30  top-26 border-1 border-blue-600/30 origin-top bg-slate-800  rounded-lg  overflow-hidden',
+                    ]"
+                >
+                    <LangNavButton
+                        @click="
+                            selectLangById(
+                                readDropLangWithChap.language,
+                                lang.id,
+                                readDropLangWithChap,
+                                readStyleDropLangWithChap
+                            )
+                        "
+                        v-for="lang in readDropLangWithChap.language"
+                        :key="lang.id"
+                        :title="lang.lang"
+                        :chap="lang.chapter"
+                        :url="lang.url"
+                        :class="`w-full h-[5dvh] px-3 z-20  ${lang.style}`"
+                    />
                 </div>
                 <!-- List Chapter -->
                 <Chapter v-if="1 === getActiveStatus.id" />

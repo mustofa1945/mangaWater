@@ -14,16 +14,13 @@ export const useMangaSize = defineStore("mangaSize", () => {
         findByStatus(readModeStatus.value.typeSizes)
     );
 
-
     const nextMangaSizeMode = (changeMode) =>
         switchActive(changeMode, mangaSizeSetting.value);
 
     return {
         nextMangaSizeMode,
         mangaSizeSetting,
-        computedMangaSize : {
-             readModeStatus,
-             readModeSize
-        }
+        readModeStatus,
+        readModeSize,
     };
 });

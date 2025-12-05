@@ -1,4 +1,5 @@
 <script setup>
+import { storeToRefs } from "pinia";
 import { useProgressButton } from "../../stores/useButtonProgress";
 import { useReadingDirec } from "../../stores/useReadingDirec";
 
@@ -8,7 +9,8 @@ const status = defineProps({
     longStrip: Boolean,
 });
 
-const { compuReadDirec } = useReadingDirec();
+const { readDirec } = storeToRefs(useReadingDirec());
+
 const { instanceProxy, scrollDetectStatus } = useProgressButton();
 </script>
 <template>
@@ -16,7 +18,7 @@ const { instanceProxy, scrollDetectStatus } = useProgressButton();
     <div
         v-if="status.singlePage"
         :class="[
-            compuReadDirec.readDirec.direc,
+            readDirec.direc,
             'Single-page h-full w-full flex overflow-x-hidden',
         ]"
     >

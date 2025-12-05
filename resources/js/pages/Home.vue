@@ -10,15 +10,11 @@ import DefaultLayout from "../layout/DefaultLayout.vue";
 import { dataManga } from "../data/dataManga";
 import { typeMangaSearch } from "../data/dataSearch";
 import { useSlider, useSliderProgressBar } from "./composable/compoSLider";
-import { onMounted, useTemplateRef, watchEffect } from "vue";
+import { onMounted, toRaw, useTemplateRef, watchEffect, ref } from "vue";
+import { useSelect } from "./stores/useSelectEl";
+import { storeToRefs } from "pinia";
 
 const { dataSlider, next, prev, setElement, computedSlider } = useSlider();
-
-watchEffect(() => {
-    dataSlider.value.forEach((el) => {
-        console.log(el);
-    });
-});
 
 const {
     dataSubSlider,
@@ -32,6 +28,16 @@ const {
 const sliders = useTemplateRef("sliders");
 
 const sliderBar = useTemplateRef("sliderBar");
+
+const { typeTime, typePrefix } = storeToRefs(useSelect());
+
+const { selectTypeTimeById } = useSelect();
+
+watchEffect(() => {
+    dataSlider.value.forEach((el) => {
+        console.log(el);
+    });
+});
 
 onMounted(() => {
     setSubElement(sliderBar.value);
@@ -55,7 +61,7 @@ defineOptions({ layout: DefaultLayout });
                                 :class="[
                                     computedSlider.readProperty.value
                                         .transition,
-                                    'home-top-slider group hover:opacity-10 bg-slate-800',
+                                    'home-top-slider group hover:contrast-110 bg-slate-800',
                                 ]"
                             >
                                 <CardManga :card="manga" />
@@ -108,9 +114,12 @@ defineOptions({ layout: DefaultLayout });
                     <div
                         class="w-1/2 flex justify-end items-center gap-x-2 text-gray-300"
                     >
-                        <span>Day</span>
-                        <span>Week</span>
-                        <span>Month</span>
+                        <span
+                            @click="selectTypeTimeById(type.id, typeTime)"
+                            v-for="type in typeTime"
+                            :class="[type.style]"
+                            >{{ type.title }}</span
+                        >
                     </div>
                 </div>
 
@@ -149,13 +158,14 @@ defineOptions({ layout: DefaultLayout });
                         class="align-center sm:flex-1 gap-x-2 sm:justify-end w-full"
                     >
                         <!-- Child Div dari Child Div Pertama -->
-                        <span class="text-sky-700 hover:text-secondary"
-                            >All</span
-                        >
                         <span
-                            v-for="type in typeMangaSearch"
-                            class="text-slate-400 text-md max-[576px]:text-sm hover:text-white/90 rounded duration-100"
-                            >{{ type }}</span
+                            @click="selectTypeTimeById(type.id, typePrefix)"
+                            v-for="type in typePrefix"
+                            :class="[
+                                type.style,
+                                ` text-md  max-[576px]:text-sm rounded duration-100`,
+                            ]"
+                            >{{ type.title }}</span
                         >
                         <div
                             class="center gap-x-2 max-[576px]:w-[50%] max-[576px]:justify-end"
@@ -183,12 +193,15 @@ defineOptions({ layout: DefaultLayout });
                     <CardRecentlyUpdate
                         v-for="manga in dataManga"
                         :key="manga.id"
+                        @select-type="selectTypeMangaById"
+                        :typeManga="typeManga"
                         :manga="{
+                            idManga: manga.id,
                             title: manga.title,
                             url: manga.url,
                             date: manga.date,
                             type: manga.type,
-                            chapter: manga.chapter,
+                            dataActive: manga.dataActive,
                             lang: manga.lang,
                         }"
                     />
@@ -203,7 +216,7 @@ defineOptions({ layout: DefaultLayout });
                     <h1
                         class="sm:text-2xl text-lg text-white/80 font-bold mb-2"
                     >
-                        Recently Update
+                        Manga Release
                     </h1>
                     <div class="align-center space-x-2">
                         <PagReguler

@@ -97,6 +97,8 @@ export const useProvideOneUtilsProgressBar = () => {
     const runScrollDetectStatus = async (instance) => {
         applyLogic((item) => {
             const reactEl = item.element.getBoundingClientRect().top;
+            //!!Refactor this
+            // const isElViewPort = reactEl < viewPortHeight - animationPoint
 
             if (reactEl < viewPortHeight - animationPoint) {
                 item.color = "bg-[#4169E1]/50";

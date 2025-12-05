@@ -17,28 +17,29 @@ const NextButton = defineAsyncComponent(() =>
 );
 // Layout
 import ReadLayout from "../layout/ReadLayout.vue";
+import { storeToRefs } from "pinia";
 
-const { computedMangaSize } = useMangaSize();
-const { computedViewer } = useMangaViewer();
+const { readModeSize } = storeToRefs(useMangaSize());
+const { readMangaViewer } = storeToRefs(useMangaViewer());
 const storeReadingDirec = useReadingDirec();
 const {
     typeMangaViewers: [singlePage, doublePage, longStrip],
 } = useMangaViewer();
-const { nextProgressCLick, prevProgressCLick, computedProgressBar } =
-    useProgressButton();
+const { nextProgressCLick, prevProgressCLick } = useProgressButton();
+const { readPage } = storeToRefs(useProgressButton());
 const { swip } = useAdvanceSetting();
+
 const longStripEl = useTemplateRef("itemLongStrip");
+
 const singleEl = useTemplateRef("itemSinglePageSwip");
-// const pageManga = ref(20)
+
 useCompoReadManga(longStripEl, singleEl);
 
 defineOptions({ layout: ReadLayout });
 </script>
 <template>
     <!-- Gambar Manga -->
-    <div
-        :class="`Instance-scroll full-size align-center justify-center `"
-    >
+    <div :class="`Instance-scroll full-size align-center justify-center `">
         <MangaViewer
             :singlePage="singlePage.status"
             :doublePage="doublePage.status"
@@ -49,22 +50,22 @@ defineOptions({ layout: ReadLayout });
                     ref="itemSinglePage"
                     v-if="!swip[0].status"
                     :class="[
-                        computedMangaSize.readModeSize.height,
-                        computedMangaSize.readModeSize.width,
-                        'border-green-400 bg-sky-500  z-10 mx-auto flex justify-center items-center text-4xl',
+                        readModeSize.height,
+                        readModeSize.width,
+                        'border-green-400 bg-sky-500  mx-auto flex justify-center items-center text-4xl',
                     ]"
                 >
-                    {{ computedProgressBar.readPage }}
+                    {{ readPage }}
                 </div>
                 <template v-else>
                     <div
                         ref="itemSinglePageSwip"
                         v-for="item in 30"
                         :class="[
-                            computedMangaSize.readModeSize.height,
-                            computedMangaSize.readModeSize.width,
+                            readModeSize.height,
+                            readModeSize.width,
                             'shrink-0 bg-red-900  mx-80 flex justify-center items-center text-4xl',
-                        ]"
+                        ]"  
                     >
                         {{ item }}
                     </div>
@@ -74,9 +75,13 @@ defineOptions({ layout: ReadLayout });
                 <div
                     ref="itemDoublePage"
                     v-for="index in 2"
-                    :class="[computedMangaSize.readModeSize.height , computedMangaSize.readModeSize.width , 'bg-sky-500  z-10 flex justify-center items-center text-4xl']"
+                    :class="[
+                        readModeSize.height,
+                        readModeSize.width,
+                        'bg-sky-500  z-10 flex justify-center items-center text-4xl',
+                    ]"
                 >
-                    {{ computedProgressBar.readPage }}
+                    {{ readPage }}
                 </div>
             </template>
             <template #longStrip>
@@ -85,8 +90,8 @@ defineOptions({ layout: ReadLayout });
                     value="30"
                     v-for="el in 30"
                     :class="[
-                        computedMangaSize.readModeSize.height,
-                        computedMangaSize.readModeSize.width,
+                        readModeSize.height,
+                        readModeSize.width,
                         'shrink-0 bg-sky-500 flex justify-center items-center text-4xl',
                     ]"
                 >
@@ -94,7 +99,7 @@ defineOptions({ layout: ReadLayout });
                 </div>
             </template>
         </MangaViewer>
-        <template v-if="computedViewer.readMangaViewer.id !== 3">
+        <template v-if="readMangaViewer.id !== 3">
             <template
                 v-for="direc in storeReadingDirec.readingDirec"
                 :key="direc.id"

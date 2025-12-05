@@ -1,5 +1,5 @@
 <script setup>
-import { defineAsyncComponent, ref } from "vue";
+import { defineAsyncComponent, onMounted, ref, watchEffect } from "vue";
 //Component
 import BoxIcon from "../partials/box/BoxIcon.vue";
 import HeaderMiddle from "../responsif/header/HeaderMiddle.vue";
@@ -12,12 +12,13 @@ import { useProgressButton } from "../../stores/useButtonProgress.js";
 import DropdownHeader from "../partials/dropdowns/DropdownHeader.vue";
 import { useCompoDropdownHeaderLarge } from "../../composable/compoDropDown.js";
 import { useStoreToDownOrUp } from "../../stores/storeToDownOrUp.js";
-
-const Login = defineAsyncComponent(() => import("./Login.vue"));
+import { storeToRefs } from "pinia";
 
 defineProps(["menu"]);
 
-const { computedProgressBar, instanceProxy } = useProgressButton();
+const { instanceProxy } = useProgressButton();
+
+const { readPage } = storeToRefs(useProgressButton());
 
 const { pages, showPage } = useSlidePage();
 
@@ -28,7 +29,9 @@ const { readHeader, readNavReadMenu } = createShowCloseComputedGroup();
 
 const { compuDropdownHeader, runDropdown } = useCompoDropdownHeaderLarge();
 
-const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
+const { stateShowDown } = useStoreToDownOrUp();
+
+const { modalLogin, readStyleModalLogin } = storeToRefs(useStoreToDownOrUp());
 
 let close = ref(false);
 defineOptions({ inheritAttrs: false });
@@ -37,7 +40,7 @@ defineOptions({ inheritAttrs: false });
     <nav
         v-bind="$attrs"
         v-showAndClose="readHeader.delayEffect"
-        :class="`flex bg-primary saturate-60  items-center justify-between  p-2 z-30  `"
+        :class="`flex bg-[#07090A] saturate-60  items-center justify-between  p-2 z-30  `"
     >
         <div
             class="w-[5%] max-[1200px]:w-[50px] flex gap-x-1 justify-center items-center"
@@ -53,7 +56,7 @@ defineOptions({ inheritAttrs: false });
             <Link href="/home" class="w-full max-[1200px]:w-[80%]">
                 <img
                     alt="MangaFire.io logo"
-                    :class="[menu.height , menu.widht , 'bg-cover']"
+                    :class="[menu.height, menu.widht, 'bg-cover']"
                     :src="`https://mangafire.to/assets/sites/mangafire/logo${
                         menu.status ? '-sm' : ''
                     }.png?v3`"
@@ -79,28 +82,28 @@ defineOptions({ inheritAttrs: false });
 
             <Link
                 v-if="!menu.status"
-                class="text-gray-400 hover:text-gray-100 transition-all duration-200 px-2 py-1 rounded text-x lg"
+                class="text-[#FFFFFF] hover:text-[#18715F] transition-all duration-200 px-2 py-1 rounded text-x lg"
                 href="#"
             >
                 Newest
             </Link>
             <Link
                 v-if="!menu.status"
-                class="text-gray-400 hover:text-gray-100 transition-all duration-200 px-2 py-1 rounded text-xlg"
+                class="text-[#FFFFFF] hover:text-[#18715F] transition-all duration-200 px-2 py-1 rounded text-xlg"
                 href="#"
-            >
+            >   
                 Updated
             </Link>
             <Link
                 v-if="!menu.status"
-                class="text-gray-400 hover:text-gray-100 transition-all duration-200 text-lg"
+                class="text-[#FFFFFF] hover:text-[#18715F] transition-all duration-200 text-lg"
                 href="#"
             >
                 Added
             </Link>
             <Link
                 v-if="!menu.status"
-                class="text-gray-400 hover:text-gray-100 transition-all duration-200 text-lg"
+                class="text-[#FFFFFF] hover:text-[#18715F] transition-all duration-200 text-lg"
                 href="#"
             >
                 <i class="fas fa-random"></i>
@@ -113,22 +116,17 @@ defineOptions({ inheritAttrs: false });
         <!-- Chapter -->
         <div
             v-if="menu.status"
-            class="gap-x-3 flex max-[408px]:text-sm max-[408px]:w-60  text-white cursor-pointer"
+            class="gap-x-3 flex max-[408px]:text-sm max-[408px]:w-60 text-white cursor-pointer"
         >
-            <span  @click="showPage(pages[0].id)">Chapter 1 / 20</span>
+            <span @click="showPage(pages[0].id)">Chapter 1 / 20</span>
             <span @click="showPage(pages[1].id)">{{
-                `Page ${computedProgressBar.readPage} /
+                `Page ${readPage} /
             ${instanceProxy.length}`
             }}</span>
         </div>
         <!-- Dekstop Icon Login -->
         <BoxIcon
-            @click="
-                stateShowDown(
-                    compuPiniaToDownOrUp.modalLogin,
-                    compuPiniaToDownOrUp.readStyleModalLogin
-                )
-            "
+            @click="stateShowDown(modalLogin, readStyleModalLogin)"
             :options="{
                 title: 'Login',
                 icon: ' fas fa-chevron-right',
@@ -137,15 +135,10 @@ defineOptions({ inheritAttrs: false });
             class="w-[80px] min-[576px]:flex hidden rounded-full bg-sky-600 text-white h-[2rem] justify-center item-center gap-x-1"
         />
 
-        <div class="flex gap-x-1 justify-center items-center ">
+        <div class="flex gap-x-1 justify-center items-center">
             <!-- Icon Mobile -->
             <IconHeaderMobile
-                @showLogin="
-                    stateShowDown(
-                        compuPiniaToDownOrUp.modalLogin,
-                        compuPiniaToDownOrUp.readStyleModalLogin
-                    )
-                "
+                @showLogin="stateShowDown(modalLogin, readStyleModalLogin)"
                 class="max-[576px]:flex hidden w-[65px] h-[2rem]"
             />
             <BoxIcon

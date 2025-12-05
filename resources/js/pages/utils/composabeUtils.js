@@ -207,3 +207,19 @@ export const useCompoUtilsDropDown = () => {
 
     return { selectDropById, dropdown, genaratePropertyObjects };
 };
+
+export const useCompoUtilsShowDown = () => {
+    const showDown = async (targetInstance, instance) => {
+        if (!targetInstance.status) {
+            targetInstance.status = !targetInstance.status;
+            await delay(10);
+            switchActive(instance, targetInstance.style);
+        } else {
+            switchActive(instance, targetInstance.style);
+            await delay(targetInstance.timeDelay);
+            targetInstance.status = !targetInstance.status;
+        }
+    };
+
+    return { showDown };
+};

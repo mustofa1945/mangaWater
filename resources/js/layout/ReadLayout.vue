@@ -12,23 +12,28 @@ const PageMenu = defineAsyncComponent(() =>
     import("../pages/components/ui/PageMenu.vue")
 );
 
-const Login = defineAsyncComponent(() => import("../pages/components/ui/Login.vue"))
+const Login = defineAsyncComponent(() =>
+    import("../pages/components/ui/Login.vue")
+);
 //store
 import { useSlidePage } from "../pages/stores/useSlidePage";
 import { useShowClose } from "../pages/stores/useShowClose";
 import ModalError from "../pages/components/ui/ModalError.vue";
 import { useStoreToDownOrUp } from "../pages/stores/storeToDownOrUp";
+import { storeToRefs } from "pinia";
 
 const { pages, showPage } = useSlidePage();
-const { createShowCloseComputedGroup, showOrHidden, comment , dataReact } = useShowClose();
+const { createShowCloseComputedGroup, showOrHidden, comment } = useShowClose();
+const { onMenu } = storeToRefs(useShowClose());
 const { readNavReadMenu, readComment, readHeader } =
     createShowCloseComputedGroup();
-const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
+const { stateShowDown } = useStoreToDownOrUp();
 
+const { modalLogin, readStyleModalLogin } = storeToRefs(useStoreToDownOrUp());
 </script>
 <template>
     <div
-        class="max-w-full relative flex overflow-hidden h-[100dvh]"
+        class="max-w-full relative flex overflow-hidden h-[100dvh] bg-slate-800"
     >
         <main
             :class="`relative ${readNavReadMenu.readLayoutWidth}  z-0 top-0 duration-250 transition-all h-full flex flex-col overflow-hidden`"
@@ -43,23 +48,19 @@ const { stateShowDown, compuPiniaToDownOrUp } = useStoreToDownOrUp();
                 <slot />
             </article>
         </main>
-        <PageMenu  v-if="!(dataReact.onMenu)"
+        <PageMenu
+            v-if="!onMenu"
             v-for="page in pages"
             :display="page.display"
             :page="page.status"
-            class="top-13 z-40"
+            class="w-[21.1rem] top-13 z-40"
             @slidePage="showPage(page.id)"
             :input="page.input"
         />
         <Login
-            @useToDownOrUp="
-                stateShowDown(
-                    compuPiniaToDownOrUp.modalLogin,
-                    compuPiniaToDownOrUp.readStyleModalLogin
-                )
-            "
-            :readModalLogin="compuPiniaToDownOrUp.modalLogin"
-            :readStyleLogin="compuPiniaToDownOrUp.readStyleModalLogin"
+            @useToDownOrUp="stateShowDown(modalLogin, readStyleModalLogin)"
+            :readModalLogin="modalLogin"
+            :readStyleLogin="readStyleModalLogin"
         />
         <AdvancesSetting />
         <ModalError />
