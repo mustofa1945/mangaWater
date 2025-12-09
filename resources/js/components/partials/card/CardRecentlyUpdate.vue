@@ -2,7 +2,7 @@
 import ModalDetailManga from "../modal/ModalDetailManga.vue";
 import { useUtils } from "../../../utils/utilsFunctionStore";
 import { computed, ref } from "vue";
-import { dataManga } from "../../../../data/dataManga";
+import { dataManga } from "../../../data/dataManga";
 
 const typeManga = ref([
     {

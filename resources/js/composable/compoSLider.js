@@ -1,5 +1,5 @@
 import { ref, computed } from "vue";
-import { dataManga, dataRecentlyUpdate } from "../../data/dataManga";
+import { dataManga, dataRecentlyUpdate } from "../data/dataManga";
 import { useProvideUtilsSlide } from "../utils/composabeUtils";
 
 const { nextSlide, prevSLide, set, swicthBar } = useProvideUtilsSlide();

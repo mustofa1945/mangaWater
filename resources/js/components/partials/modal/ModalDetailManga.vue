@@ -1,5 +1,5 @@
 <script setup>
-import { langs } from "../../../../data/dataManga";
+import { langs } from "../../../data/dataManga";
 
 const props = defineProps(["manga"]);
 

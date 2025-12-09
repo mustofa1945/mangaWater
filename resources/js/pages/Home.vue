@@ -1,17 +1,17 @@
 <script setup>
-import Pagnation from "./components/partials/button/Pagnation.vue";
-import SosiaLinks from "./components/partials/button/SosiaLinks.vue";
-import CardManga from "./components/partials/card/CardManga.vue";
-import CardMostViewed from "./components/partials/card/CardMostViewed.vue";
-import CardRecentlyUpdate from "./components/partials/card/CardRecentlyUpdate.vue";
-import BoxLight from "./components/ui/BoxLight.vue";
-import PagReguler from "./components/partials/button/PagReguler.vue";
+import Pagnation from "../components/partials/button/Pagnation.vue";
+import SosiaLinks from "../components/partials/button/SosiaLinks.vue";
+import CardManga from "../components/partials/card/CardManga.vue";
+import CardMostViewed from "../components/partials/card/CardMostViewed.vue";
+import CardRecentlyUpdate from "../components/partials/card/CardRecentlyUpdate.vue";
+import BoxLight from "../components/ui/BoxLight.vue";
+import PagReguler from "../components/partials/button/PagReguler.vue";
 import DefaultLayout from "../layout/DefaultLayout.vue";
 import { dataManga } from "../data/dataManga";
 import { typeMangaSearch } from "../data/dataSearch";
-import { useSlider, useSliderProgressBar } from "./composable/compoSLider";
+import { useSlider, useSliderProgressBar } from "../composable/compoSLider";
 import { onMounted, toRaw, useTemplateRef, watchEffect, ref } from "vue";
-import { useSelect } from "./stores/useSelectEl";
+import { useSelect } from "../stores/useSelectEl";
 import { storeToRefs } from "pinia";
 
 const { dataSlider, next, prev, setElement, computedSlider } = useSlider();
@@ -199,7 +199,6 @@ defineOptions({ layout: DefaultLayout });
                             idManga: manga.id,
                             title: manga.title,
                             url: manga.url,
-                            date: manga.date,
                             type: manga.type,
                             dataActive: manga.dataActive,
                             lang: manga.lang,

@@ -3,7 +3,7 @@ import { reactive , computed } from "vue";
 import { useUtils } from "../utils/utilsFunctionStore";
 import { useThemeGlobal } from "../theme/globalStyle";
 import { useCompoUtilsShowDown } from "../utils/composabeUtils";
-import { langs , langsWithChapter } from "../../data/dataManga";
+import { langs , langsWithChapter } from "../data/dataManga";
 
 export const useSingleDrop = defineStore("singleDrop", () => {
     const { findByStatus, delay, selectById } = useUtils();

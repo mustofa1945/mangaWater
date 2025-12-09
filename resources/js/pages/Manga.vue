@@ -1,18 +1,18 @@
 <script setup>
-import { useCompoStar } from "./composable/compoStar";
+import { useCompoStar } from "../composable/compoStar";
 import DefaultLayout from "../layout/DefaultLayout.vue";
-import BoxLight from "./components/ui/BoxLight.vue";
-import DetailsManga from "./components/partials/manga/DetailsManga.vue";
-import NavManga from "./components/partials/manga/NavManga.vue";
-import Chapter from "./components/ui/Chapter.vue";
-import Volume from "./components/ui/Volume.vue";
-import LangNavButton from "./components/partials/button/LangNavButton.vue";
+import BoxLight from "../components/ui/BoxLight.vue";
+import DetailsManga from "../components/partials/manga/DetailsManga.vue";
+import NavManga from "../components/partials/manga/NavManga.vue";
+import Chapter from "../components/ui/Chapter.vue";
+import Volume from "../components/ui/Volume.vue";
+import LangNavButton from "../components/partials/button/LangNavButton.vue";
 import { langsWithChapter } from "../data/dataManga";
-import { useSelect } from "./stores/useSelectEl";
+import { useSelect } from "../stores/useSelectEl";
 import { storeToRefs } from "pinia";
-import { useUtils } from "./utils/utilsFunctionStore";
-import { useCompoUtilsShowDown } from "./utils/composabeUtils";
-import { useSingleDrop } from "./stores/useSingleDrop";
+import { useUtils } from "../utils/utilsFunctionStore";
+import { useCompoUtilsShowDown } from "../utils/composabeUtils";
+import { useSingleDrop } from "../stores/useSingleDrop";
 
 const { onOverHoverStar, dataStar, grade, scor } = useCompoStar();
 

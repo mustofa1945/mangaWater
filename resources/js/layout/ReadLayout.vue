@@ -1,25 +1,25 @@
 <script setup>
 import { defineAsyncComponent, watchEffect } from "vue";
 
-import AdvancesSetting from "../pages/components/ui/AdvancesSetting.vue";
-import Header from "../pages/components/ui/Header.vue";
-import NavReadMenu from "../pages/components/ui/NavReadMenu.vue";
-import InputSearchMobile from "../pages/mobile/components/InputSearchMobile.vue";
+import AdvancesSetting from "../components/ui/AdvancesSetting.vue";
+import Header from "../components/ui/Header.vue";
+import NavReadMenu from "../components/ui/NavReadMenu.vue";
+import InputSearchMobile from "../mobile/components/InputSearchMobile.vue";
 const Comment = defineAsyncComponent(() =>
-    import("../pages/components/ui/Comment.vue")
+    import("../components/ui/Comment.vue")
 );
 const PageMenu = defineAsyncComponent(() =>
-    import("../pages/components/ui/PageMenu.vue")
+    import("../components/ui/PageMenu.vue")
 );
 
 const Login = defineAsyncComponent(() =>
-    import("../pages/components/ui/Login.vue")
+    import("../components/ui/Login.vue")
 );
 //store
-import { useSlidePage } from "../pages/stores/useSlidePage";
-import { useShowClose } from "../pages/stores/useShowClose";
-import ModalError from "../pages/components/ui/ModalError.vue";
-import { useStoreToDownOrUp } from "../pages/stores/storeToDownOrUp";
+import { useSlidePage } from "../stores/useSlidePage";
+import { useShowClose } from "../stores/useShowClose";
+import ModalError from "../components/ui/ModalError.vue";
+import { useStoreToDownOrUp } from "../stores/storeToDownOrUp";
 import { storeToRefs } from "pinia";
 
 const { pages, showPage } = useSlidePage();
