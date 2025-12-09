@@ -1,7 +1,7 @@
 <script setup>
 import DefaultLayout from '../layout/DefaultLayout.vue';
-import SosiaLinks from './components/partials/button/SosiaLinks.vue';
-import BoxLight from './components/ui/BoxLight.vue';
+import SosiaLinks from '../components/partials/button/SosiaLinks.vue';
+import BoxLight from '../components/ui/BoxLight.vue';
 
 defineOptions({ layout: DefaultLayout })
 </script>

@@ -1,10 +1,11 @@
-import { ref, computed, watch } from "vue";
-import { Manga } from "../../data/dataSearch";
+import { ref, computed, watch, reactive , onMounted } from "vue";
+import { Manga } from "../data/dataSearch";
 import { useThemeGlobal } from "../theme/globalStyle";
-import { mangaGenres } from "../../data/dataManga";
+import { mangaGenres } from "../data/dataManga";
 import { useCompoUtilsDropDown } from "../utils/composabeUtils";
 import { useUtils } from "../utils/utilsFunctionStore";
 import { useProvideDataDropDown } from "./data/dataDropdown";
+import { api } from "../services/api";
 
 const { templateDropDown } = useThemeGlobal();
 
@@ -65,14 +66,14 @@ export const useDropDownSearch = () => {
 //Dekstop
 export const useCompoDropdownHeaderLarge = () => {
     const { propertyDropDownHeader } = useProvideDataDropDown();
-    console.log(propertyDropDownHeader[0])
-    const dataDropDownHeader = ref(
+
+    const dataDropDownHeader = reactive(
         propertyDropDownHeader.map((el, index) => {
             return {
                 id: index + 1,
                 status: false,
-                dataDrop: el.dataDrop,
                 title: el.title,
+                dataDrop : null,
                 property: el.property,
                 childWidth: el.childWidth,
                 animProper: [
@@ -87,7 +88,28 @@ export const useCompoDropdownHeaderLarge = () => {
         })
     );
 
-    const readDropDownHeader = computed(() => dataDropDownHeader.value);
+      const getTypesAndGenres = async () => {
+        try {
+            const [types , genres] = dataDropDownHeader
+
+            const resT = await api.get("/type.json");
+
+            const resG = await api.get("/genres.json");
+
+            types.dataDrop = resT.data;
+
+            genres.dataDrop = resG.data;
+
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    onMounted(() => {
+        getTypesAndGenres()
+    });
+
+    const readDropDownHeader = computed(() => dataDropDownHeader);
 
     const runDropdown = (id) => dropdown(id, readDropDownHeader);
 

@@ -1,14 +1,14 @@
 <script setup>
 import { defineAsyncComponent } from "vue";
-import Header from "../pages/components/ui/Header.vue";
-import Footer from "../pages/components/ui/Footer.vue";
-import InputSearchMobile from "../pages/mobile/components/InputSearchMobile.vue";
-import GenreModal from "../pages/mobile/components/GenreModal.vue";
-import YearModal from "../pages/mobile/components/YearModal.vue";
-import { useStoreToDownOrUp } from "../pages/stores/storeToDownOrUp";
+import Header from "../components/ui/Header.vue";
+import Footer from "../components/ui/Footer.vue";
+import InputSearchMobile from "../mobile/components/InputSearchMobile.vue";
+import GenreModal from "../mobile/components/GenreModal.vue";
+import YearModal from "../mobile/components/YearModal.vue";
+import { useStoreToDownOrUp } from "../stores/storeToDownOrUp";
 import { storeToRefs } from "pinia";
 const Login = defineAsyncComponent(() =>
-    import("../pages/components/ui/Login.vue")
+    import("../components/ui/Login.vue")
 );
 
 const { stateShowDown } = useStoreToDownOrUp();

@@ -32,10 +32,9 @@ const el = computed(() => findByStatus(props.animProper));
         >
          <div :class="[props.property , 'mt-2 gap-y-1 px-2 flex']">
              <Link
-                 :key="itemDrop.id"
                  :class="[childWidth , 'pl-3  text-[#FFFFFF] box-border hover:border-[#18715F] hover:bg-[#18715F]/10 hover:text-[#18715F] duration-200 rounded-xl']"
-                 :href="['/search/' , itemDrop.id]"
                  v-for="itemDrop in props.dataDrop"
+                 href="#"
                  >{{ itemDrop.name }}</Link
              >
             </div>

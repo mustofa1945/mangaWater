@@ -1,13 +1,13 @@
 <script setup>
-import DropdownSearch from "./components/partials/dropdowns/DropdownSearch.vue";
-import BoxLight from "./components/ui/BoxLight.vue";
+import DropdownSearch from "../components/partials/dropdowns/DropdownSearch.vue";
+import BoxLight from "../components/ui/BoxLight.vue";
 import { dataManga } from "../data/dataManga";
-import CardRecentlyUpdate from "./components/partials/card/CardRecentlyUpdate.vue";
-import PagReguler from "./components/partials/button/PagReguler.vue";
+import CardRecentlyUpdate from "../components/partials/card/CardRecentlyUpdate.vue";
+import PagReguler from "../components/partials/button/PagReguler.vue";
 import { typeMangaSearch } from "../data/dataSearch";
 import DefaultLayout from "../layout/DefaultLayout.vue";
-import { useDropDownSearch } from "./composable/compoDropDown";
-import { useStoreToDownOrUp } from "./stores/storeToDownOrUp";
+import { useDropDownSearch } from "../composable/compoDropDown";
+import { useStoreToDownOrUp } from "../stores/storeToDownOrUp";
 import { onMounted } from "vue";
 
 const { compuDropSearch, runDropdown } = useDropDownSearch();
@@ -98,11 +98,11 @@ defineOptions({ layout: DefaultLayout });
                     v-for="manga in dataManga"
                     :key="manga.id"
                     :manga="{
+                        idManga: manga.id,
                         title: manga.title,
                         url: manga.url,
-                        date: manga.date,
                         type: manga.type,
-                        chapter: manga.chapter,
+                        dataActive: manga.dataActive,
                         lang: manga.lang,
                     }"
                 />

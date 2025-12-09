@@ -1,8 +1,8 @@
 import { useCompoUtilsDropDown } from "../../utils/composabeUtils";
-import { handleTypeService } from "../../services/typeService";
-import { ref , watchEffect } from "vue";
-import { mangaGenres } from "../../../data/dataManga";
-
+// import { handleTypeService } from "../../services/typeService";
+import { computed, onMounted, reactive, ref, watchEffect } from "vue";
+import { mangaGenres, types } from "../../data/dataManga";
+import { api } from "../../services/api";
 
 const year = [];
 
@@ -63,19 +63,8 @@ const {
     year,
 };
 
-export const useProvideDataDropDown =  () => {
-    const types = ref(null);
-
-    const genres = ref(null);   
-
-    const { genaratePropertyObjects: runGenerate } = useCompoUtilsDropDown();
-
-    watchEffect(async() => {
-        const data = await handleTypeService()
-
-        types.value = data
-    })
-   
+export const useProvideDataDropDown = () => {
+    const { genaratePropertyObjects: runGenerate } = useCompoUtilsDropDown();  
 
     const {
         objManga,
@@ -156,11 +145,10 @@ export const useProvideDataDropDown =  () => {
         },
     ];
 
-    const propertyDropDownHeader = [
+    const propertyDropDownHeader = reactive([
         {
             id: 1,
             title: "Types",
-            dataDrop: types.value,
             property: "w-[9rem] flex-col text-[16px]",
             height: "h-[10rem]",
             childWidth: null,
@@ -168,12 +156,13 @@ export const useProvideDataDropDown =  () => {
         {
             id: 2,
             title: "Genres",
-            dataDrop: genres.value,
             property: "flex-wrap w-[30rem] text-[15px]",
             height: "h-[26rem]",
             childWidth: "w-[33%] h-[1.7rem] flex items-center",
         },
-    ];
+    ]);
 
-    return { propertyDropdownSearch, propertyDropDownHeader };
+
+
+    return { propertyDropdownSearch, propertyDropDownHeader, compu: { types } };
 };

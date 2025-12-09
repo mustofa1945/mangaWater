@@ -1,5 +1,5 @@
 <script setup>
-import { dataManga } from '../../../data/dataManga';
+import { dataManga } from '../../data/dataManga';
 import CardMostViewed from '../partials/card/CardMostViewed.vue';
 
 </script>

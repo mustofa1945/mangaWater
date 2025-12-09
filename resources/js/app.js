@@ -11,7 +11,7 @@ import { createPinia } from "pinia";
 import {
     vShowAndClose,
     vWaitTransition,
-} from "./pages/directive/customDirective";
+} from "./directive/customDirective";
 
 
 export const pinia = createPinia();

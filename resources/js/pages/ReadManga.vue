@@ -1,19 +1,19 @@
 <script setup>
 import { defineAsyncComponent, useTemplateRef, watchEffect } from "vue";
 // Stores
-import { useMangaViewer } from "./stores/useMangaViewer";
-import { useMangaSize } from "./stores/useSizeManga";
-import { useProgressButton } from "./stores/useButtonProgress";
-import { useAdvanceSetting } from "./stores/useAdvanceSetting";
-import { useReadingDirec } from "./stores/useReadingDirec";
+import { useMangaViewer } from "../stores/useMangaViewer";
+import { useMangaSize } from "../stores/useSizeManga";
+import { useProgressButton } from "../stores/useButtonProgress";
+import { useAdvanceSetting } from "../stores/useAdvanceSetting";
+import { useReadingDirec } from "../stores/useReadingDirec";
 
 //Composables
-import { useCompoReadManga } from "./composable/composableReadManga";
+import { useCompoReadManga } from "../composable/composableReadManga";
 // Components
-import ProgressManga from "./components/ui/ProgressManga.vue";
-import MangaViewer from "./components/ui/MangaViewer.vue";
+import ProgressManga from "../components/ui/ProgressManga.vue";
+import MangaViewer from "../components/ui/MangaViewer.vue";
 const NextButton = defineAsyncComponent(() =>
-    import("./components/partials/button/NextButton.vue")
+    import("../components/partials/button/NextButton.vue")
 );
 // Layout
 import ReadLayout from "../layout/ReadLayout.vue";
